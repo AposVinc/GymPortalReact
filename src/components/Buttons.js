@@ -30,6 +30,19 @@ export const LinkButton = function({onPress, text}) {
   );
 };
 
+export const ListButton = function({onPress, text, style}) {
+  return (
+      <TouchableOpacity
+          onPress={onPress}
+          style={[styles.button.container, styles.listButton.container, style]}
+      >
+        <Text style={[styles.button.text, styles.listButton.text]}>
+          {text}
+        </Text>
+      </TouchableOpacity>
+  );
+};
+
 const styles = {
   link: {
     container: {
@@ -41,7 +54,7 @@ const styles = {
       fontSize: 14,
       fontWeight: '900',
       color: 'black',
-    }
+    },
   },
   button: {
     container: {
@@ -59,6 +72,18 @@ const styles = {
   loginButton: {
     container: {
       backgroundColor: 'rgb(120, 79,246)',
+    },
+  },
+  listButton: {
+    container: {
+      height: 45,
+      backgroundColor: 'rgb(254, 178, 7)',
+      borderColor: 'black',
+      borderWidth: 1,
+      borderStyle: 'solid',
+    },
+    text: {
+      color: 'black',
     },
   },
 };
