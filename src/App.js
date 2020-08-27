@@ -6,6 +6,8 @@
  * @flow strict-local
  */
 
+//npx react-native run-android
+
 import React from 'react';
 import {
   SafeAreaView,
