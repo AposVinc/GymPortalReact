@@ -5,7 +5,7 @@ import {View, Text, ActivityIndicator, ScrollView} from 'react-native';
 import GymItem from './partial/GymItem';
 import {Card} from '../components';
 
-const URL_gym = 'https://rallycoding.herokuapp.com/api/music_albums';
+const URL_GYMS = 'http://10.0.2.2:8080/GymREST/rest/gyms';
 
 export default class gymList extends Component {
   constructor(props) {
@@ -17,16 +17,12 @@ export default class gymList extends Component {
   }
 
   componentDidMount() {
-    axios.get(URL_gym).
+    axios.get(URL_GYMS).
         then(response => response.data).
         then(data => { this.setState({gyms: data});}).
         catch(error => {
           console.log(error);
         });
-  }
-
-  keyExtractor() {
-    return `gym-item-${this.title.replace(/ /g, '-').toLowerCase()}`;
   }
 
   render() {
@@ -49,7 +45,7 @@ export default class gymList extends Component {
             <Card>
               {gyms.map((gym, key) => (
                   <GymItem
-                      key={`gym-item-${gym.title.replace(/ /g, '-').toLowerCase()}`}
+                      key={`gym-item-${gym.id}`}
                       gym={gym}
                   />
               ))}

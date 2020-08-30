@@ -20,21 +20,23 @@ export default class GymItem extends Component {
   }
 
   render() {
-    const {gym: {title, artist, thumbnail_image, image}} = this.props;
+    const {gym: {id, name, address, province, region}} = this.props;
     return (
         <CardItem>
           <View style={styles.container}>
             <TouchableOpacity onPress={() => {
               this.setState({active: !this.state.active});
             }}>
-              <Image
+              {/*<Image
                   style={this.state.active ? styles.image : styles.thumb}
                   source={{uri: this.state.active ? image : thumbnail_image}}
-              />
+              />*/}
             </TouchableOpacity>
             <View style={styles.containerText}>
-              <Text>{title}</Text>
-              <Text>{artist}</Text>
+              <Text>{name}</Text>
+              <Text>{region}</Text>
+              <Text>{province}</Text>
+              <Text>{address}</Text>
             </View>
             <View style={{justifyContent: 'center'}}>
               <ListButton
