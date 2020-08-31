@@ -1,23 +1,25 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
+import {Provider} from 'react-redux';
+import createStore from './stores';
+
 import GymListPage from './pages/GymListPage.js';
+
+const {store} = createStore();
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.state={
-      defaultValueText: 'Ciao',
-      valueText: '',
-    };
   }
 
   render() {
     return (
-        <SafeAreaView style={styles.container} >
-          <GymListPage />
-        </SafeAreaView>
+        <Provider store={store}>
+          <SafeAreaView style={styles.container} >
+            <GymListPage />
+          </SafeAreaView>
+        </Provider>
     );
   }
 
