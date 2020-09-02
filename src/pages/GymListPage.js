@@ -25,9 +25,9 @@ export default function() {
         </View>
     );
   }
-  // if (gyms.length === 0) {
-  //   return <Text>Empty Gyms List</Text>;
-  // }
+  if (gyms.length === 0) {
+    return <Text>Empty Gyms List</Text>;
+  }
 
   return (
       <View style={styles.container}>
