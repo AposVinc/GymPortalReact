@@ -1,32 +1,23 @@
 import React, {Component, useEffect} from 'react';
-import axios from 'axios';
 import {View, Text, ActivityIndicator, ScrollView} from 'react-native';
 
 import GymItem from './partial/GymItem';
 import {Card} from '../components';
 import {useDispatch, useSelector} from 'react-redux';
-import {sLoadedGyms} from '../reducers/selectors';
-import {gymFetched} from '../actions';
+import {sGymsLoading, sLoadedGyms} from '../reducers/selectors';
+import {gymFetch} from '../actions';
 
-const URL_GYMS = 'http://10.0.2.2:8080/GymREST/rest/gyms';
 
 export default function() {
   const gyms = useSelector(sLoadedGyms);
+  const loading = useSelector(sGymsLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get(URL_GYMS).
-        then(response => response.data).
-        then(data => { dispatch(gymFetched(data)); }).
-        catch(error => {
-          console.log(error);
-        });
+    dispatch(gymFetch())
   }, []);
 
-  console.log('gyms');
-  console.log(gyms);
-
-  if (!gyms) {
+  if (loading || gyms === null) {
     return (
         <View
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -34,9 +25,9 @@ export default function() {
         </View>
     );
   }
-  if (gyms.length === 0) {
-    return <Text>Empty Gyms List</Text>;
-  }
+  // if (gyms.length === 0) {
+  //   return <Text>Empty Gyms List</Text>;
+  // }
 
   return (
       <View style={styles.container}>
@@ -58,5 +49,6 @@ const styles = {
   container: {
     flex: 1,
     paddingVertical: 15,
+    backgroundColor: '#000'
   },
 };
