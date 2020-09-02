@@ -24,14 +24,14 @@ export default class GymItem extends Component {
     return (
         <CardItem>
           <View style={styles.container}>
-            <TouchableOpacity onPress={() => {
-              this.setState({active: !this.state.active});
-            }}>
+            {/*<TouchableOpacity onPress={() => {*/}
+            {/*  this.setState({active: !this.state.active});*/}
+            {/*}}>*/}
               {/*<Image
                   style={this.state.active ? styles.image : styles.thumb}
                   source={{uri: this.state.active ? image : thumbnail_image}}
               />*/}
-            </TouchableOpacity>
+            {/*</TouchableOpacity>*/}
             <View style={styles.containerText}>
               <Text>{name}</Text>
               <Text>{region}</Text>

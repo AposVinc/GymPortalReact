@@ -43,12 +43,11 @@ export default function() {
         </ScrollView>
       </View>
   );
-}
+};
 
 const styles = {
   container: {
     flex: 1,
     paddingVertical: 15,
-    backgroundColor: '#000'
   },
 };

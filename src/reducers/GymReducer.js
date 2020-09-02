@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   loading: false,
 };
 
-const sGym = (state) => state.app;
+const sGym = (state) => state.gym;
 export const sLoadedGyms = state => sGym(state).gyms;
 export const sGymsLoading = state => sGym(state).loading;
 
