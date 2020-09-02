@@ -1,17 +1,19 @@
 import {
-  IN_LOADING,
+  LOADING,
   LOADING_END,
 } from '../stores/ActionType';
 
-//logica dell'app, se utente è loggato o meno
 const INITIAL_STATE = {
       loading: true,
       loadingSeconds: 0
-    };
+};
+
+const sApp = (state) => state.app;
+export const sAppLoading = (state) => sApp(state).loading;
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case IN_LOADING:
+    case LOADING:
       return {
         ...state,
         loadingSeconds: state.loadingSeconds + 1
