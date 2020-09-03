@@ -1,11 +1,12 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
 import createStore from './stores';
 
 import GymListPage from './pages/GymListPage.js';
 
-const {store} = createStore();
+const {store, persistor} = createStore();
 
 class App extends React.Component {
 
@@ -16,9 +17,11 @@ class App extends React.Component {
   render() {
     return (
         <Provider store={store}>
-          <SafeAreaView style={styles.container} >
-            <GymListPage />
-          </SafeAreaView>
+          <PersistGate persistor={persistor}>
+            <SafeAreaView style={styles.container} >
+              <GymListPage />
+            </SafeAreaView>
+          </PersistGate>
         </Provider>
     );
   }
