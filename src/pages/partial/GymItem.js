@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {Text, View, Linking, Image, TouchableOpacity} from 'react-native';
+import {Text, View, Linking} from 'react-native';
 
-import {ListButton, CardItem} from '../../components';
+import {CardItem, FavoriteButton} from '../../components';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {Button} from 'react-native-elements';
 
 export default class GymItem extends Component {
 
@@ -14,7 +16,9 @@ export default class GymItem extends Component {
   }
 
   handleBuyButtonPress() {
-    const {gym: {url}} = this.props;
+    const {gym: {id}} = this.props;
+    const url = id;
+    console.log(id);
     Linking.openURL(url).
         catch((err) => console.error('An error occurred', err));
   }
@@ -24,25 +28,17 @@ export default class GymItem extends Component {
     return (
         <CardItem>
           <View style={styles.container}>
-            {/*<TouchableOpacity onPress={() => {*/}
-            {/*  this.setState({active: !this.state.active});*/}
-            {/*}}>*/}
-              {/*<Image
-                  style={this.state.active ? styles.image : styles.thumb}
-                  source={{uri: this.state.active ? image : thumbnail_image}}
-              />*/}
-            {/*</TouchableOpacity>*/}
             <View style={styles.containerText}>
-              <Text>{name}</Text>
-              <Text>{region}</Text>
-              <Text>{province}</Text>
-              <Text>{address}</Text>
+              <Text>Name: {name}</Text>
+              <Text>Reg: {region}</Text>
+              <Text>Prov: {province}</Text>
+              <Text>Addr: {address}</Text>
             </View>
             <View style={{justifyContent: 'center'}}>
-              <ListButton
-                  style={styles.button}
-                  text={'Buy'}
+              <FavoriteButton
                   onPress={this.handleBuyButtonPress}
+                  favorite={true}
+                  style={styles.button}
               />
             </View>
           </View>
