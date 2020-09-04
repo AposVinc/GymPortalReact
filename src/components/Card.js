@@ -16,7 +16,6 @@ const styles = {
   container: {
     marginHorizontal: 15,
     paddingVertical: 15,
-    marginBottom: 15,
     backgroundColor: '#ffffff',
     borderRadius: 12,
     minHeight: 50

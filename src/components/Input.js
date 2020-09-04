@@ -38,7 +38,7 @@ export default class Input extends Component {
             style={styles.input}
             placeholder={placeholder}
             placeholderTextColor={styles.placeholderColor}
-            value={this.props.value ? this.props.value : this.state.text}
+            value={this.state.text}
             // onChangeText={(text) => {
             //   console.log('change');
             //   this.setState({
