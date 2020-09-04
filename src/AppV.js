@@ -3,8 +3,7 @@ import {SafeAreaView} from 'react-native';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import createStore from './stores';
-
-import GymListPage from './pages/GymListPage.js';
+import RootNavigator from './navigator/RootNavigator';
 
 const {store, persistor} = createStore();
 
@@ -19,7 +18,7 @@ class App extends React.Component {
         <Provider store={store}>
           <PersistGate persistor={persistor}>
             <SafeAreaView style={styles.container} >
-              <GymListPage />
+              <RootNavigator />
             </SafeAreaView>
           </PersistGate>
         </Provider>
