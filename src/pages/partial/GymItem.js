@@ -1,18 +1,13 @@
 import React, {Component} from 'react';
-import {Text, View, Linking} from 'react-native';
+import {Text, View, Linking, Button} from 'react-native';
 
 import {CardItem, FavoriteButton} from '../../components';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {Button} from 'react-native-elements';
 
 export default class GymItem extends Component {
 
   constructor(props) {
     super(props);
     this.handleBuyButtonPress = this.handleBuyButtonPress.bind(this);
-    this.state = {
-      active: false,
-    };
   }
 
   handleBuyButtonPress() {
@@ -35,6 +30,10 @@ export default class GymItem extends Component {
               <Text>Addr: {address}</Text>
             </View>
             <View style={{justifyContent: 'center'}}>
+              <Button
+                  title="Go to Details"
+                  onPress={() => this.props.navigation.navigate('Gym')}
+              />
               <FavoriteButton
                   onPress={this.handleBuyButtonPress}
                   favorite={true}

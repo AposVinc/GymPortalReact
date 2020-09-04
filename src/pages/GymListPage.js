@@ -8,7 +8,7 @@ import {sGymsLoading, sLoadedGyms} from '../reducers/selectors';
 import {gymFetch} from '../actions';
 
 
-export default function() {
+export default function({ navigation }) {
   const gyms = useSelector(sLoadedGyms);
   const loading = useSelector(sGymsLoading);
   const dispatch = useDispatch();
@@ -37,6 +37,7 @@ export default function() {
                 <GymItem
                     key={`gym-item-${gym.id}`}
                     gym={gym}
+                    navigation={navigation}
                 />
             ))}
           </Card>

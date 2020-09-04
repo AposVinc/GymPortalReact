@@ -45,8 +45,8 @@ export const ListButton = function({onPress, text, style}) {
 };
 
 export const FavoriteButton = function({onPress, favorite, style}) {
-  const heart = <Icon name='heart' type='ionicon' />;
-  const heart_outline = <Icon name='heart-outline' type='ionicon' />;
+  const heart = <Icon name='heart' type='ionicon'  color='red'/>;
+  const heart_outline = <Icon name='heart-outline' type='ionicon'/>;
 
   return (
       <TouchableOpacity onPress={onPress}
