@@ -6,6 +6,9 @@
  * @flow strict-local
  */
 
+//npx react-native run-android
+//menu di debug -> ctr + m //lez 14/03/20 8:00
+
 import React from 'react';
 import {
   SafeAreaView,

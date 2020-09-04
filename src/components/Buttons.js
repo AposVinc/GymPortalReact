@@ -1,5 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, Text, ActivityIndicator} from 'react-native';
+import {Button, Icon} from 'react-native-elements';
 
 export const LoginButton = function({onPress, inLoading = false, text = 'Login'}) {
   return (
@@ -39,6 +40,18 @@ export const ListButton = function({onPress, text, style}) {
         <Text style={[styles.button.text, styles.listButton.text]}>
           {text}
         </Text>
+      </TouchableOpacity>
+  );
+};
+
+export const FavoriteButton = function({onPress, favorite, style}) {
+  const heart = <Icon name='heart' type='ionicon' />;
+  const heart_outline = <Icon name='heart-outline' type='ionicon' />;
+
+  return (
+      <TouchableOpacity onPress={onPress}
+                        style={[styles.button.container, styles.listButton.container, style]}>
+        {favorite ? heart : heart_outline}
       </TouchableOpacity>
   );
 };
