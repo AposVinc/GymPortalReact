@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
-import {Button, Text, View} from 'react-native';
+import React from 'react';
+import {Text, View} from 'react-native';
 
 
-function GymPage({ navigation }) {
+function GymPage({ route }) {
+  const { itemId } = route.params;
 
-    return (
-        <View style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center"
-        }}>
-          <Text>Gym Page</Text>
-
-        </View>
-    );
+  return (
+      <View style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+      }}>
+        <Text>Gym Page</Text>
+        <Text>id: {itemId}</Text>
+      </View>
+  );
 
 }
 
