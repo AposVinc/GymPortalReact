@@ -1,4 +1,10 @@
-import {LOADING, LOADING_END} from '../stores/ActionType';
+import {
+  GUEST_FORM_CHANGE_VALUE, GUEST_FORM_RESET,
+  LOADING,
+  LOADING_END,
+} from '../stores/ActionType';
+import {sAppGuestFormEmail, sAppGuestFormPassword} from '../reducers/selectors';
+
 
 export const appLoading = function() {
   return {
@@ -11,3 +17,62 @@ export const appEndLoading = function() {
     type: LOADING_END,
   }
 }
+
+export const appGuestFormChangeEmail = function(value) {
+  return {
+    type: GUEST_FORM_CHANGE_VALUE,
+    payload: {
+      field: 'email',
+      value,
+    },
+  };
+};
+
+export const appGuestFormChangePassword = function(value) {
+  return {
+    type: GUEST_FORM_CHANGE_VALUE,
+    payload: {
+      field: 'password',
+      value,
+    },
+  };
+};
+
+export const appGuestFormReset = function() {
+  return {
+    type: GUEST_FORM_RESET,
+  };
+};
+
+
+export const appSignUp = function() {
+  return (dispatch, getState) => {
+    const storeState = getState();
+    const email = sAppGuestFormEmail(storeState);
+    const password = sAppGuestFormPassword(storeState);
+    firebase.auth().createUserWithEmailAndPassword(email, password).
+        then(() => {
+          dispatch(appGuestFormReset());
+        }).
+        catch((error) => {
+          // Handle Errors here.
+          console.log(error.code, error.message);
+        });
+  };
+};
+
+export const appSignIn = function() {
+  return (dispatch, getState) => {
+    const storeState = getState();
+    const email = sAppGuestFormEmail(storeState);
+    const password = sAppGuestFormPassword(storeState);
+    firebase.auth().signInWithEmailAndPassword(email, password).
+        then(() => {
+          dispatch(appGuestFormReset());
+        }).
+        catch((error) => {
+          // Handle Errors here.
+          console.log(error.code, error.message);
+        });
+  };
+};
