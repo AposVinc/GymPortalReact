@@ -11,24 +11,22 @@ import {
   LinkButton,
 } from '../components';
 import {connect} from 'react-redux';
-
-
-const INITIAL_STATE = {
-  email: '',
-  password: '',
-  loading: false,
-  error: '',
-};
+import {
+  appGuestFormChangeEmail,
+  appGuestFormChangePassword,
+  appGuestFormReset, appSignUp,
+} from '../actions';
+import {
+  sAppGuestFormEmail,
+  sAppGuestFormPassword,
+} from '../reducers/AppReducer';
 
 
 class SignUpPage extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = INITIAL_STATE;
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangePassword = this.handleChangePassword.bind(this);
-    this.handleChangeAttributes = this.handleChangeAttributes.bind(this);
+
     this.handlePress = this.handlePress.bind(this);
     this.onSignUpSuccess = this.onSignUpSuccess.bind(this);
     this.onSignUpFailure = this.onSignUpFailure.bind(this);
@@ -39,26 +37,8 @@ class SignUpPage extends React.Component {
 
   }
 
-  handleChangeEmail(value) {
-    this.setState({
-      email: value,
-    });
-  }
-
-  handleChangePassword(value) {
-    this.setState({
-      password: value,
-    });
-  }
-
-  handleChangeAttributes(name, value) {
-    this.setState({
-      [name]: value,
-    });
-  }
-
   onSignUpSuccess() {
-    this.setState(INITIAL_STATE);
+    this.props.resetForm();
   }
 
   onSignUpFailure(error) {
@@ -68,23 +48,7 @@ class SignUpPage extends React.Component {
     });
   }
 
-  handlePress() {
-    this.setState({
-      loading: true,
-    });
-
-    firebase.auth().
-        createUserWithEmailAndPassword(this.state.email, this.state.password).
-        then(this.onSignUpSuccess).
-        catch((error) => {
-          // Handle Errors here.
-          console.log(error.code, error.message);
-          this.onSignUpFailure(error.message);
-        });
-  }
-
   render() {
-    const {goToSignIn} = this.props;
     return (
         <View style={styles.pageContainer}>
           <Card>
@@ -97,7 +61,7 @@ class SignUpPage extends React.Component {
             <CardItem>
               <Input
                   placeholder={'mario.rossi@gmail.com'}
-                  handleChangeText={this.handleChangeEmail}
+                  handleChangeText={this.props.handleChangeEmail}
               />
             </CardItem>
             <CardItem noMargin>
@@ -106,23 +70,15 @@ class SignUpPage extends React.Component {
             <CardItem>
               <Input
                   placeholder={'password'}
-                  handleChangeText={this.handleChangePassword}
+                  handleChangeText={this.props.handleChangePassword}
                   secureTextEntry
               />
             </CardItem>
 
-            {!!this.state.error && (
-                <CardItem
-                    noMargin
-                >
-                  <Text style={{color: 'red'}}>{this.state.error}</Text>
-                </CardItem>
-            )}
-
             <CardItem>
               <LoginButton
-                  onPress={this.handlePress}
-                  inLoading={this.state.loading}
+                  onPress={this.props.signUp}
+                  // inLoading={this.state.loading}
                   text={'Sign Up'}
               />
             </CardItem>
@@ -142,10 +98,29 @@ const styles = {
   },
 };
 
+
+function mapStateToProps(state) {
+  return {
+    email: sAppGuestFormEmail(state),
+    password: sAppGuestFormPassword(state),
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return {
-
+    handleChangeEmail: function(value) {
+      dispatch(appGuestFormChangeEmail(value));
+    },
+    handleChangePassword: function(value) {
+      dispatch(appGuestFormChangePassword(value));
+    },
+    resetForm: function() {
+      dispatch(appGuestFormReset());
+    },
+    signUp: function(){
+      dispatch(appSignUp());
+    }
   }
 }
 
-export default connect(null, mapDispatchToProps)(SignUpPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage);

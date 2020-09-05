@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {getModel} from 'react-native-device-info';
-import firebase from 'firebase';
+// import firebase from 'firebase';
 import {connect} from 'react-redux';
 
 import {
@@ -69,7 +69,7 @@ class LoginPage extends React.Component {
       loading: true,
     });
 
-    this.props.firebaseSignIn();
+    // this.props.firebaseSignIn();
 
     // firebase.auth().
     //     signInWithEmailAndPassword(email, password).
@@ -110,13 +110,6 @@ class LoginPage extends React.Component {
               />
             </CardItem>
 
-            {!!this.state.error && (
-                <CardItem
-                    noMargin
-                >
-                  <Text style={{color: 'red'}}>{this.state.error}</Text>
-                </CardItem>
-            )}
 
             <CardItem>
               <LoginButton
