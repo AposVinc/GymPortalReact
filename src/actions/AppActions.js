@@ -3,7 +3,9 @@ import {
   LOADING,
   LOADING_END,
 } from '../stores/ActionType';
+import * as API from '../api';
 import {sAppGuestFormEmail, sAppGuestFormPassword} from '../reducers/selectors';
+import {registration} from '../api';
 
 
 export const appLoading = function() {
@@ -50,7 +52,7 @@ export const appSignUp = function() {
     const storeState = getState();
     const email = sAppGuestFormEmail(storeState);
     const password = sAppGuestFormPassword(storeState);
-    firebase.auth().createUserWithEmailAndPassword(email, password).
+    registration(email, password).
         then(() => {
           dispatch(appGuestFormReset());
         }).
@@ -66,13 +68,13 @@ export const appSignIn = function() {
     const storeState = getState();
     const email = sAppGuestFormEmail(storeState);
     const password = sAppGuestFormPassword(storeState);
-    firebase.auth().signInWithEmailAndPassword(email, password).
-        then(() => {
-          dispatch(appGuestFormReset());
-        }).
-        catch((error) => {
-          // Handle Errors here.
-          console.log(error.code, error.message);
-        });
+    // firebase.auth().signInWithEmailAndPassword(email, password).
+    //     then(() => {
+    //       dispatch(appGuestFormReset());
+    //     }).
+    //     catch((error) => {
+    //       // Handle Errors here.
+    //       console.log(error.code, error.message);
+    //     });
   };
 };

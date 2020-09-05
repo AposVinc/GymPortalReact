@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import GymListPage from '../pages/GymListPage';
 import GymPage from '../pages/GymPage';
 import LoginPage from '../pages/LoginPage';
-import SignUpPage from '../pages/SingUpPage';
+import SignUpPage from '../pages/SignUpPage';
 import {sAppLogged} from '../reducers/AppReducer';
 import {useSelector} from 'react-redux';
 
