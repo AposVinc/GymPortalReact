@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import {Text, View, Linking, Button, TouchableOpacity} from 'react-native';
 
 import {CardItem, FavoriteButton} from '../../components';
-import CourseListPage from '../CourseListPage';
 
-export default class GymItem extends Component {
+export default class CourseItem extends Component {
 
   constructor(props) {
     super(props);
@@ -12,24 +11,22 @@ export default class GymItem extends Component {
   }
 
   handleFavoriteButtonPress() {
-    const {gym: {id}} = this.props;
+    const {course: {id}} = this.props;
     const url = id;
     Linking.openURL(url).
         catch((err) => console.error('An error occurred', err));
   }
 
   render() {
-    const {gym: {id, name, address, province, region}} = this.props;
+    const {course: {id, name, code, description}} = this.props;
     return (
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Gym', { itemId: id})}>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Course', { itemId: id})}>
           <CardItem>
             <View style={styles.container}>
               <View style={styles.containerText}>
                 <Text>Name: {name}</Text>
-                <Text>Reg: {region}</Text>
-                <Text>Prov: {province}</Text>
-                <Text>Addr: {address}</Text>
-                <CourseListPage/>
+                <Text>Code: {code}</Text>
+                <Text>Description: {description}</Text>
               </View>
               <View style={{justifyContent: 'center'}}>
                 <FavoriteButton
