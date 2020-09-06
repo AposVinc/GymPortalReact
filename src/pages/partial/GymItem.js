@@ -4,6 +4,7 @@ import {Text, View, TouchableOpacity} from 'react-native';
 import {CardItem, FavoriteButton} from '../../components';
 import {useDispatch} from 'react-redux';
 import {favoriteGymFetch, handleFavorite} from '../../actions';
+import CourseListPage from '../CourseListPage';
 
 export default function({gym, isFavorite, navigation}) {
   const dispatch = useDispatch();
@@ -21,14 +22,15 @@ export default function({gym, isFavorite, navigation}) {
               <Text>Reg: {gym.region}</Text>
               <Text>Prov: {gym.province}</Text>
               <Text>Addr: {gym.address}</Text>
-            </View>
-            <View style={{justifyContent: 'center'}}>
-              <FavoriteButton
-                  onPress={ handleFavoriteButtonPress }
-                  favorite={isFavorite}
-                  style={styles.button}
-              />
-            </View>
+                <CourseListPage/>
+              </View>
+              <View style={{justifyContent: 'center'}}>
+                <FavoriteButton
+                    onPress={this.handleFavoriteButtonPress}
+                    favorite={true}
+                    style={styles.button}
+                />
+              </View>
           </View>
         </CardItem>
       </TouchableOpacity>

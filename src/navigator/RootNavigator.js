@@ -7,6 +7,8 @@ import LoginPage from '../pages/LoginPage';
 import SignUpPage from '../pages/SignUpPage';
 import {sAppLogged} from '../reducers/AppReducer';
 import {useSelector} from 'react-redux';
+import CourseListPage from '../pages/CourseListPage';
+import CoursePage from '../pages/CoursePage';
 
 const RootStack = createStackNavigator();
 
@@ -26,6 +28,8 @@ export default function() {
               <>
                 <RootStack.Screen name={'Gym List'} component={GymListPage}/>
                 <RootStack.Screen name={'Gym'} component={GymPage}/>
+                <RootStack.Screen name={'Gym'} component={CourseListPage}/>
+                <RootStack.Screen name={'Gym'} component={CoursePage}/>
               </>
           )}
         </RootStack.Navigator>
