@@ -8,10 +8,12 @@ import {sCoursesLoading, sLoadedCourses} from '../reducers/selectors';
 import {courseFetch} from '../actions';
 
 
-export default function({ navigation }) {
+export default function({navigation}, idGym) {
   const courses = useSelector(sLoadedCourses);
   const loading = useSelector(sCoursesLoading);
   const dispatch = useDispatch();
+
+  console.log(idGym);
 
   useEffect(() => {
     dispatch(courseFetch())

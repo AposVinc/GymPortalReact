@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const {course: {gym_id}} = this.props;
-
-const URL_GET_ALL_COURSES = 'http://10.0.2.2:8080/GymREST/rest/gyms/'+ gym_id +'/courses';
+const URL_GET_ALL_COURSES = 'http://localhost:8080/GymREST/rest/gyms';
 
 export const getAllCourses = function () {
   return axios.get(URL_GET_ALL_COURSES).
