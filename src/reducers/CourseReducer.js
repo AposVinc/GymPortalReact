@@ -1,7 +1,7 @@
 import {COURSE_FETCH} from '../stores/ActionType';
 
 const INITIAL_STATE = {
-  course: null,
+  courses: null,
   loading: false,
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import CourseListPage from './CourseListPage';
 
 
 function GymPage({ route }) {
@@ -13,6 +14,7 @@ function GymPage({ route }) {
       }}>
         <Text>Gym Page</Text>
         <Text>id: {itemId}</Text>
+        <CourseListPage idGym={itemId}/>
       </View>
   );
 

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Text, View, Linking, Button, TouchableOpacity} from 'react-native';
 
 import {CardItem, FavoriteButton} from '../../components';
-import CourseListPage from '../CourseListPage';
 
 export default class GymItem extends Component {
 
@@ -29,7 +28,6 @@ export default class GymItem extends Component {
                 <Text>Reg: {region}</Text>
                 <Text>Prov: {province}</Text>
                 <Text>Addr: {address}</Text>
-                <CourseListPage/>
               </View>
               <View style={{justifyContent: 'center'}}>
                 <FavoriteButton

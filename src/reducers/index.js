@@ -7,7 +7,7 @@ import CourseReducer from './CourseReducer';
 const rootReducer = combineReducers({
   app: AppReducer,
   gym: GymReducer,
-  courses: CourseReducer,
+  course: CourseReducer,
 });
 
 export default rootReducer;
