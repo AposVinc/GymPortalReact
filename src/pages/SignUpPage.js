@@ -18,7 +18,7 @@ import {
 } from '../actions';
 import {
   sAppGuestFormEmail,
-  sAppGuestFormPassword,
+  sAppGuestFormPassword, sAppGuestSingUpLoading,
 } from '../reducers/AppReducer';
 
 
@@ -27,25 +27,10 @@ class SignUpPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handlePress = this.handlePress.bind(this);
-    this.onSignUpSuccess = this.onSignUpSuccess.bind(this);
-    this.onSignUpFailure = this.onSignUpFailure.bind(this);
-
     this.goToSignIn = function() {
       this.props.navigation.navigate('SignIn');
     }.bind(this);
 
-  }
-
-  onSignUpSuccess() {
-    this.props.resetForm();
-  }
-
-  onSignUpFailure(error) {
-    this.setState({
-      loading: false,
-      error,
-    });
   }
 
   render() {
@@ -62,6 +47,7 @@ class SignUpPage extends React.Component {
               <Input
                   placeholder={'mario.rossi@gmail.com'}
                   handleChangeText={this.props.handleChangeEmail}
+                  value={this.props.email}
               />
             </CardItem>
             <CardItem noMargin>
@@ -71,6 +57,7 @@ class SignUpPage extends React.Component {
               <Input
                   placeholder={'password'}
                   handleChangeText={this.props.handleChangePassword}
+                  value={this.props.password}
                   secureTextEntry
               />
             </CardItem>
@@ -78,7 +65,7 @@ class SignUpPage extends React.Component {
             <CardItem>
               <LoginButton
                   onPress={this.props.signUp}
-                  // inLoading={this.state.loading}
+                  inLoading={this.props.loading}
                   text={'Sign Up'}
               />
             </CardItem>
@@ -103,6 +90,7 @@ function mapStateToProps(state) {
   return {
     email: sAppGuestFormEmail(state),
     password: sAppGuestFormPassword(state),
+    loading: sAppGuestSingUpLoading(state),
   };
 }
 
@@ -113,9 +101,6 @@ function mapDispatchToProps(dispatch) {
     },
     handleChangePassword: function(value) {
       dispatch(appGuestFormChangePassword(value));
-    },
-    resetForm: function() {
-      dispatch(appGuestFormReset());
     },
     signUp: function(){
       dispatch(appSignUp());

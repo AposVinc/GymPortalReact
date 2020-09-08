@@ -1,5 +1,9 @@
 import {
-  GUEST_FORM_CHANGE_VALUE, GUEST_FORM_RESET,
+  GUEST_FORM_CHANGE_VALUE,
+  GUEST_FORM_RESET,
+  GUEST_SIGN_UP,
+  GUEST_SIGN_UP_FAIL, GUEST_SIGN_UP_SUCCESS,
+  GYM_FETCH,
   LOADING,
   LOADING_END,
 } from '../stores/ActionType';
@@ -52,13 +56,17 @@ export const appSignUp = function() {
     const storeState = getState();
     const email = sAppGuestFormEmail(storeState);
     const password = sAppGuestFormPassword(storeState);
+
+    dispatch({type: GUEST_SIGN_UP});
     registration(email, password).
         then(() => {
+          dispatch({type: GUEST_SIGN_UP_SUCCESS});
           dispatch(appGuestFormReset());
         }).
         catch((error) => {
           // Handle Errors here.
           console.log(error.code, error.message);
+          dispatch({type: GUEST_SIGN_UP_FAIL});
         });
   };
 };
