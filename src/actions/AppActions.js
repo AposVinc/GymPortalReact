@@ -3,13 +3,11 @@ import {
   GUEST_FORM_RESET,
   GUEST_SIGN_UP,
   GUEST_SIGN_UP_FAIL, GUEST_SIGN_UP_SUCCESS,
-  GYM_FETCH,
   LOADING,
   LOADING_END,
 } from '../stores/ActionType';
 import * as API from '../api';
 import {sAppGuestFormEmail, sAppGuestFormPassword} from '../reducers/selectors';
-import {registration} from '../api';
 
 
 export const appLoading = function() {
@@ -58,7 +56,7 @@ export const appSignUp = function() {
     const password = sAppGuestFormPassword(storeState);
 
     dispatch({type: GUEST_SIGN_UP});
-    registration(email, password).
+    API.registration(email, password).
         then(() => {
           dispatch({type: GUEST_SIGN_UP_SUCCESS});
           dispatch(appGuestFormReset());
@@ -76,13 +74,13 @@ export const appSignIn = function() {
     const storeState = getState();
     const email = sAppGuestFormEmail(storeState);
     const password = sAppGuestFormPassword(storeState);
-    // firebase.auth().signInWithEmailAndPassword(email, password).
-    //     then(() => {
-    //       dispatch(appGuestFormReset());
-    //     }).
-    //     catch((error) => {
-    //       // Handle Errors here.
-    //       console.log(error.code, error.message);
-    //     });
+    API.login(email, password).
+        then((result) => {
+          console.log(result);
+        }).
+        catch((error) => {
+          // Handle Errors here.
+          console.log(error.code, error.message);
+        });
   };
 };
