@@ -1,4 +1,4 @@
-import React, {Component, useEffect} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {View, Text, ActivityIndicator, ScrollView} from 'react-native';
 
 import CourseItem from './partial/CourseItem';
@@ -8,7 +8,7 @@ import {sCoursesLoading, sLoadedCourses} from '../reducers/selectors';
 import {courseFetch} from '../actions';
 
 
-export default function({navigation}, idGym) {
+export default function({navigation, idGym}) {
   const courses = useSelector(sLoadedCourses);
   const loading = useSelector(sCoursesLoading);
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export default function({navigation}, idGym) {
   console.log(idGym);
 
   useEffect(() => {
-    dispatch(courseFetch())
+    dispatch(courseFetch(idGym))
   }, []);
 
   if (loading || courses === null) {
