@@ -59,7 +59,7 @@ export const appSignUp = function() {
     API.registration(username, password).
         then(() => {
           dispatch({type: GUEST_SIGN_UP_SUCCESS});
-          dispatch(appGuestFormReset());
+          dispatch(appSignIn());
         }).
         catch((error) => {
           // Handle Errors here.
