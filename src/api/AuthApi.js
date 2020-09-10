@@ -22,7 +22,7 @@ export const registration = function (username, password) {
 
 export const login = function (username, password) {
   const user = {
-    username: username,
+    username,
     password,
   }
   return axios.post(URL_LOGIN, querystring.stringify(user),{headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).
