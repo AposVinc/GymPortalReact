@@ -7,7 +7,7 @@ import {
   LOADING_END,
 } from '../stores/ActionType';
 import * as API from '../api';
-import {sAppGuestFormEmail, sAppGuestFormPassword} from '../reducers/selectors';
+import {sAppGuestFormUsername, sAppGuestFormPassword} from '../reducers/selectors';
 
 
 export const appLoading = function() {
@@ -22,11 +22,11 @@ export const appEndLoading = function() {
   }
 }
 
-export const appGuestFormChangeEmail = function(value) {
+export const appGuestFormChangeUsername = function(value) {
   return {
     type: GUEST_FORM_CHANGE_VALUE,
     payload: {
-      field: 'email',
+      field: 'username',
       value,
     },
   };
@@ -52,11 +52,11 @@ export const appGuestFormReset = function() {
 export const appSignUp = function() {
   return (dispatch, getState) => {
     const storeState = getState();
-    const email = sAppGuestFormEmail(storeState);
+    const username = sAppGuestFormUsername(storeState);
     const password = sAppGuestFormPassword(storeState);
 
     dispatch({type: GUEST_SIGN_UP});
-    API.registration(email, password).
+    API.registration(username, password).
         then(() => {
           dispatch({type: GUEST_SIGN_UP_SUCCESS});
           dispatch(appGuestFormReset());
@@ -72,9 +72,9 @@ export const appSignUp = function() {
 export const appSignIn = function() {
   return (dispatch, getState) => {
     const storeState = getState();
-    const email = sAppGuestFormEmail(storeState);
+    const username = sAppGuestFormUsername(storeState);
     const password = sAppGuestFormPassword(storeState);
-    API.login(email, password).
+    API.login(username, password).
         then((result) => {
           console.log(result);
         }).

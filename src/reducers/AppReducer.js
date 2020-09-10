@@ -18,7 +18,7 @@ const INITIAL_STATE = {
 
   guestForm: {
     loading: false,
-    email: '',
+    username: '',
     password: ''
   }
 };
@@ -28,7 +28,7 @@ export const sAppLogged = (state) => sApp(state).logged;
 export const sAppLoading = (state) => sApp(state).loading;
 
 const sAppGuestForm = (state) => sApp(state).guestForm;
-export const sAppGuestFormEmail = (state) => sAppGuestForm(state).email;
+export const sAppGuestFormUsername = (state) => sAppGuestForm(state).username;
 export const sAppGuestFormPassword = (state) => sAppGuestForm(state).password;
 export const sAppGuestSingUpLoading = (state) => sAppGuestForm(state).loading;
 

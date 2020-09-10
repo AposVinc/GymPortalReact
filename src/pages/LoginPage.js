@@ -12,11 +12,11 @@ import {
 } from '../components';
 import {
   appSignIn,
-  appGuestFormChangeEmail,
+  appGuestFormChangeUsername,
   appGuestFormChangePassword,
 } from '../actions';
 import {
-  sAppGuestFormEmail,
+  sAppGuestFormUsername,
   sAppGuestFormPassword,
   sAppGuestSingUpLoading,
 } from '../reducers/selectors';
@@ -41,13 +41,13 @@ class LoginPage extends React.Component {
               <PageTitle>Login</PageTitle>
             </CardItem>
             <CardItem propStyle={{marginBottom: 0}}>
-              <InputLabel text={'Email'} />
+              <InputLabel text={'Username'} />
             </CardItem>
             <CardItem>
               <Input
-                  placeholder={'mario.rossi@gmail.com'}
-                  handleChangeText={this.props.handleChangeEmail}
-                  value={this.props.email}
+                  placeholder={'username'}
+                  handleChangeText={this.props.handleChangeUsername}
+                  value={this.props.username}
               />
             </CardItem>
             <CardItem noMargin>
@@ -87,7 +87,7 @@ const styles = {
 
 function mapStateToProps(state) {
   return {
-    email: sAppGuestFormEmail(state),
+    username: sAppGuestFormUsername(state),
     password: sAppGuestFormPassword(state),
     loading: sAppGuestSingUpLoading(state),
   };
@@ -95,8 +95,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleChangeEmail: function(value) {
-      dispatch(appGuestFormChangeEmail(value));
+    handleChangeUsername: function(value) {
+      dispatch(appGuestFormChangeUsername(value));
     },
     handleChangePassword: function(value) {
       dispatch(appGuestFormChangePassword(value));
