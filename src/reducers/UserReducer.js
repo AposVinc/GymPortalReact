@@ -2,6 +2,7 @@ import {USER_LOGGED_IN, USER_LOGGED_OUT} from '../stores/ActionType'
 
 
 const INITIAL_STATE = {
+  token: '',
   user: null,
 };
 
@@ -10,6 +11,7 @@ export default function(state = INITIAL_STATE, action) {
     case USER_LOGGED_IN:
       return {
         ...state,
+        token: action.payload.token,
         user: action.payload.user
       };
     case USER_LOGGED_OUT:

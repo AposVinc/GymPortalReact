@@ -4,7 +4,7 @@ import {
   GUEST_SIGN_UP,
   GUEST_SIGN_UP_FAIL, GUEST_SIGN_UP_SUCCESS,
   LOADING,
-  LOADING_END,
+  LOADING_END, USER_LOGGED_IN,
 } from '../stores/ActionType';
 import * as API from '../api';
 import {sAppGuestFormUsername, sAppGuestFormPassword} from '../reducers/selectors';
@@ -76,7 +76,14 @@ export const appSignIn = function() {
     const password = sAppGuestFormPassword(storeState);
     API.login(username, password).
         then((result) => {
-          console.log(result);
+          dispatch( {
+            type: USER_LOGGED_IN,
+            payload: {
+              token: result,
+              user: {username}
+            }
+          })
+          dispatch(appGuestFormReset());
         }).
         catch((error) => {
           // Handle Errors here.
