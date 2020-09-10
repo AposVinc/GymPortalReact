@@ -10,6 +10,9 @@ export const GUEST_SIGN_UP_SUCCESS = 'GUEST_SIGN_UP_SUCCESS';
 
 //user
 export const USER_LOGGED_IN = 'USER_LOGGED_IN';
+export const USER_LOGGED_IN_FAIL = 'USER_LOGGED_IN_FAIL';
+export const USER_LOGGED_IN_SUCCESS = 'USER_LOGGED_IN_SUCCESS';
+
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
 
 //gym

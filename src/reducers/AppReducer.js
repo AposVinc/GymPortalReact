@@ -1,13 +1,10 @@
 import {
-  LOADING,
-  LOADING_END,
-  USER_LOGGED_IN,
+  LOADING, LOADING_END,
+  USER_LOGGED_IN, USER_LOGGED_IN_FAIL, USER_LOGGED_IN_SUCCESS,
   USER_LOGGED_OUT,
   GUEST_FORM_CHANGE_VALUE,
   GUEST_FORM_RESET,
-  GUEST_SIGN_UP,
-  GUEST_SIGN_UP_FAIL,
-  GUEST_SIGN_UP_SUCCESS,
+  GUEST_SIGN_UP, GUEST_SIGN_UP_FAIL, GUEST_SIGN_UP_SUCCESS,
 } from '../stores/ActionType';
 
 const INITIAL_STATE = {
@@ -17,7 +14,6 @@ const INITIAL_STATE = {
   loadingSeconds: 0,
 
   guestForm: {
-    loading: false,
     username: '',
     password: ''
   }
@@ -47,8 +43,22 @@ export default function(state = INITIAL_STATE, action) {
     case USER_LOGGED_IN:
       return {
         ...state,
-        logged: true,
+        logged: false,
+        loading: true,
       };
+    case USER_LOGGED_IN_FAIL:
+      return {
+        ...state,
+        logged: false,
+        loading: false,
+      };
+    case USER_LOGGED_IN_SUCCESS:
+      return {
+        ...state,
+        logged: true,
+        loading: false,
+      };
+
     case USER_LOGGED_OUT:
       return {
         ...state,

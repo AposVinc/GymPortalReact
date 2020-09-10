@@ -4,7 +4,7 @@ import {
   GUEST_SIGN_UP,
   GUEST_SIGN_UP_FAIL, GUEST_SIGN_UP_SUCCESS,
   LOADING,
-  LOADING_END, USER_LOGGED_IN,
+  LOADING_END, USER_LOGGED_IN, USER_LOGGED_IN_FAIL, USER_LOGGED_IN_SUCCESS,
 } from '../stores/ActionType';
 import * as API from '../api';
 import {sAppGuestFormUsername, sAppGuestFormPassword} from '../reducers/selectors';
@@ -74,10 +74,11 @@ export const appSignIn = function() {
     const storeState = getState();
     const username = sAppGuestFormUsername(storeState);
     const password = sAppGuestFormPassword(storeState);
+    dispatch({type: USER_LOGGED_IN});
     API.login(username, password).
         then((result) => {
           dispatch( {
-            type: USER_LOGGED_IN,
+            type: USER_LOGGED_IN_SUCCESS,
             payload: {
               token: result,
               user: {username}
@@ -88,6 +89,7 @@ export const appSignIn = function() {
         catch((error) => {
           // Handle Errors here.
           console.log(error.code, error.message);
+          dispatch({type: USER_LOGGED_IN_FAIL});
         });
   };
 };

@@ -1,14 +1,17 @@
-import {USER_LOGGED_IN, USER_LOGGED_OUT} from '../stores/ActionType'
+import {
+  USER_LOGGED_IN_SUCCESS,
+  USER_LOGGED_OUT,
+} from '../stores/ActionType';
 
 
 const INITIAL_STATE = {
-  token: '',
+  token: null,
   user: null,
 };
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
-    case USER_LOGGED_IN:
+    case USER_LOGGED_IN_SUCCESS:
       return {
         ...state,
         token: action.payload.token,
