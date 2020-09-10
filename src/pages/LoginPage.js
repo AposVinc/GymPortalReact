@@ -18,7 +18,7 @@ import {
 import {
   sAppGuestFormUsername,
   sAppGuestFormPassword,
-  sAppGuestSingUpLoading,
+  sAppGuestSingUpLoading, sAppLoading,
 } from '../reducers/selectors';
 
 
@@ -89,7 +89,7 @@ function mapStateToProps(state) {
   return {
     username: sAppGuestFormUsername(state),
     password: sAppGuestFormPassword(state),
-    loading: sAppGuestSingUpLoading(state),
+    loading: sAppLoading(state),
   };
 }
 
