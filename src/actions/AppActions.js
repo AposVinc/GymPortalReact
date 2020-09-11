@@ -8,6 +8,7 @@ import {
 } from '../stores/ActionType';
 import * as API from '../api';
 import {sAppGuestFormUsername, sAppGuestFormPassword} from '../reducers/selectors';
+import axios from 'axios';
 
 
 export const appLoading = function() {
@@ -76,15 +77,18 @@ export const appSignIn = function() {
     const password = sAppGuestFormPassword(storeState);
     dispatch({type: USER_LOGGED_IN});
     API.login(username, password).
-        then((result) => {
-          dispatch( {
-            type: USER_LOGGED_IN_SUCCESS,
-            payload: {
-              token: result,
-              user: {username}
-            }
-          })
-          dispatch(appGuestFormReset());
+        then(result => {
+          axios.get(result.location, {headers: {'authorization': result.authorization}}).
+              then(response => {
+                dispatch( {
+                  type: USER_LOGGED_IN_SUCCESS,
+                  payload: {
+                    token: result.authorization,
+                    user: response.data
+                  }
+                })
+                dispatch(appGuestFormReset());
+              }).done();
         }).
         catch((error) => {
           // Handle Errors here.
