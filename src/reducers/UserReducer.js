@@ -9,6 +9,10 @@ const INITIAL_STATE = {
   user: null,
 };
 
+const sUser = (state) => state.user;
+export const sUserToken = (state) => sUser(state).token;
+export const sUserProps = (state) => sUser(state).user;
+
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
     case USER_LOGGED_IN_SUCCESS:
