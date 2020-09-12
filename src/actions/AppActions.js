@@ -23,6 +23,36 @@ export const appEndLoading = function() {
   }
 }
 
+export const appGuestFormChangeName = function(value) {
+  return {
+    type: GUEST_FORM_CHANGE_VALUE,
+    payload: {
+      field: 'name',
+      value,
+    },
+  };
+};
+
+export const appGuestFormChangeLastname = function(value) {
+  return {
+    type: GUEST_FORM_CHANGE_VALUE,
+    payload: {
+      field: 'lastname',
+      value,
+    },
+  };
+};
+
+export const appGuestFormChangeEmail = function(value) {
+  return {
+    type: GUEST_FORM_CHANGE_VALUE,
+    payload: {
+      field: 'email',
+      value,
+    },
+  };
+};
+
 export const appGuestFormChangeUsername = function(value) {
   return {
     type: GUEST_FORM_CHANGE_VALUE,

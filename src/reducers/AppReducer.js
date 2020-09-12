@@ -14,6 +14,9 @@ const INITIAL_STATE = {
   loadingSeconds: 0,
 
   guestForm: {
+    name: '',
+    lastname: '',
+    email: '',
     username: '',
     password: ''
   }
@@ -24,6 +27,9 @@ export const sAppLogged = (state) => sApp(state).logged;
 export const sAppLoading = (state) => sApp(state).loading;
 
 const sAppGuestForm = (state) => sApp(state).guestForm;
+export const sAppGuestFormName = (state) => sAppGuestForm(state).name;
+export const sAppGuestFormLastname = (state) => sAppGuestForm(state).lastname;
+export const sAppGuestFormEmail = (state) => sAppGuestForm(state).email;
 export const sAppGuestFormUsername = (state) => sAppGuestForm(state).username;
 export const sAppGuestFormPassword = (state) => sAppGuestForm(state).password;
 

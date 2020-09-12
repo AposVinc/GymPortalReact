@@ -15,10 +15,15 @@ import {
   appGuestFormChangeUsername,
   appGuestFormChangePassword,
   appSignUp,
+  appGuestFormChangeName,
+  appGuestFormChangeLastname,
+  appGuestFormChangeEmail,
 } from '../actions';
 import {
   sAppGuestFormUsername,
-  sAppGuestFormPassword, sAppGuestSingUpLoading, sAppLoading,
+  sAppGuestFormPassword,
+  sAppLoading,
+  sAppGuestFormEmail, sAppGuestFormLastname, sAppGuestFormName,
 } from '../reducers/AppReducer';
 
 
@@ -40,7 +45,49 @@ class SignUpPage extends React.Component {
             <CardItem>
               <PageTitle>SignUp</PageTitle>
             </CardItem>
-            <CardItem propStyle={{marginBottom: 0}}>
+
+            <CardItem noMarginButton propStyle={{flexDirection: "row", paddingHorizontal: 0}}>
+
+              <CardItem noMarginButton propStyle={{flex: 1, flexDirection: "column", paddingHorizontal: 0}}>
+                <CardItem noMarginButton>
+                  <InputLabel text={'Name'} />
+                </CardItem>
+                <CardItem >
+                  <Input
+                      placeholder={'name'}
+                      handleChangeText={this.props.handleChangeName}
+                      value={this.props.name}
+                  />
+                </CardItem>
+              </CardItem>
+
+              <CardItem noMarginButton propStyle={{flex: 1, flexDirection: "column", paddingHorizontal: 0}}>
+                <CardItem noMarginButton>
+                  <InputLabel text={'Lastname'} />
+                </CardItem>
+                <CardItem >
+                  <Input
+                      placeholder={'lastname'}
+                      handleChangeText={this.props.handleChangeLastname}
+                      value={this.props.lastname}
+                  />
+                </CardItem>
+              </CardItem>
+
+            </CardItem>
+
+            <CardItem noMarginButton>
+              <InputLabel text={'Email'} />
+            </CardItem>
+            <CardItem>
+              <Input
+                  placeholder={'email'}
+                  handleChangeText={this.props.handleChangeEmail}
+                  value={this.props.email}
+              />
+            </CardItem>
+
+            <CardItem noMarginButton>
               <InputLabel text={'Username'} />
             </CardItem>
             <CardItem>
@@ -50,7 +97,8 @@ class SignUpPage extends React.Component {
                   value={this.props.username}
               />
             </CardItem>
-            <CardItem noMargin>
+
+            <CardItem noMarginButton>
               <InputLabel text={'Password'} />
             </CardItem>
             <CardItem>
@@ -88,6 +136,9 @@ const styles = {
 
 function mapStateToProps(state) {
   return {
+    name: sAppGuestFormName(state),
+    lastname: sAppGuestFormLastname(state),
+    email: sAppGuestFormEmail(state),
     username: sAppGuestFormUsername(state),
     password: sAppGuestFormPassword(state),
     loading: sAppLoading(state),
@@ -96,6 +147,15 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    handleChangeName: function(value) {
+      dispatch(appGuestFormChangeName(value));
+    },
+    handleChangeLastname: function(value) {
+      dispatch(appGuestFormChangeLastname(value));
+    },
+    handleChangeEmail: function(value) {
+      dispatch(appGuestFormChangeEmail(value));
+    },
     handleChangeUsername: function(value) {
       dispatch(appGuestFormChangeUsername(value));
     },

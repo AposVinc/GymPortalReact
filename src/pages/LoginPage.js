@@ -50,7 +50,7 @@ class LoginPage extends React.Component {
                   value={this.props.username}
               />
             </CardItem>
-            <CardItem noMargin>
+            <CardItem noMarginButton>
               <InputLabel text={'Password'} />
             </CardItem>
             <CardItem>
