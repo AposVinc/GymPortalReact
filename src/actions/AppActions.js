@@ -7,7 +7,11 @@ import {
   LOADING_END, USER_LOGGED_IN, USER_LOGGED_IN_FAIL, USER_LOGGED_IN_SUCCESS,
 } from '../stores/ActionType';
 import * as API from '../api';
-import {sAppGuestFormUsername, sAppGuestFormPassword} from '../reducers/selectors';
+import {
+  sAppGuestFormUsername,
+  sAppGuestFormPassword,
+  sAppGuestFormEmail, sAppGuestFormLastname, sAppGuestFormName,
+} from '../reducers/selectors';
 import axios from 'axios';
 
 
@@ -83,11 +87,14 @@ export const appGuestFormReset = function() {
 export const appSignUp = function() {
   return (dispatch, getState) => {
     const storeState = getState();
+    const name = sAppGuestFormName(storeState);
+    const lastname = sAppGuestFormLastname(storeState);
+    const email = sAppGuestFormEmail(storeState);
     const username = sAppGuestFormUsername(storeState);
     const password = sAppGuestFormPassword(storeState);
 
     dispatch({type: GUEST_SIGN_UP});
-    API.registration(username, password).
+    API.registration(name, lastname, email, username, password).
         then(() => {
           dispatch({type: GUEST_SIGN_UP_SUCCESS});
           dispatch(appSignIn());
