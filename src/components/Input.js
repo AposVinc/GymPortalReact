@@ -30,12 +30,12 @@ export default class Input extends Component {
   };
 
   render() {
-    const {placeholder, ...rest} = this.props;
+    const {placeholder, propStyle, ...rest} = this.props;
 
     return (
         <TextInput
             {...rest}
-            style={styles.input}
+            style={[styles.input, propStyle]}
             placeholder={placeholder}
             placeholderTextColor={styles.placeholderColor}
             value={this.props.value ? this.props.value : this.state.text}
@@ -59,7 +59,7 @@ const styles = {
     borderStyle: 'solid',
     borderColor: 'transparent',
     borderBottomColor: '#000000',
-    fontSize: 18,
+    fontSize: 14,
     height: 35,
     paddingHorizontal: 5,
     color: 'black',
