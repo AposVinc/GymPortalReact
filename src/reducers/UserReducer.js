@@ -1,6 +1,5 @@
 import {
-  USER_LOGGED_IN_SUCCESS,
-  USER_LOGGED_OUT,
+  USER_LOGGED_IN_SUCCESS, USER_LOGGED_OUT, USER_REFRESH_TOKEN,
 } from '../stores/ActionType';
 
 
@@ -24,7 +23,13 @@ export default function(state = INITIAL_STATE, action) {
     case USER_LOGGED_OUT:
       return {
         ...state,
+        token: null,
         user: null,
+      };
+    case USER_REFRESH_TOKEN:
+      return {
+        ...state,
+        token: action.payload.token
       };
     default:
       return state;

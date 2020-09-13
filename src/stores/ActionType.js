@@ -15,5 +15,7 @@ export const USER_LOGGED_IN_SUCCESS = 'USER_LOGGED_IN_SUCCESS';
 
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
 
+export const USER_REFRESH_TOKEN = 'USER_REFRESH_TOKEN';
+
 //gym
 export const GYM_FETCH = 'GYM_FETCH';
