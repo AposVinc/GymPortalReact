@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 };
 
 const sCourse = (state) => state.course;
-export const sLoadedCourses = state => sCourse(state).course;
+export const sLoadedCourses = state => sCourse(state).courses;
 export const sCoursesLoading = state => sCourse(state).loading;
 
 export default function(state = INITIAL_STATE, action) {

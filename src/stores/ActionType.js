@@ -6,4 +6,4 @@ export const LOADING_END = 'LOADING_END';
 export const GYM_FETCH = 'GYM_FETCH';
 
 //course
-export const COURSE_FETCH = 'GYM_FETCH';
+export const COURSE_FETCH = 'COURSE_FETCH';

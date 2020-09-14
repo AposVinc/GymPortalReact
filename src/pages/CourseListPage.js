@@ -16,6 +16,7 @@ export default function({navigation, idGym}) {
   console.log(idGym);
 
   useEffect(() => {
+    console.log("ciao", idGym);
     dispatch(courseFetch(idGym))
   }, []);
 
