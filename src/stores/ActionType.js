@@ -27,4 +27,3 @@ export const FAVORITE_GYM_REMOVE = 'FAVORITE_GYM_REMOVE';
 
 //course
 export const COURSE_FETCH = 'GYM_FETCH';
-
