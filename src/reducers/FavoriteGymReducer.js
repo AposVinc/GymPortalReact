@@ -1,27 +1,27 @@
-import {GYM_FETCH} from '../stores/ActionType';
+import {FAVORITE_GYM_FETCH} from '../stores/ActionType';
 
 const INITIAL_STATE = {
   gyms: null,
   loading: false,
 };
 
-const sGym = (state) => state.gym;
-export const sGymLoadedGyms = state => sGym(state).gyms;
-export const sGymLoadingGyms = state => sGym(state).loading;
+const sFavoriteGym = (state) => state.favorite_gym;
+export const sFavoriteGymLoadedGyms = state => sFavoriteGym(state).gyms;
+export const sFavoriteGymLoadingGyms = state => sFavoriteGym(state).loading;
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case `${GYM_FETCH}_PENDING`:
+    case `${FAVORITE_GYM_FETCH}_PENDING`:
       return {
         ...state,
         loading: true,
       };
-    case `${GYM_FETCH}_REJECTED`:
+    case `${FAVORITE_GYM_FETCH}_REJECTED`:
       return {
         ...state,
         loading: false,
       };
-    case `${GYM_FETCH}_FULFILLED`:
+    case `${FAVORITE_GYM_FETCH}_FULFILLED`:
       return {
         ...state,
         gyms: action.payload.gyms,
