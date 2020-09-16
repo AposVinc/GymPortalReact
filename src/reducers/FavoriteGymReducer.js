@@ -1,4 +1,6 @@
-import {FAVORITE_GYM_FETCH} from '../stores/ActionType';
+import {
+  FAVORITE_GYM_FETCH,
+} from '../stores/ActionType';
 
 const INITIAL_STATE = {
   gyms: null,
