@@ -32,7 +32,7 @@ export default class GymItem extends Component {
               <View style={{justifyContent: 'center'}}>
                 <FavoriteButton
                     onPress={this.handleFavoriteButtonPress}
-                    favorite={true}
+                    favorite={this.props.isFavorite}
                     style={styles.button}
                 />
               </View>
