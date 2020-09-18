@@ -1,9 +1,10 @@
 import {
-  FAVORITE_GYM_FETCH,
+  FAVORITE_GYM_ADD_NEW,
+  FAVORITE_GYM_FETCH, FAVORITE_GYM_REMOVE, USER_LOGGED_OUT,
 } from '../stores/ActionType';
 
 const INITIAL_STATE = {
-  gyms: null,
+  gyms: [],
   loading: false,
 };
 
@@ -29,6 +30,18 @@ export default function(state = INITIAL_STATE, action) {
         gyms: action.payload.gyms,
         loading: false,
       };
+
+    case FAVORITE_GYM_ADD_NEW:
+      return {
+        ...state,
+      };
+    case FAVORITE_GYM_REMOVE:
+      return {
+        ...state,
+      };
+
+    case USER_LOGGED_OUT:
+      return INITIAL_STATE;
     default:
       return state;
   }

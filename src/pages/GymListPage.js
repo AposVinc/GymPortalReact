@@ -10,18 +10,19 @@ import {
   sFavoriteGymLoadedGyms, sAppLogged, sUserProps,
 } from '../reducers/selectors';
 import {favoriteGymFetch, gymFetch} from '../actions';
-import {log} from 'react-native-reanimated';
-
 
 export default function({ navigation }) {
+  const logged = useSelector(sAppLogged)
   const gyms = useSelector(sGymLoadedGyms);
   const loading = useSelector(sGymLoadingGyms);
-  const favoriteGym = useSelector(sFavoriteGymLoadedGyms);
+  const favoriteGyms = useSelector(sFavoriteGymLoadedGyms);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(favoriteGymFetch())
-  }, []);
+  if (logged){
+    useEffect(() => {
+      dispatch(favoriteGymFetch())
+    }, []);
+  }
 
   useEffect(() => {
     dispatch(gymFetch())
@@ -47,7 +48,7 @@ export default function({ navigation }) {
                 <GymItem
                     key={`gym-item-${gym.id}`}
                     gym={gym}
-                    isFavorite={favoriteGym.some(fg => fg.id === gym.id)}
+                    isFavorite={favoriteGyms.some(fg => fg.id === gym.id)}
                     navigation={navigation}
                 />
             ))}

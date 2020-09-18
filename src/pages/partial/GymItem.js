@@ -1,46 +1,39 @@
-import React, {Component} from 'react';
-import {Text, View, Linking, Button, TouchableOpacity} from 'react-native';
+import React, {useEffect} from 'react';
+import {Text, View, TouchableOpacity} from 'react-native';
 
 import {CardItem, FavoriteButton} from '../../components';
+import {useDispatch} from 'react-redux';
+import {favoriteGymFetch, handleFavorite} from '../../actions';
 
-export default class GymItem extends Component {
+export default function({gym, isFavorite, navigation}) {
+  const dispatch = useDispatch();
 
-  constructor(props) {
-    super(props);
-    this.handleFavoriteButtonPress = this.handleFavoriteButtonPress.bind(this);
+  const handleFavoriteButtonPress = function() {
+    dispatch(handleFavorite(gym, isFavorite));
   }
 
-  handleFavoriteButtonPress() {
-    const {gym: {id}} = this.props;
-    const url = id;
-    Linking.openURL(url).
-        catch((err) => console.error('An error occurred', err));
-  }
-
-  render() {
-    const {gym: {id, name, address, province, region}} = this.props;
-    return (
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Gym', { itemId: id})}>
-          <CardItem>
-            <View style={styles.container}>
-              <View style={styles.containerText}>
-                <Text>Name: {name}</Text>
-                <Text>Reg: {region}</Text>
-                <Text>Prov: {province}</Text>
-                <Text>Addr: {address}</Text>
-              </View>
-              <View style={{justifyContent: 'center'}}>
-                <FavoriteButton
-                    onPress={this.handleFavoriteButtonPress}
-                    favorite={this.props.isFavorite}
-                    style={styles.button}
-                />
-              </View>
+  return (
+      <TouchableOpacity onPress={() => navigation.navigate('Gym', { itemId: gym.id})}>
+        <CardItem>
+          <View style={styles.container}>
+            <View style={styles.containerText}>
+              <Text>Name: {gym.name}</Text>
+              <Text>Reg: {gym.region}</Text>
+              <Text>Prov: {gym.province}</Text>
+              <Text>Addr: {gym.address}</Text>
             </View>
-          </CardItem>
-        </TouchableOpacity>
-    );
-  }
+            <View style={{justifyContent: 'center'}}>
+              <FavoriteButton
+                  onPress={ handleFavoriteButtonPress }
+                  favorite={isFavorite}
+                  style={styles.button}
+              />
+            </View>
+          </View>
+        </CardItem>
+      </TouchableOpacity>
+  );
+
 }
 
 const styles = {
