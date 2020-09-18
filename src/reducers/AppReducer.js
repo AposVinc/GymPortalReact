@@ -65,12 +65,6 @@ export default function(state = INITIAL_STATE, action) {
         loading: false,
       };
 
-    case USER_LOGGED_OUT:
-      return {
-        ...state,
-        logged: false,
-      };
-
     case GUEST_FORM_CHANGE_VALUE:
       return {
         ...state,
@@ -112,6 +106,8 @@ export default function(state = INITIAL_STATE, action) {
         }
       };
 
+    case USER_LOGGED_OUT:
+      return INITIAL_STATE;
     default:
       return state;
   }

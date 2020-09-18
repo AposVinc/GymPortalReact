@@ -115,7 +115,7 @@ export const appSignIn = function() {
     dispatch({type: USER_LOGGED_IN});
     API.login(username, password).
         then(result => {
-          axios.get(result.location, {headers: {'authorization': result.authorization}}).
+          axios.get(result.location, {headers: {'Authorization': result.authorization}}).
               then(response => {
                 dispatch( {
                   type: USER_LOGGED_IN_SUCCESS,

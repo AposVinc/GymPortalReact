@@ -34,7 +34,7 @@ export const login = function (username, password) {
 };
 
 export const refresh = function (token) {
-  return axios.get(URL_REFRESH, {headers: {'authorization': token}}).
+  return axios.get(URL_REFRESH, {headers: {'Authorization': token}}).
       then(response => response.headers.authorization).
       catch(error => {
         throw error;
