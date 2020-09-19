@@ -7,9 +7,7 @@ import {sUserProps} from './reducers/UserReducer';
 class BackgroundService extends React.Component {
   constructor(props) {
     super(props);
-  }
 
-  componentDidMount() {
     if (this.props.isLogged && this.props.user) {
       this.props.refreshToken();
     } else {
