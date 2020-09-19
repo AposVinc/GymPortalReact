@@ -20,17 +20,14 @@ export default function(state = INITIAL_STATE, action) {
         token: action.payload.token,
         user: action.payload.user
       };
-    case USER_LOGGED_OUT:
-      return {
-        ...state,
-        token: null,
-        user: null,
-      };
     case USER_REFRESH_TOKEN:
       return {
         ...state,
         token: action.payload.token
       };
+
+    case USER_LOGGED_OUT:
+      return INITIAL_STATE;
     default:
       return state;
   }

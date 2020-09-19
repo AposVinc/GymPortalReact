@@ -19,3 +19,8 @@ export const USER_REFRESH_TOKEN = 'USER_REFRESH_TOKEN';
 
 //gym
 export const GYM_FETCH = 'GYM_FETCH';
+
+//favorite gym
+export const FAVORITE_GYM_FETCH = 'FAVORITE_GYM_FETCH';
+export const FAVORITE_GYM_ADD_NEW = 'FAVORITE_GYM_ADD_NEW';
+export const FAVORITE_GYM_REMOVE = 'FAVORITE_GYM_REMOVE';
