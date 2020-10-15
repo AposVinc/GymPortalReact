@@ -38,6 +38,7 @@ export default function(state = INITIAL_STATE, action) {
     case LOADING:
       return {
         ...state,
+        loading: true,
         loadingSeconds: state.loadingSeconds + 1
       };
     case LOADING_END:

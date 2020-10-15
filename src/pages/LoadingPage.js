@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {View, ActivityIndicator} from 'react-native';
 import {connect} from 'react-redux';
 
-import {appLoading} from '../actions';
+import {appEndLoading, appLoading} from '../actions';
+import {sAppLoading} from '../reducers/AppReducer';
 
 export const LoadingPage = function() {
   return (
@@ -26,6 +27,22 @@ class LoadingPageContainer extends Component {
       inLoading();
     }, 1000);
   }
+  //  componentDidMount() {
+  //     const {loading, inLoading, endLoading} = this.props;
+  //     setTimeout(function() {
+  //       new Promise(() => {
+  //             inLoading();
+  //           }).
+  //           then(endLoading());
+  //     }, 1000);
+  //   }
+
+  componentWillUnmount() {
+    const {loading, endLoading} = this.props;
+    setTimeout(function() {
+      endLoading();
+    }, 1000);
+  }
 
   render() {
     return <LoadingPage />;
@@ -34,9 +51,8 @@ class LoadingPageContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  const {loading} = state.app;
   return {
-    loading,
+    loading: sAppLoading(state)
   };
 }
 
@@ -44,6 +60,10 @@ function mapDispatchToProps(dispatch) {
   return {
     inLoading: function() {
       dispatch(appLoading());
+    },
+
+    endLoading: function() {
+      dispatch(appEndLoading());
     }
   };
 }
