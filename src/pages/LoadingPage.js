@@ -9,7 +9,7 @@ export const LoadingPage = function() {
       <View style={styles.pageContainer}>
         <ActivityIndicator
             size={'large'}
-            color={'rgb(120, 79,246)'}
+            color={'rgb(40,90,150)'}
         />
       </View>
   );

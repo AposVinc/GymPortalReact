@@ -84,7 +84,7 @@ const styles = {
   },
   loginButton: {
     container: {
-      backgroundColor: 'rgb(120, 79,246)',
+      backgroundColor: 'rgb(40,90,150)',
     },
   },
   listButton: {
