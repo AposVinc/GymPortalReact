@@ -27,15 +27,6 @@ class LoadingPageContainer extends Component {
       inLoading();
     }, 1000);
   }
-  //  componentDidMount() {
-  //     const {loading, inLoading, endLoading} = this.props;
-  //     setTimeout(function() {
-  //       new Promise(() => {
-  //             inLoading();
-  //           }).
-  //           then(endLoading());
-  //     }, 1000);
-  //   }
 
   componentWillUnmount() {
     const {loading, endLoading} = this.props;
