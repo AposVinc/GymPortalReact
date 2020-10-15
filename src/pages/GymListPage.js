@@ -4,14 +4,25 @@ import {View, Text, ActivityIndicator, ScrollView} from 'react-native';
 import GymItem from './partial/GymItem';
 import {Card} from '../components';
 import {useDispatch, useSelector} from 'react-redux';
-import {sGymsLoading, sLoadedGyms} from '../reducers/selectors';
-import {gymFetch} from '../actions';
-
+import {
+  sGymLoadingGyms,
+  sGymLoadedGyms,
+  sFavoriteGymLoadedGyms, sAppLogged, sUserProps,
+} from '../reducers/selectors';
+import {favoriteGymFetch, gymFetch} from '../actions';
 
 export default function({ navigation }) {
-  const gyms = useSelector(sLoadedGyms);
-  const loading = useSelector(sGymsLoading);
+  const logged = useSelector(sAppLogged)
+  const gyms = useSelector(sGymLoadedGyms);
+  const loading = useSelector(sGymLoadingGyms);
+  const favoriteGyms = useSelector(sFavoriteGymLoadedGyms);
   const dispatch = useDispatch();
+
+  if (logged){
+    useEffect(() => {
+      dispatch(favoriteGymFetch())
+    }, []);
+  }
 
   useEffect(() => {
     dispatch(gymFetch())
@@ -37,6 +48,7 @@ export default function({ navigation }) {
                 <GymItem
                     key={`gym-item-${gym.id}`}
                     gym={gym}
+                    isFavorite={favoriteGyms.some(fg => fg.id === gym.id)}
                     navigation={navigation}
                 />
             ))}

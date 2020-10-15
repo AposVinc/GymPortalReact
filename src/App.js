@@ -5,6 +5,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import createStore from './stores';
 import RootNavigator from './navigator/RootNavigator';
 import LoadingPage from './pages/LoadingPage';
+import BackgroundService from './BackgroundService';
 
 const {store, persistor} = createStore();
 
@@ -18,6 +19,7 @@ class App extends React.Component {
     return (
         <Provider store={store}>
           <PersistGate persistor={persistor} loading={<LoadingPage />} >
+            <BackgroundService />
             <SafeAreaView style={styles.container} >
               <RootNavigator />
             </SafeAreaView>

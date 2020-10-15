@@ -1,4 +1,4 @@
-import {GYM_FETCH} from '../stores/ActionType';
+import {GYM_FETCH, USER_LOGGED_OUT} from '../stores/ActionType';
 
 const INITIAL_STATE = {
   gyms: null,
@@ -6,8 +6,8 @@ const INITIAL_STATE = {
 };
 
 const sGym = (state) => state.gym;
-export const sLoadedGyms = state => sGym(state).gyms;
-export const sGymsLoading = state => sGym(state).loading;
+export const sGymLoadedGyms = state => sGym(state).gyms;
+export const sGymLoadingGyms = state => sGym(state).loading;
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
@@ -27,6 +27,9 @@ export default function(state = INITIAL_STATE, action) {
         gyms: action.payload.gyms,
         loading: false,
       };
+
+    case USER_LOGGED_OUT:
+      return INITIAL_STATE;
     default:
       return state;
   }

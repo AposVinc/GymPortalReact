@@ -1,5 +1,5 @@
 import {GYM_FETCH} from '../stores/ActionType';
-import * as API from '../api'
+import * as API from '../api';
 
 
 export function gymFetch(){
