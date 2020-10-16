@@ -59,7 +59,7 @@ export const FavoriteButton = function({onPress, favorite, style}) {
 const styles = {
   link: {
     container: {
-      height: 40,
+      height: 20,
       justifyContent: 'flex-start',
       alignItems: 'flex-end',
     },
@@ -84,7 +84,7 @@ const styles = {
   },
   loginButton: {
     container: {
-      backgroundColor: 'rgb(120, 79,246)',
+      backgroundColor: 'rgb(40,90,150)',
     },
   },
   listButton: {
