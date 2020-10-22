@@ -44,6 +44,7 @@ export default class CourseItem extends Component {
 
 const styles = {
   container: {
+    width:'100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -59,6 +60,6 @@ const styles = {
     width: 200,
   },
   button: {
-    width: 100,
+    width: 50,
   },
 };

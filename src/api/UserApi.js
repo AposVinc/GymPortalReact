@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const URL_BASE = 'http://10.0.2.2:8080/GymREST/rest/';
+const URL_BASE = 'http://localhost:8080/GymREST/rest/';
 const URL_GET_UTENTE = URL_BASE + 'users/' ;
 const URL_GET_FAVORITE_GYMS = '/favorites/gyms/' ;
 

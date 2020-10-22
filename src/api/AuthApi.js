@@ -1,7 +1,7 @@
 import axios from 'axios';
 import querystring from 'query-string';
 
-const URL_BASE = 'http://10.0.2.2:8080/GymREST/rest/';
+const URL_BASE = 'http://localhost:8080/GymREST/rest/';
 const URL_REGISTRATION = URL_BASE + 'auth/registration';
 const URL_LOGIN = URL_BASE + 'auth/login';
 const URL_REFRESH = URL_BASE + 'auth/refresh';
