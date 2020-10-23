@@ -1,10 +1,9 @@
-import axios from 'axios';
+import axios from './axiosConfig';
 import querystring from 'query-string';
 
-const URL_BASE = 'http://10.0.2.2:8080/GymREST/rest/';
-const URL_REGISTRATION = URL_BASE + 'auth/registration';
-const URL_LOGIN = URL_BASE + 'auth/login';
-const URL_REFRESH = URL_BASE + 'auth/refresh';
+const URL_REGISTRATION = '/auth/registration';
+const URL_LOGIN = '/auth/login';
+const URL_REFRESH = '/auth/refresh';
 
 export const registration = function (name, lastname, email, username, password) {
   const user = {
