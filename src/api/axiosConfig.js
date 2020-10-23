@@ -14,10 +14,11 @@ switch (Platform.OS) {
 }
 
 const instance = axios.create({
-  baseURL: url,
+  baseURL: url
 });
 
 instance.interceptors.request.use(request => {
+  // request.headers.Authorization = token;  //https://dev.to/axotion/why-you-shouldn-t-use-axios-interceptors-with-redux-16ff
   console.log(request);
   // Edit request config
   return request;
@@ -27,7 +28,7 @@ instance.interceptors.request.use(request => {
 });
 
 instance.interceptors.response.use(response => {
-  console.log(response);
+  console.log('response ' + response.config.url,response);
   // Edit response config
   return response;
 }, error => {
