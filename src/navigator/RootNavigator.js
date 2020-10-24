@@ -10,8 +10,6 @@ import LoginPage from '../pages/LoginPage';
 import SignUpPage from '../pages/SignUpPage';
 import {sAppLogged} from '../reducers/AppReducer';
 import {useSelector} from 'react-redux';
-import CourseListPage from '../pages/CourseListPage';
-import CoursePage from '../pages/CoursePage';
 
 const RootStack = createStackNavigator();
 
