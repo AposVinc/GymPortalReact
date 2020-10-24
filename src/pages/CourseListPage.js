@@ -13,10 +13,7 @@ export default function({navigation, idGym}) {
   const loading = useSelector(sCoursesLoading);
   const dispatch = useDispatch();
 
-  console.log(idGym);
-
   useEffect(() => {
-    console.log("ciao", idGym);
     dispatch(courseFetch(idGym))
   }, []);
 
