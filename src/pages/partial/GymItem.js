@@ -26,8 +26,8 @@ export default function({gym, isFavorite, navigation}) {
               </View>
               <View style={{justifyContent: 'center'}}>
                 <FavoriteButton
-                    onPress={this.handleFavoriteButtonPress}
-                    favorite={true}
+                    onPress={ handleFavoriteButtonPress }
+                    favorite={isFavorite}
                     style={styles.button}
                 />
               </View>
