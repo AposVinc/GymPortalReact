@@ -1,8 +1,6 @@
-import axios from 'axios';
+import axios from './axiosConfig';
 
-
-const URL_BASE = 'http://localhost:8080/GymREST/rest/';
-const URL_GET_UTENTE = URL_BASE + 'users/' ;
+const URL_GET_UTENTE = 'users/' ;
 const URL_GET_FAVORITE_GYMS = '/favorites/gyms/' ;
 
 export const getUtente = function (id) {
