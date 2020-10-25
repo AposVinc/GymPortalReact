@@ -3,8 +3,7 @@ import {Text, View, TouchableOpacity} from 'react-native';
 
 import {CardItem, FavoriteButton} from '../../components';
 import {useDispatch} from 'react-redux';
-import {favoriteGymFetch, handleFavorite} from '../../actions';
-import CourseListPage from '../CourseListPage';
+import {courseFetch, favoriteGymFetch, handleFavorite} from '../../actions';
 
 export default function({gym, isFavorite, navigation}) {
   const dispatch = useDispatch();
@@ -13,8 +12,10 @@ export default function({gym, isFavorite, navigation}) {
     dispatch(handleFavorite(gym, isFavorite));
   }
 
+  const courseList = function () {dispatch(courseFetch(gym.id))};
+
   return (
-      <TouchableOpacity onPress={() => navigation.navigate('Gym', { itemId: gym.id})}>
+      <TouchableOpacity onPress={() => { courseList(); navigation.navigate('Gym', {itemId: gym.id, navigation: navigation})}}>
         <CardItem>
           <View style={styles.container}>
             <View style={styles.containerText}>
@@ -22,7 +23,6 @@ export default function({gym, isFavorite, navigation}) {
               <Text>Reg: {gym.region}</Text>
               <Text>Prov: {gym.province}</Text>
               <Text>Addr: {gym.address}</Text>
-                <CourseListPage/>
               </View>
               <View style={{justifyContent: 'center'}}>
                 <FavoriteButton

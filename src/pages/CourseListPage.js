@@ -3,19 +3,13 @@ import {View, Text, ActivityIndicator, ScrollView} from 'react-native';
 
 import CourseItem from './partial/CourseItem';
 import {Card} from '../components';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {sCoursesLoading, sLoadedCourses} from '../reducers/selectors';
-import {courseFetch} from '../actions';
 
 
 export default function({navigation, idGym}) {
   const courses = useSelector(sLoadedCourses);
   const loading = useSelector(sCoursesLoading);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(courseFetch(idGym))
-  }, []);
 
   if (loading || courses === null) {
     return (

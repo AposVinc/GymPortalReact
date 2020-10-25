@@ -2,31 +2,20 @@ import React, {Component} from 'react';
 import {Text, View, Linking, Button, TouchableOpacity} from 'react-native';
 
 import {CardItem, FavoriteButton} from '../../components';
+import {useDispatch} from 'react-redux';
+import {handleFavorite} from '../../actions';
 
-export default class CourseItem extends Component {
+export default function({course, navigation}) {
+  const dispatch = useDispatch();
 
-  constructor(props) {
-    super(props);
-    this.handleFavoriteButtonPress = this.handleFavoriteButtonPress.bind(this);
-  }
-
-  handleFavoriteButtonPress() {
-    const {course: {id}} = this.props;
-    const url = id;
-    Linking.openURL(url).
-        catch((err) => console.error('An error occurred', err));
-  }
-
-  render() {
-    const {course: {id, name, code, description}} = this.props;
-    return (
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Course', { itemId: id})}>
+  return(
+        <TouchableOpacity onPress={() => navigation.navigate('Course', { itemId: course.id})}>
           <CardItem>
             <View style={styles.container}>
               <View style={styles.containerText}>
-                <Text>Name: {name}</Text>
-                <Text>Code: {code}</Text>
-                <Text>Description: {description}</Text>
+                <Text>Name: {course.name}</Text>
+                <Text>Code: {course.code}</Text>
+                <Text>Description: {course.description}</Text>
               </View>
               <View style={{justifyContent: 'center'}}>
                 <FavoriteButton
@@ -39,7 +28,6 @@ export default class CourseItem extends Component {
           </CardItem>
         </TouchableOpacity>
     );
-  }
 }
 
 const styles = {

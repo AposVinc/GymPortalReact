@@ -30,7 +30,6 @@ export default function() {
               <>
                 <RootStack.Screen name={'Gym List'} component={GymListPage}/>
                 <RootStack.Screen name={'Gym'} component={GymPage}/>
-                <RootStack.Screen name={'Course List'} component={CourseListPage}/>
                 <RootStack.Screen name={'Course'} component={CoursePage}/>
               </>
           )}

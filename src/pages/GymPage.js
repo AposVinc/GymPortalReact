@@ -3,7 +3,7 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import CourseListPage from './CourseListPage';
 
 
-function GymPage({ route }) {
+function GymPage({ route, navigation }) {
   const { itemId } = route.params;
 
   return (
@@ -14,7 +14,7 @@ function GymPage({ route }) {
       }}>
         <Text>Gym Page</Text>
         <Text>id: {itemId}</Text>
-        <CourseListPage idGym={itemId}/>
+        <CourseListPage idGym={itemId} navigation={navigation}/>
       </View>
   );
 
