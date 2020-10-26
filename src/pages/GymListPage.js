@@ -56,7 +56,7 @@ export default function({ navigation }) {
         </ScrollView>
       </View>
   );
-  
+
 };
 
 const styles = {
