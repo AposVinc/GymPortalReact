@@ -45,12 +45,12 @@ export const ListButton = function({onPress, text, style}) {
 };
 
 export const FavoriteButton = function({onPress, favorite, style}) {
-  const heart = <Icon name='heart' type='ionicon'  color='red'/>;
-  const heart_outline = <Icon name='heart-outline' type='ionicon'/>;
+  const heart = <Icon name='heart' type='ionicon'  color='red' size={36}/>;
+  const heart_outline = <Icon name='heart-outline' type='ionicon' size={36}/>;
 
   return (
       <TouchableOpacity onPress={onPress}
-                        style={[styles.button.container, styles.listButton.container, style]}>
+                        style={[styles.button.container, style]}>
         {favorite ? heart : heart_outline}
       </TouchableOpacity>
   );
