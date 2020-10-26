@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React from 'react';
 import {View, Text, ActivityIndicator, ScrollView} from 'react-native';
 
 import CourseItem from './partial/CourseItem';
@@ -7,7 +7,7 @@ import {useSelector} from 'react-redux';
 import {sCoursesLoading, sLoadedCourses} from '../reducers/selectors';
 
 
-export default function({navigation, idGym}) {
+export default function({navigation}) {
   const courses = useSelector(sLoadedCourses);
   const loading = useSelector(sCoursesLoading);
 

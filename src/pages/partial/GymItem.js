@@ -15,7 +15,7 @@ export default function({gym, isFavorite, navigation}) {
   const courseList = function () {dispatch(courseFetch(gym.id))};
 
   return (
-      <TouchableOpacity onPress={() => { courseList(); navigation.navigate('Gym', {itemId: gym.id, navigation: navigation})}}>
+      <TouchableOpacity onPress={() => { courseList(); navigation.navigate('Gym', {itemId: gym.id})}}>
         <CardItem>
           <View style={styles.container}>
             <View style={styles.containerText}>

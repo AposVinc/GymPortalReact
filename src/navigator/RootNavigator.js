@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import GymListPage from '../pages/GymListPage';
 import GymPage from '../pages/GymPage';
 
-import CourseListPage from '../pages/CourseListPage';
 import CoursePage from '../pages/CoursePage';
 import LoginPage from '../pages/LoginPage';
 import SignUpPage from '../pages/SignUpPage';
