@@ -31,15 +31,20 @@ export const LinkButton = function({onPress, text}) {
   );
 };
 
-export const ListButton = function({onPress, text, style}) {
+export const ListButton = function({onPress, text, inLoading = false, style}) {
   return (
       <TouchableOpacity
           onPress={onPress}
           style={[styles.button.container, styles.listButton.container, style]}
       >
-        <Text style={[styles.button.text, styles.listButton.text]}>
-          {text}
-        </Text>
+        {inLoading &&
+          <ActivityIndicator size="small" color="rgb(254, 178, 7)" />
+        }
+        {!inLoading &&
+          <Text style={[styles.button.text, styles.listButton.text]}>
+            {text}
+          </Text>
+        }
       </TouchableOpacity>
   );
 };

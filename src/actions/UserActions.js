@@ -1,8 +1,17 @@
 import {
-  USER_LOGGED_OUT, USER_REFRESH_TOKEN,
+  USER_FORM_CHANGE_VALUE,
+  USER_LOGGED_IN,
+  USER_LOGGED_IN_FAIL,
+  USER_LOGGED_IN_SUCCESS,
+  USER_LOGGED_OUT,
+  USER_REFRESH_TOKEN,
+  USER_RESTORE,
+  USER_UPDATE,
+  USER_UPDATE_FAIL,
+  USER_UPDATE_SUCCESS,
 } from '../stores/ActionType';
 import * as API from '../api';
-import {sUserToken} from '../reducers/UserReducer';
+import {sUserProps, sUserToken} from '../reducers/UserReducer';
 
 
 export const userLogout = function() {
@@ -32,3 +41,86 @@ export const userRefreshToken = function() {
   };
 };
 
+
+export const userFormChangeName = function(value) {
+  return {
+    type: USER_FORM_CHANGE_VALUE,
+    payload: {
+      field: 'name',
+      value,
+    },
+  };
+};
+
+export const userFormChangeLastname = function(value) {
+  return {
+    type: USER_FORM_CHANGE_VALUE,
+    payload: {
+      field: 'lastname',
+      value,
+    },
+  };
+};
+
+export const userFormChangeEmail = function(value) {
+  return {
+    type: USER_FORM_CHANGE_VALUE,
+    payload: {
+      field: 'email',
+      value,
+    },
+  };
+};
+
+export const userFormChangeUsername = function(value) {
+  return {
+    type: USER_FORM_CHANGE_VALUE,
+    payload: {
+      field: 'username',
+      value,
+    },
+  };
+};
+
+export const userFormChangePassword = function(value) {
+  return {
+    type: USER_FORM_CHANGE_VALUE,
+    payload: {
+      field: 'password',
+      value,
+    },
+  };
+};
+
+
+export const userUpdate = function() {
+  return (dispatch, getState) => {
+    const storeState = getState();
+    const user = sUserProps(storeState);
+    const token = sUserToken(storeState);
+    dispatch({type: USER_UPDATE});
+    API.userUpdate(user,token).
+        then(dispatch({type: USER_UPDATE_SUCCESS})).
+        catch((error) => {
+          // Handle Errors here.
+          console.log(error.code, error.message);
+          dispatch({type: USER_UPDATE_FAIL});
+
+          API.getUser(user.id, token).
+              then(response => {
+                dispatch({
+                  type: USER_RESTORE,
+                  payload: {
+                    user: response
+                  }
+                });
+              }).
+              catch( (error) => {
+                // Handle Errors here.
+                console.log(error.code, error.message);
+                dispatch({type: USER_LOGGED_OUT});
+              });
+        });
+
+  };
+};
