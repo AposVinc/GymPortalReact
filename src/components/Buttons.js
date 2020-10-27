@@ -56,6 +56,15 @@ export const FavoriteButton = function({onPress, favorite, style}) {
   );
 };
 
+export const MenuButtom = function({onPress, style}) {
+  return (
+      <TouchableOpacity onPress={onPress}
+                        style={[styles.button.container, style]}>
+        <Icon name='menu' type='ionicon' />
+      </TouchableOpacity>
+  );
+};
+
 const styles = {
   link: {
     container: {
