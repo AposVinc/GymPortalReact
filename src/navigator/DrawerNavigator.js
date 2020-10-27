@@ -9,7 +9,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import GymListPage from '../pages/GymListPage';
 import GymPage from '../pages/GymPage';
 import CoursePage from '../pages/CoursePage';
-import Profile from '../pages/Profile';
+import Profile from '../pages/ProfilePage';
 
 //https://stackoverflow.com/questions/60131376/set-header-for-drawer-navigation
 const GymStack = createStackNavigator();
