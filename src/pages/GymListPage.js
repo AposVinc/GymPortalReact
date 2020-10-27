@@ -12,7 +12,7 @@ import {
 import {favoriteGymFetch, gymFetch} from '../actions';
 
 export default function({ navigation }) {
-  const logged = useSelector(sAppLogged)
+  const logged = useSelector(sAppLogged);
   const gyms = useSelector(sGymLoadedGyms);
   const loading = useSelector(sGymLoadingGyms);
   const favoriteGyms = useSelector(sFavoriteGymLoadedGyms);
