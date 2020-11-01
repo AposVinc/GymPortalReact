@@ -7,15 +7,16 @@ import {useDispatch, useSelector} from 'react-redux';
 import {
   sGymLoadingGyms,
   sGymLoadedGyms,
-  sFavoriteGymLoadedGyms, sAppLogged, sUserProps,
+  sFavoriteGymLoadedGyms, sAppLogged, sUserProps, sFavoriteGymLoadingGyms,
 } from '../reducers/selectors';
 import {favoriteGymFetch, gymFetch} from '../actions';
 
 export default function({ navigation }) {
   const logged = useSelector(sAppLogged);
   const gyms = useSelector(sGymLoadedGyms);
-  const loading = useSelector(sGymLoadingGyms);
+  const gymLoading = useSelector(sGymLoadingGyms);
   const favoriteGyms = useSelector(sFavoriteGymLoadedGyms);
+  const favoritesLoading = useSelector(sFavoriteGymLoadingGyms);
   const dispatch = useDispatch();
 
   if (logged){
@@ -28,7 +29,7 @@ export default function({ navigation }) {
     dispatch(gymFetch())
   }, []);
 
-  if (loading || gyms === null) {
+  if (gymLoading || gyms === null || favoritesLoading) {
     return (
         <View
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>

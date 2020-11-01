@@ -29,8 +29,12 @@ export function handleFavorite(gym, isFavorite){
     if (isFavorite){
       API.removeGymToFavorite(user.id, gym.id, token).
           then(()=>{
-            dispatch({type: FAVORITE_GYM_REMOVE});
-            dispatch(favoriteGymFetch());
+            dispatch({
+              type: FAVORITE_GYM_REMOVE,
+              payload: {gym}
+            });
+            // dispatch(favoriteGymFetch()); //invece di chiamare il fetch, gestire manualmente i favorite
+
           }).
           catch((error) => {
             // Handle Errors here.
@@ -39,8 +43,10 @@ export function handleFavorite(gym, isFavorite){
     } else {
       API.addGymToFavorite(user.id, gym.id, token).
           then(()=>{
-            dispatch({type: FAVORITE_GYM_ADD_NEW});
-            dispatch(favoriteGymFetch());
+            dispatch({
+              type: FAVORITE_GYM_ADD_NEW,
+              payload: {gym}
+            });
           }).
           catch((error) => {
             // Handle Errors here.

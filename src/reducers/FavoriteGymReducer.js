@@ -34,10 +34,12 @@ export default function(state = INITIAL_STATE, action) {
     case FAVORITE_GYM_ADD_NEW:
       return {
         ...state,
+        gyms: [...state.gyms, action.payload.gym]
       };
     case FAVORITE_GYM_REMOVE:
       return {
         ...state,
+        gyms: [...state.gyms.filter( el => el.id !== action.payload.gym.id )]
       };
 
     case USER_LOGGED_OUT:
