@@ -1,10 +1,10 @@
 import {
   GUEST_SIGN_UP,
   GUEST_SIGN_UP_FAIL,
-  GUEST_SIGN_UP_SUCCESS,
+  GUEST_SIGN_UP_SUCCESS, GYM_FETCH,
   USER_FORM_CHANGE_VALUE,
   USER_LOGGED_IN_SUCCESS,
-  USER_LOGGED_OUT,
+  USER_LOGGED_OUT, USER_REFRESH, USER_REFRESH_FAIL, USER_REFRESH_SUCCESS,
   USER_REFRESH_TOKEN, USER_RESTORE,
   USER_UPDATE,
   USER_UPDATE_FAIL, USER_UPDATE_SUCCESS,
@@ -68,11 +68,21 @@ export default function(state = INITIAL_STATE, action) {
         }
       };
 
-    case USER_RESTORE:
+    case USER_REFRESH:
+      return {
+        ...state,
+        loading: true,
+      };
+    case USER_REFRESH_FAIL:
       return {
         ...state,
         loading: false,
-        user: action.payload.user
+      };
+    case USER_REFRESH_SUCCESS:
+      return {
+        ...state,
+        user: action.payload.user,
+        loading: false,
       };
 
     case USER_LOGGED_OUT:

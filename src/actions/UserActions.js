@@ -3,7 +3,7 @@ import {
   USER_LOGGED_IN,
   USER_LOGGED_IN_FAIL,
   USER_LOGGED_IN_SUCCESS,
-  USER_LOGGED_OUT,
+  USER_LOGGED_OUT, USER_REFRESH, USER_REFRESH_FAIL, USER_REFRESH_SUCCESS,
   USER_REFRESH_TOKEN,
   USER_RESTORE,
   USER_UPDATE,
@@ -38,6 +38,31 @@ export const userRefreshToken = function() {
           console.log(error.code, error.message);
           dispatch(userLogout());
         });
+  };
+};
+
+export const userRefresh = function() {
+  return (dispatch, getState) => {
+    const storeState = getState();
+    const user = sUserProps(storeState);
+    const token = sUserToken(storeState);
+    dispatch({type: USER_REFRESH});
+    API.getUser(user.id, token).
+        then(response => {
+          dispatch({
+            type: USER_REFRESH_SUCCESS,
+            payload: {
+              user: response
+            }
+          });
+        }).
+        catch( (error) => {
+          // Handle Errors here.
+          console.log(error.code, error.message);
+          dispatch({type: USER_REFRESH_FAIL});
+          userLogout();
+        });
+
   };
 };
 
@@ -105,21 +130,7 @@ export const userUpdate = function() {
           // Handle Errors here.
           console.log(error.code, error.message);
           dispatch({type: USER_UPDATE_FAIL});
-
-          API.getUser(user.id, token).
-              then(response => {
-                dispatch({
-                  type: USER_RESTORE,
-                  payload: {
-                    user: response
-                  }
-                });
-              }).
-              catch( (error) => {
-                // Handle Errors here.
-                console.log(error.code, error.message);
-                dispatch({type: USER_LOGGED_OUT});
-              });
+          userRefresh();
         });
 
   };
