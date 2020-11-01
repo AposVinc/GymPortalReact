@@ -1,5 +1,11 @@
-import React, {Component, useEffect} from 'react';
-import {View, Text, ActivityIndicator, ScrollView} from 'react-native';
+import React, {useEffect} from 'react';
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  ScrollView,
+  RefreshControl,
+} from 'react-native';
 
 import GymItem from './partial/GymItem';
 import {Card} from '../components';
@@ -7,7 +13,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {
   sGymLoadingGyms,
   sGymLoadedGyms,
-  sFavoriteGymLoadedGyms, sAppLogged, sUserProps, sFavoriteGymLoadingGyms,
+  sFavoriteGymLoadedGyms, sAppLogged, sFavoriteGymLoadingGyms,
 } from '../reducers/selectors';
 import {favoriteGymFetch, gymFetch} from '../actions';
 
@@ -21,12 +27,12 @@ export default function({ navigation }) {
 
   if (logged){
     useEffect(() => {
-      dispatch(favoriteGymFetch())
+      dispatch(favoriteGymFetch());
     }, []);
   }
 
   useEffect(() => {
-    dispatch(gymFetch())
+    dispatch(gymFetch());
   }, []);
 
   if (gymLoading || gyms === null || favoritesLoading) {
@@ -42,8 +48,10 @@ export default function({ navigation }) {
   }
 
   return (
-      <View style={styles.container}>
-        <ScrollView>
+      <View style={styles.container} >
+        <ScrollView
+            refreshControl={ <RefreshControl refreshing={gymLoading && favoritesLoading} onRefresh={ () => {dispatch(gymFetch()); dispatch(favoriteGymFetch());} } /> }
+        >
           <Card>
             {gyms.map((gym, key) => (
                 <GymItem
@@ -60,7 +68,8 @@ export default function({ navigation }) {
 
 };
 
-const styles = {
+const styles =
+    {
   container: {
     flex: 1,
     paddingVertical: 15,

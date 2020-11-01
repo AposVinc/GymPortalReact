@@ -27,7 +27,7 @@ export default function DrawerNavigator() {
         <Drawer.Screen name={'Profile'} component={ProfileNavigator} />
         <Drawer.Screen name={'Gym List'} component={GymNavigator} />
         <Drawer.Screen name={'Favorite Gyms'} component={ProfileNavigator} />
-        <Drawer.Screen name={'Favorite courses'} component={ProfileNavigator} />
+        <Drawer.Screen name={'Favorite Courses'} component={ProfileNavigator} />
 
       </Drawer.Navigator>
   )
