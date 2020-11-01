@@ -7,9 +7,10 @@ import {useSelector} from 'react-redux';
 import {sCoursesLoading, sLoadedCourses} from '../reducers/selectors';
 
 
-export default function({navigation}) {
-  const courses = useSelector(sLoadedCourses);
+export default function({ route, navigation }) {
+  const { itemId } = route.params;
   const loading = useSelector(sCoursesLoading);
+  const courses = useSelector(sLoadedCourses);
 
   if (loading || courses === null) {
     return (
