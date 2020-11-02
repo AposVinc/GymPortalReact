@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Text, View, Linking, Button, TouchableOpacity} from 'react-native';
 
-import {CardItem, FavoriteButton} from '../../components';
+import {CardItem, FavoriteButton} from '../../../components';
 import {useDispatch} from 'react-redux';
-import {handleFavorite} from '../../actions';
+import {handleFavorite} from '../../../actions';
 
 export default function({course, navigation}) {
   const dispatch = useDispatch();

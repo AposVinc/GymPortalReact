@@ -1,13 +1,13 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import Card from '../components/Card';
+import Card from '../../components/Card';
 import {
   CardItem,
   ListButton,
   PageTitle,
-} from '../components';
-import {sGymLoadedGyms} from '../reducers/GymReducer';
-import {courseFetch} from '../actions';
+} from '../../components';
+import {sGymLoadedGyms} from '../../reducers/GymReducer';
+import {courseFetch} from '../../actions';
 import {useDispatch, useSelector} from 'react-redux';
 
 

@@ -9,7 +9,7 @@ import {
   Input,
   LoginButton,
   LinkButton,
-} from '../components';
+} from '../../components';
 import {connect} from 'react-redux';
 import {
   appGuestFormChangeUsername,
@@ -18,13 +18,13 @@ import {
   appGuestFormChangeName,
   appGuestFormChangeLastname,
   appGuestFormChangeEmail,
-} from '../actions';
+} from '../../actions';
 import {
   sAppGuestFormUsername,
   sAppGuestFormPassword,
   sAppLoading,
   sAppGuestFormEmail, sAppGuestFormLastname, sAppGuestFormName,
-} from '../reducers/AppReducer';
+} from '../../reducers/AppReducer';
 
 
 class SignUpPage extends React.Component {

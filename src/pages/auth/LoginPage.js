@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import {connect} from 'react-redux';
 
 import {
@@ -9,17 +9,17 @@ import {
   InputLabel,
   Input,
   LoginButton,LinkButton,
-} from '../components';
+} from '../../components';
 import {
   appSignIn,
   appGuestFormChangeUsername,
   appGuestFormChangePassword,
-} from '../actions';
+} from '../../actions';
 import {
   sAppGuestFormUsername,
   sAppGuestFormPassword,
-  sAppGuestSingUpLoading, sAppLoading,
-} from '../reducers/selectors';
+  sAppLoading,
+} from '../../reducers/selectors';
 
 
 class LoginPage extends React.Component {

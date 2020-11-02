@@ -1,5 +1,5 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import Profile from '../../pages/ProfilePage';
+import Profile from '../../pages/profile/ProfilePage';
 import React from 'react';
 import {MenuButtom} from '../../components';
 

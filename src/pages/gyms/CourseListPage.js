@@ -2,9 +2,9 @@ import React from 'react';
 import {View, Text, ActivityIndicator, ScrollView} from 'react-native';
 
 import CourseItem from './partial/CourseItem';
-import {Card} from '../components';
+import {Card} from '../../components';
 import {useSelector} from 'react-redux';
-import {sCoursesLoading, sLoadedCourses} from '../reducers/selectors';
+import {sCoursesLoading, sLoadedCourses} from '../../reducers/selectors';
 
 
 export default function({ route, navigation }) {

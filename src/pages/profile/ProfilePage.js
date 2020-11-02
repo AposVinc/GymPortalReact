@@ -8,13 +8,13 @@ import {
   InputLabel,
   ListButton,
   PageTitle,
-} from '../components';
-import {sUserLoading, sUserProps} from '../reducers/UserReducer';
+} from '../../components';
+import {sUserLoading, sUserProps} from '../../reducers/UserReducer';
 import {
   userFormChangeEmail, userFormChangeLastname,
   userFormChangeName, userFormChangePassword,
   userFormChangeUsername, userRefresh, userUpdate,
-} from '../actions';
+} from '../../actions';
 
 
 export default function() {

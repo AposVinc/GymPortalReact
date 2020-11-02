@@ -2,8 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import LoginPage from '../pages/LoginPage';
-import SignUpPage from '../pages/SignUpPage';
+import LoginPage from '../pages/auth/LoginPage';
+import SignUpPage from '../pages/auth/SignUpPage';
 import {sAppLogged} from '../reducers/AppReducer';
 import {useSelector} from 'react-redux';
 import DrawerNavigator from './DrawerNavigator';
