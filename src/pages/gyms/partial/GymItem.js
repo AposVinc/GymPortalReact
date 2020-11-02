@@ -2,15 +2,13 @@ import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {CardItem, FavoriteButton} from '../../../components';
 import {useDispatch} from 'react-redux';
-import {
-  handleFavorite
-} from '../../../actions';
+import {handleFavoriteGym} from '../../../actions';
 
 export default function({gym, isFavorite, navigation}) {
   const dispatch = useDispatch();
 
   const handleFavoriteButtonPress = function() {
-    dispatch(handleFavorite(gym, isFavorite));
+    dispatch(handleFavoriteGym(gym, isFavorite));
   }
 
   return (

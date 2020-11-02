@@ -20,7 +20,7 @@ export function favoriteGymFetch(){
   };
 }
 
-export function handleFavorite(gym, isFavorite){
+export function handleFavoriteGym(gym, isFavorite){
   return (dispatch, getState) => {
     const storeState = getState();
     const user = sUserProps(storeState)
