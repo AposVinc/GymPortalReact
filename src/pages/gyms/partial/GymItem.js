@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
-
-import {CardItem, FavoriteButton} from '../../components';
+import {CardItem, FavoriteButton} from '../../../components';
 import {useDispatch} from 'react-redux';
-import {courseFetch, favoriteGymFetch, handleFavorite} from '../../actions';
+import {
+  handleFavorite
+} from '../../../actions';
 
 export default function({gym, isFavorite, navigation}) {
   const dispatch = useDispatch();
@@ -21,14 +22,14 @@ export default function({gym, isFavorite, navigation}) {
               <Text>Reg: {gym.region}</Text>
               <Text>Prov: {gym.province}</Text>
               <Text>Addr: {gym.address}</Text>
-              </View>
-              <View style={{justifyContent: 'center'}}>
-                <FavoriteButton
-                    onPress={ handleFavoriteButtonPress }
-                    favorite={isFavorite}
-                    style={styles.button}
-                />
-              </View>
+            </View>
+            <View style={{justifyContent: 'center'}}>
+              <FavoriteButton
+                  onPress={ handleFavoriteButtonPress }
+                  favorite={isFavorite}
+                  style={ styles.button }
+              />
+            </View>
           </View>
         </CardItem>
       </TouchableOpacity>
