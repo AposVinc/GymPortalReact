@@ -1,18 +1,26 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, ActivityIndicator, ScrollView} from 'react-native';
 
 import CourseItem from './partial/CourseItem';
 import {Card} from '../../components';
-import {useSelector} from 'react-redux';
-import {sCoursesLoading, sLoadedCourses} from '../../reducers/selectors';
+import {useDispatch, useSelector} from 'react-redux';
+import {sGymLoadedCourses, sGymLoadingGyms} from '../../reducers/selectors';
+import {courseFetch} from '../../actions';
 
 
 export default function({ route, navigation }) {
   const { itemId } = route.params;
-  const loading = useSelector(sCoursesLoading);
-  const courses = useSelector(sLoadedCourses);
+  const loading = useSelector(sGymLoadingGyms);
+  const courses = useSelector(sGymLoadedCourses(itemId));
+  const dispatch = useDispatch();
 
-  if (loading || courses === null) {
+  useEffect(() => {
+    dispatch(courseFetch(itemId));
+  }, []);
+
+  console.log(loading, courses)
+
+  if (loading || courses === undefined) {
     return (
         <View
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -20,7 +28,7 @@ export default function({ route, navigation }) {
         </View>
     );
   }
-  if (courses.length === 0) {
+  if(courses.length === 0) {
     return <Text>Empty Course List</Text>;
   }
 

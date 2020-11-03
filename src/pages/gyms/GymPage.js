@@ -7,14 +7,12 @@ import {
   PageTitle,
 } from '../../components';
 import {sGymLoadedGyms} from '../../reducers/GymReducer';
-import {courseFetch} from '../../actions';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 
 
 function GymPage({ route, navigation }) {
   const { itemId } = route.params;
   const gym = useSelector(sGymLoadedGyms).find( (el) => el.id === itemId);
-  const dispatch = useDispatch();
 
   return (
       <View style={{
@@ -50,7 +48,6 @@ function GymPage({ route, navigation }) {
 
         <ListButton
             onPress={ () => {
-              dispatch(courseFetch(gym.id));
               navigation.navigate('Courses List', {itemId}); }
             }
             text={'Open Courses List'}
