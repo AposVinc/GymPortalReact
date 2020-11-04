@@ -1,12 +1,16 @@
-import React, {Component} from 'react';
-import {Text, View, Linking, Button, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {Text, View, TouchableOpacity} from 'react-native';
 
 import {CardItem, FavoriteButton} from '../../../components';
 import {useDispatch} from 'react-redux';
-import {handleFavorite} from '../../../actions';
+import {handleFavoriteCourse} from '../../../actions';
 
-export default function({course, navigation}) {
+export default function({course, isFavorite, navigation}) {
   const dispatch = useDispatch();
+
+  const handleFavoriteButtonPress = function() {
+    dispatch(handleFavoriteCourse(course, isFavorite));
+  }
 
   return(
         <TouchableOpacity onPress={() => navigation.navigate('Course', { itemId: course.id})}>
@@ -19,8 +23,8 @@ export default function({course, navigation}) {
               </View>
               <View style={{justifyContent: 'center'}}>
                 <FavoriteButton
-                    onPress={this.handleFavoriteButtonPress}
-                    favorite={true}
+                    onPress={ handleFavoriteButtonPress }
+                    favorite={ isFavorite }
                     style={styles.button}
                 />
               </View>

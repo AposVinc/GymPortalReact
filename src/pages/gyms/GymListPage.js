@@ -11,18 +11,18 @@ import GymItem from './partial/GymItem';
 import {Card} from '../../components';
 import {useDispatch, useSelector} from 'react-redux';
 import {
-  sGymLoadingGyms,
+  sGymLoading,
   sGymLoadedGyms,
-  sFavoriteGymLoadedGyms, sAppLogged, sFavoriteGymLoadingGyms,
+  sFavoriteGyms, sAppLogged, sFavoriteLoading,
 } from '../../reducers/selectors';
 import {favoriteGymFetch, gymFetch} from '../../actions';
 
 export default function({ navigation }) {
   const logged = useSelector(sAppLogged);
   const gyms = useSelector(sGymLoadedGyms);
-  const gymLoading = useSelector(sGymLoadingGyms);
-  const favoriteGyms = useSelector(sFavoriteGymLoadedGyms);
-  const favoritesLoading = useSelector(sFavoriteGymLoadingGyms);
+  const gymLoading = useSelector(sGymLoading);
+  const favoriteGyms = useSelector(sFavoriteGyms);
+  const favoritesLoading = useSelector(sFavoriteLoading);
   const dispatch = useDispatch();
 
   if (logged){
@@ -35,7 +35,7 @@ export default function({ navigation }) {
     dispatch(gymFetch());
   }, []);
 
-  if (gymLoading || gyms === null || favoritesLoading) {
+  if (gymLoading || favoritesLoading) {
     return (
         <View
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>

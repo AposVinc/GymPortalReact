@@ -1,26 +1,38 @@
 import React, {useEffect} from 'react';
 import {View, Text, ActivityIndicator, ScrollView} from 'react-native';
-
 import CourseItem from './partial/CourseItem';
 import {Card} from '../../components';
 import {useDispatch, useSelector} from 'react-redux';
-import {sGymLoadedCourses, sGymLoadingGyms} from '../../reducers/selectors';
-import {courseFetch} from '../../actions';
-
+import {
+  sAppLogged, sFavoriteCourses, sFavoriteLoading,
+  sGymLoadedCourses,
+  sGymLoading,
+} from '../../reducers/selectors';
+import {
+  courseFetch,
+  favoriteCourseFetch,
+} from '../../actions';
 
 export default function({ route, navigation }) {
   const { itemId } = route.params;
-  const loading = useSelector(sGymLoadingGyms);
+  const logged = useSelector(sAppLogged);
   const courses = useSelector(sGymLoadedCourses(itemId));
+  const courseLoading = useSelector(sGymLoading);
+  const favoriteCourses = useSelector(sFavoriteCourses);
+  const favoritesLoading = useSelector(sFavoriteLoading);
   const dispatch = useDispatch();
+
+  if (logged){
+    useEffect(() => {
+      dispatch(favoriteCourseFetch());
+    }, []);
+  }
 
   useEffect(() => {
     dispatch(courseFetch(itemId));
   }, []);
 
-  console.log(loading, courses)
-
-  if (loading || courses === undefined) {
+  if (courseLoading || favoritesLoading || courses === undefined) {
     return (
         <View
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -29,7 +41,7 @@ export default function({ route, navigation }) {
     );
   }
   if(courses.length === 0) {
-    return <Text>Empty Course List</Text>;
+    return <Text>Empty Courses List</Text>;
   }
 
   return (
@@ -40,6 +52,7 @@ export default function({ route, navigation }) {
                 <CourseItem
                     key={`course-item-${course.id}`}
                     course={course}
+                    isFavorite={ favoriteCourses.some(fc => fc.id === course.id) }
                     navigation={navigation}
                 />
             ))}

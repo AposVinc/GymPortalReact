@@ -32,8 +32,13 @@ export const GYM_FETCH = 'GYM_FETCH';
 //course
 export const COURSE_FETCH = 'COURSE_FETCH';
 
-//favorite gym
+//favorite
+//gym
 export const FAVORITE_GYM_FETCH = 'FAVORITE_GYM_FETCH';
-export const FAVORITE_GYM_ADD_NEW = 'FAVORITE_GYM_ADD_NEW';
+export const FAVORITE_GYM_ADD = 'FAVORITE_GYM_ADD';
 export const FAVORITE_GYM_REMOVE = 'FAVORITE_GYM_REMOVE';
+//courses
+export const FAVORITE_COURSE_FETCH = 'FAVORITE_COURSE_FETCH';
+export const FAVORITE_COURSE_ADD = 'FAVORITE_COURSE_ADD';
+export const FAVORITE_COURSE_REMOVE = 'FAVORITE_COURSE_REMOVE';
 

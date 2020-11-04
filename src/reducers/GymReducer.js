@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 const sGym = (state) => state.gym;
 export const sGymLoadedGyms = state => sGym(state).gyms;
 export const sGymLoadedCourses = id => state => sGym(state).gyms.find( el => el.id === id).courses
-export const sGymLoadingGyms = state => sGym(state).loading;
+export const sGymLoading = state => sGym(state).loading;
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
