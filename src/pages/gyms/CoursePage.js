@@ -19,3 +19,17 @@ function CoursePage({ route }) {
 }
 
 export default CoursePage;
+
+
+const styles = {
+  button: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft: 40,
+    paddingRight: 40
+  },
+  feedbacksTitle: {
+    fontSize: 16,
+    textTransform:'capitalize'
+  }
+};

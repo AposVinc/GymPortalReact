@@ -6,11 +6,13 @@ import {
   ListButton,
   PageTitle,
 } from '../../components';
+import FAB from 'react-native-fab'
 import FeedbackItem from './partial/FeedbackItem';
 import {sGymLoadedGyms} from '../../reducers/GymReducer';
 import {sFeedbackList, sFeedbackLoading} from '../../reducers/FeedbackReducer';
 import {feedbacksGymFetch} from '../../actions';
 import {useDispatch, useSelector} from 'react-redux';
+import {Icon} from 'react-native-elements';
 
 
 function GymPage({ route, navigation }) {
@@ -61,13 +63,13 @@ function GymPage({ route, navigation }) {
               navigation.navigate('Courses List', {itemId}); }
             }
             text={'Open Courses List'}
+            style={ styles.button }
         />
 
         <Card>
           <CardItem>
             <PageTitle style={ styles.feedbacksTitle }>Recensioni</PageTitle>
           </CardItem>
-
 
           {feedbacksLoading
               ? <ActivityIndicator size={'large'} color={'green'} />
@@ -79,14 +81,22 @@ function GymPage({ route, navigation }) {
                                 feedback={feedback}
                             />
                         ))
-                        : <CardItem>
-                          <Text> There Isn't Feedbacks</Text>
-                        </CardItem>
+                        : ( <CardItem>
+                              <Text> There Isn't Feedbacks</Text>
+                            </CardItem>)
                 )
               ]
           }
 
         </Card>
+
+        {/*se utente ha gia fatto recensione feedbacks.some(f => f.user === user.id) allora cambia fab e permetti modifica*/}
+        <FAB
+            buttonColor='rgb(254, 178, 7)'
+            iconTextColor="#fff"
+            onClickAction={() => navigation.navigate('Feedback')}
+            iconTextComponent={<Icon name='star-outline' type='ionicon' />}
+        />
 
       </View>
   );
@@ -96,6 +106,12 @@ function GymPage({ route, navigation }) {
 export default GymPage;
 
 const styles = {
+  button: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft: 40,
+    paddingRight: 40
+  },
   feedbacksTitle: {
     fontSize: 16,
     textTransform:'capitalize'
