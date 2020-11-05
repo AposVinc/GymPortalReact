@@ -9,7 +9,7 @@ const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   blacklist: [
-      // 'favorite_gym',
+      'feedback',
   ],
 };
 

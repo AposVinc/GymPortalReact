@@ -3,4 +3,4 @@ export * from './UserActions';
 export * from './GymActions';
 export * from './CourseAction';
 export * from './FavoriteActions';
-export * from './CourseAction';
+export * from './FeedbackActions';
