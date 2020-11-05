@@ -13,10 +13,12 @@ import {sFeedbackList, sFeedbackLoading} from '../../reducers/FeedbackReducer';
 import {feedbacksGymFetch} from '../../actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {Icon} from 'react-native-elements';
+import {sUserProps} from '../../reducers/UserReducer';
 
 
 function GymPage({ route, navigation }) {
   const { itemId } = route.params;
+  const user = useSelector(sUserProps);
   const gym = useSelector(sGymLoadedGyms).find( (el) => el.id === itemId);
   const feedbacks = useSelector(sFeedbackList);
   const feedbacksLoading = useSelector(sFeedbackLoading);
@@ -82,20 +84,23 @@ function GymPage({ route, navigation }) {
                             />
                         ))
                         : ( <CardItem>
-                              <Text> There Isn't Feedbacks</Text>
-                            </CardItem>)
+                          <Text> There Isn't Feedbacks</Text>
+                        </CardItem>)
                 )
               ]
           }
 
         </Card>
-
-        {/*se utente ha gia fatto recensione feedbacks.some(f => f.user === user.id) allora cambia fab e permetti modifica*/}
+        
         <FAB
             buttonColor='rgb(254, 178, 7)'
             iconTextColor="#fff"
             onClickAction={() => navigation.navigate('Feedback')}
-            iconTextComponent={<Icon name='star-outline' type='ionicon' />}
+            iconTextComponent={
+              feedbacks.some(f => f.user === user.id)
+                  ? <Icon name='pencil-outline' type='ionicon' />
+                  : <Icon name='star-outline' type='ionicon' />
+            }
         />
 
       </View>
