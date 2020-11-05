@@ -1,5 +1,11 @@
 import React, {useEffect} from 'react';
-import {View, Text, ActivityIndicator, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  ScrollView,
+  RefreshControl,
+} from 'react-native';
 import CourseItem from './partial/CourseItem';
 import {Card} from '../../components';
 import {useDispatch, useSelector} from 'react-redux';
@@ -46,7 +52,9 @@ export default function({ route, navigation }) {
 
   return (
       <View style={styles.container}>
-        <ScrollView>
+        <ScrollView
+            refreshControl={ <RefreshControl refreshing={courseLoading && favoritesLoading} onRefresh={ () => {dispatch(courseFetch(itemId)); dispatch(favoriteCourseFetch());} } /> }
+        >
           <Card>
             {courses.map((course, key) => (
                 <CourseItem

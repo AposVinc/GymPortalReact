@@ -91,7 +91,7 @@ function GymPage({ route, navigation }) {
           }
 
         </Card>
-        
+
         <FAB
             buttonColor='rgb(254, 178, 7)'
             iconTextColor="#fff"
