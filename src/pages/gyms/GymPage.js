@@ -1,5 +1,11 @@
 import React, {useEffect} from 'react';
-import {ActivityIndicator, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  RefreshControl,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 import {
   Card,
   CardItem,
@@ -29,68 +35,67 @@ function GymPage({ route, navigation }) {
   }, []);
 
   return (
-      <View style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-      }}>
-        <Card>
+      <View style={styles.container}>
+        <ScrollView
+            refreshControl={ <RefreshControl refreshing={feedbacksLoading} onRefresh={ () => {dispatch(feedbacksGymFetch(itemId));} } /> }
+        >
+          <Card>
 
-          <CardItem>
-            <PageTitle>{gym.name}</PageTitle>
-          </CardItem>
+            <CardItem>
+              <PageTitle>{gym.name}</PageTitle>
+            </CardItem>
 
-          <CardItem >
-            <Text>
-              Region: {gym.region}
-            </Text>
-          </CardItem>
+            <CardItem >
+              <Text>
+                Region: {gym.region}
+              </Text>
+            </CardItem>
 
-          <CardItem >
-            <Text>
-              Province: {gym.province}
-            </Text>
-          </CardItem>
+            <CardItem >
+              <Text>
+                Province: {gym.province}
+              </Text>
+            </CardItem>
 
-          <CardItem >
-            <Text>
-              Address: {gym.address}
-            </Text>
-          </CardItem>
+            <CardItem >
+              <Text>
+                Address: {gym.address}
+              </Text>
+            </CardItem>
 
-        </Card>
+          </Card>
 
-        <ListButton
-            onPress={ () => {
-              navigation.navigate('Courses List', {itemId}); }
-            }
-            text={'Open Courses List'}
-            style={ styles.button }
-        />
+          <ListButton
+              onPress={ () => {
+                navigation.navigate('Courses List', {itemId}); }
+              }
+              text={'Open Courses List'}
+              style={ styles.button }
+          />
 
-        <Card>
-          <CardItem>
-            <PageTitle style={ styles.feedbacksTitle }>Recensioni</PageTitle>
-          </CardItem>
+          <Card>
+            <CardItem>
+              <PageTitle style={ styles.feedbacksTitle }>Recensioni</PageTitle>
+            </CardItem>
 
-          {feedbacksLoading
-              ? <ActivityIndicator size={'large'} color={'green'} />
-              : [
-                (feedbacks.length
+            {feedbacksLoading
+                ? <ActivityIndicator size={'large'} color={'green'} />
+                : ( feedbacks.length
                         ? feedbacks.map((feedback, key) => (
                             <FeedbackItem
                                 key={`feedback-item-${feedback.id}`}
                                 feedback={feedback}
                             />
                         ))
-                        : ( <CardItem>
+                        : <CardItem>
                           <Text> There Isn't Feedbacks</Text>
-                        </CardItem>)
+                        </CardItem>
                 )
-              ]
-          }
+            }
 
-        </Card>
+          </Card>
+
+        </ScrollView>
 
         <FAB
             buttonColor='rgb(254, 178, 7)'
@@ -111,6 +116,12 @@ function GymPage({ route, navigation }) {
 export default GymPage;
 
 const styles = {
+  container: {
+    flex: 1,
+    paddingVertical: 15,
+    justifyContent: "center",
+    alignItems: "center"
+  },
   button: {
     paddingTop: 20,
     paddingBottom: 20,

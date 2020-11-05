@@ -68,8 +68,7 @@ export default function({ navigation }) {
 
 };
 
-const styles =
-    {
+const styles = {
   container: {
     flex: 1,
     paddingVertical: 15,
