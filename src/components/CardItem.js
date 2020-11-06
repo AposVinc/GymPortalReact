@@ -3,10 +3,10 @@ import {View} from 'react-native';
 
 export default class CardItem extends React.Component {
   render() {
-    const {children, propStyle, noMarginButton} = this.props;
+    const {children, style, noMarginButton} = this.props;
     return (
         <View style={[
-          style, propStyle, noMarginButton ? {
+          styles.default, style, noMarginButton ? {
             marginBottom: 0,
           } : {},
         ]}>
@@ -16,7 +16,9 @@ export default class CardItem extends React.Component {
   }
 }
 
-const style = {
-  paddingHorizontal: 12,
-  marginBottom: 20,
+const styles = {
+  default:{
+    paddingHorizontal: 12,
+    marginBottom: 20,
+  }
 };
