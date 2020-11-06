@@ -34,9 +34,9 @@ export default function() {
               <PageTitle>SignUp</PageTitle>
             </CardItem>
 
-            <CardItem noMarginButton propStyle={{flexDirection: "row", paddingHorizontal: 0}}>
+            <CardItem noMarginButton style={{flexDirection: "row", paddingHorizontal: 0}}>
 
-              <CardItem noMarginButton propStyle={{flex: 1, flexDirection: "column", paddingHorizontal: 0}}>
+              <CardItem noMarginButton style={{flex: 1, flexDirection: "column", paddingHorizontal: 0}}>
                 <CardItem noMarginButton>
                   <InputLabel text={'Name'} />
                 </CardItem>
@@ -49,7 +49,7 @@ export default function() {
                 </CardItem>
               </CardItem>
 
-              <CardItem noMarginButton propStyle={{flex: 1, flexDirection: "column", paddingHorizontal: 0}}>
+              <CardItem noMarginButton style={{flex: 1, flexDirection: "column", paddingHorizontal: 0}}>
                 <CardItem noMarginButton>
                   <InputLabel text={'Lastname'} />
                 </CardItem>
