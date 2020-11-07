@@ -2,8 +2,8 @@ import axios from './axiosConfig';
 
 const URL_UTENTE = 'users/' ;
 
-export const getUser = function (id, token) {
-  return axios.get(URL_UTENTE + id, {headers: {'authorization': token}}).
+export const getUser = function (id) {
+  return axios.get(URL_UTENTE + id).
       then(response => response.data).
       catch(error => {
         throw error;

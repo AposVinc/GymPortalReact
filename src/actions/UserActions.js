@@ -45,9 +45,8 @@ export const userRefresh = function() {
   return (dispatch, getState) => {
     const storeState = getState();
     const user = sUserProps(storeState);
-    const token = sUserToken(storeState);
     dispatch({type: USER_REFRESH});
-    API.getUser(user.id, token).
+    API.getUser(user.id).
         then(response => {
           dispatch({
             type: USER_REFRESH_SUCCESS,
