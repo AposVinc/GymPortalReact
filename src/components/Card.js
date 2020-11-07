@@ -3,9 +3,9 @@ import {View} from 'react-native';
 
 export default class Card extends React.Component {
   render() {
-    const {children} = this.props;
+    const {children, style} = this.props;
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, style]}>
           {children}
         </View>
     );
