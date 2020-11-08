@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
-import {CardItem, FavoriteButton} from '../../../components';
+import {CardItem, FavoriteButton} from '../../components';
 import {useDispatch} from 'react-redux';
-import {handleFavoriteGym} from '../../../actions';
+import {handleFavoriteGym} from '../../actions';
 
 export default function({gym, isFavorite, navigation}) {
   const dispatch = useDispatch();
@@ -21,13 +21,15 @@ export default function({gym, isFavorite, navigation}) {
               <Text>Prov: {gym.province}</Text>
               <Text>Addr: {gym.address}</Text>
             </View>
-            <View style={{justifyContent: 'center'}}>
-              <FavoriteButton
-                  onPress={ handleFavoriteButtonPress }
-                  favorite={isFavorite}
-                  style={ styles.button }
-              />
-            </View>
+            { isFavorite !== undefined && ( //controllo per la pagina favoritegyms se si vuole togliere il isFavorite e percio il cuore
+                <View style={{justifyContent: 'center'}}>
+                  <FavoriteButton
+                      onPress={handleFavoriteButtonPress}
+                      favorite={isFavorite}
+                      style={styles.button}
+                  />
+                </View>
+            )}
           </View>
         </CardItem>
       </TouchableOpacity>
@@ -42,16 +44,5 @@ const styles = {
   },
   containerText: {
     justifyContent: 'space-around',
-  },
-  thumb: {
-    height: 50,
-    width: 50,
-  },
-  image: {
-    height: 200,
-    width: 200,
-  },
-  button: {
-    width: 100,
   },
 };
