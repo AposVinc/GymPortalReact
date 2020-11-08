@@ -7,6 +7,8 @@ import {useDispatch} from 'react-redux';
 import {userLogout} from '../actions';
 import ProfileNavigator from './partial/ProfileNavigator';
 import GymNavigator from './partial/GymNavigator';
+import FavoriteGymsNavigator from './partial/FavoriteGymsNavigator';
+import FavoriteCoursesNavigator from './partial/FavoriteCoursesNavigator';
 
 //https://stackoverflow.com/questions/60131376/set-header-for-drawer-navigation
 function CustomDrawerContent(props) {
@@ -26,8 +28,8 @@ export default function DrawerNavigator() {
 
         <Drawer.Screen name={'Profile'} component={ProfileNavigator} />
         <Drawer.Screen name={'Gym List'} component={GymNavigator} />
-        <Drawer.Screen name={'Favorite Gyms'} component={ProfileNavigator} />
-        <Drawer.Screen name={'Favorite Courses'} component={ProfileNavigator} />
+        <Drawer.Screen name={'Favorite Gyms'} component={FavoriteGymsNavigator} />
+        <Drawer.Screen name={'Favorite Courses'} component={FavoriteCoursesNavigator} />
 
       </Drawer.Navigator>
   )
