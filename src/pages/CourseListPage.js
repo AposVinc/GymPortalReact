@@ -58,7 +58,6 @@ export default function({ route, navigation }) {
             {courses.map((course, key) => (
                 <CourseItem
                     key={`course-item-${course.id}`}
-                    idGym={idGym}
                     course={course}
                     isFavorite={ favoriteCourses.some(fc => fc.id === course.id) }
                     navigation={navigation}
