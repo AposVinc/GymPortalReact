@@ -12,7 +12,9 @@ export default function({course, isFavorite, navigation}) {
   }
 
   return(
-      <TouchableOpacity onPress={() => navigation.navigate('Course', { idGym: course.gym, idCourse: course.id})}>
+      <TouchableOpacity onPress={() => {
+        navigation.navigate('Course', {idGym: course.gym, idCourse: course.id});
+      }}>
         <CardItem>
           <View style={styles.container}>
             <View style={styles.containerText}>

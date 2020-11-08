@@ -15,7 +15,7 @@ import {
   sGymLoadedGyms,
   sFavoriteGyms, sAppLogged, sFavoriteLoading,
 } from '../reducers/selectors';
-import {favoriteGymFetch, gymFetch} from '../actions';
+import {favoriteGymFetch, gymsFetch} from '../actions';
 
 export default function({ navigation }) {
   const logged = useSelector(sAppLogged);
@@ -32,7 +32,7 @@ export default function({ navigation }) {
   }
 
   useEffect(() => {
-    dispatch(gymFetch());
+    dispatch(gymsFetch());
   }, []);
 
   if (gymLoading || favoritesLoading) {
@@ -50,7 +50,7 @@ export default function({ navigation }) {
   return (
       <View style={styles.container} >
         <ScrollView
-            refreshControl={ <RefreshControl refreshing={gymLoading && favoritesLoading} onRefresh={ () => {dispatch(gymFetch()); dispatch(favoriteGymFetch());} } /> }
+            refreshControl={ <RefreshControl refreshing={gymLoading && favoritesLoading} onRefresh={ () => {dispatch(gymsFetch()); dispatch(favoriteGymFetch());} } /> }
         >
           <Card>
             {gyms.map((gym, key) => (

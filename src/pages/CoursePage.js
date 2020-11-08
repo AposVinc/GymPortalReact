@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {feedbacksCourseFetch, feedbacksGymFetch} from '../actions';
+import {courseFetch, feedbacksCourseFetch, feedbacksGymFetch} from '../actions';
 import {Card, CardItem, PageTitle} from '../components';
 import FeedbackItem from './partial/FeedbackItem';
 import FAB from 'react-native-fab';
@@ -17,16 +17,33 @@ import {
   sFeedbackLoading,
   sFeedbacksCourse,
 } from '../reducers/FeedbackReducer';
-import {sGymLoadedCoursesByGymIdAndCourseId} from '../reducers/GymReducer';
+import {
+  sGymLoadedCoursesByGymIdAndCourseId,
+  sGymLoading,
+} from '../reducers/GymReducer';
 
 
 function CoursePage({ route, navigation }) {
   const { idGym, idCourse } = route.params;
   const user = useSelector(sUserProps);
   const course = useSelector(sGymLoadedCoursesByGymIdAndCourseId(idGym, idCourse));
+  const loading = useSelector(sGymLoading);
   const feedbacks = useSelector(sFeedbacksCourse);
   const feedbacksLoading = useSelector(sFeedbackLoading);
   const dispatch = useDispatch();
+
+  if (loading ||course === null){
+    useEffect(() => {
+      dispatch(courseFetch(idGym, idCourse));
+    }, []);
+
+    return (
+        <View
+            style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <ActivityIndicator size={'large'} color={'green'} />
+        </View>
+    );
+  }
 
   useEffect(() => {
     dispatch(feedbacksCourseFetch(idGym, idCourse));

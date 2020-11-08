@@ -14,7 +14,7 @@ import {
   sGymLoading,
 } from '../reducers/selectors';
 import {
-  courseFetch,
+  coursesFetch,
   favoriteCourseFetch,
 } from '../actions';
 
@@ -34,7 +34,7 @@ export default function({ route, navigation }) {
   }
 
   useEffect(() => {
-    dispatch(courseFetch(idGym));
+    dispatch(coursesFetch(idGym));
   }, []);
 
   if (courseLoading || favoritesLoading || courses === undefined) {
@@ -52,7 +52,7 @@ export default function({ route, navigation }) {
   return (
       <View style={styles.container}>
         <ScrollView
-            refreshControl={ <RefreshControl refreshing={courseLoading && favoritesLoading} onRefresh={ () => {dispatch(courseFetch(idGym)); dispatch(favoriteCourseFetch());} } /> }
+            refreshControl={ <RefreshControl refreshing={courseLoading && favoritesLoading} onRefresh={ () => {dispatch(coursesFetch(idGym)); dispatch(favoriteCourseFetch());} } /> }
         >
           <Card>
             {courses.map((course, key) => (

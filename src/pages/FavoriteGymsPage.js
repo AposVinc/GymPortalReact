@@ -16,7 +16,7 @@ import {
 } from '../components';
 import {sUserLoading, sUserProps} from '../reducers/UserReducer';
 import {
-  favoriteGymFetch, gymFetch,
+  favoriteGymFetch, gymsFetch,
   userFormChangeEmail, userFormChangeLastname,
   userFormChangeName, userFormChangePassword,
   userFormChangeUsername, userRefresh, userUpdate,

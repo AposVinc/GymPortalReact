@@ -11,6 +11,14 @@ export const getAllGyms = function () {
       });
 };
 
+export const getGym = function (idGym) {
+  return axios.get(URL_GET_ALL_GYMS + idGym).
+      then(response => response.data).
+      catch(error => {
+        throw error;
+      });
+};
+
 export const getFeedbacksByGym = function (idGym) {
   return axios.get(URL_GET_ALL_GYMS + idGym + URL_FEEDBACKS).
       then(response => response.data).

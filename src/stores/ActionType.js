@@ -28,9 +28,11 @@ export const USER_REFRESH_TOKEN = 'USER_REFRESH_TOKEN';
 
 //gym
 export const GYM_FETCH = 'GYM_FETCH';
+export const GYMS_FETCH = 'GYMS_FETCH';
 
 //course
 export const COURSE_FETCH = 'COURSE_FETCH';
+export const COURSES_FETCH = 'COURSES_FETCH';
 
 //favorite
 //gym
