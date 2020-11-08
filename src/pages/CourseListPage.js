@@ -7,17 +7,17 @@ import {
   RefreshControl,
 } from 'react-native';
 import CourseItem from './partial/CourseItem';
-import {Card} from '../../components';
+import {Card} from '../components';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   sAppLogged, sFavoriteCourses, sFavoriteLoading,
   sGymLoadedCourses,
   sGymLoading,
-} from '../../reducers/selectors';
+} from '../reducers/selectors';
 import {
   courseFetch,
   favoriteCourseFetch,
-} from '../../actions';
+} from '../actions';
 
 export default function({ route, navigation }) {
   const { itemId } = route.params;

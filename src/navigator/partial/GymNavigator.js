@@ -1,11 +1,11 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import GymListPage from '../../pages/gyms/GymListPage';
-import GymPage from '../../pages/gyms/GymPage';
-import CourseListPage from '../../pages/gyms/CourseListPage';
-import CoursePage from '../../pages/gyms/CoursePage';
+import GymListPage from '../../pages/GymListPage';
+import GymPage from '../../pages/GymPage';
+import CourseListPage from '../../pages/CourseListPage';
+import CoursePage from '../../pages/CoursePage';
 import React from 'react';
 import {MenuButtom} from '../../components';
-import FeedbackPage from '../../pages/gyms/FeedbackPage';
+import FeedbackPage from '../../pages/FeedbackPage';
 
 const GymStack = createStackNavigator();
 export default function GymNavigator({navigation}) {

@@ -8,14 +8,14 @@ import {
 } from 'react-native';
 
 import GymItem from './partial/GymItem';
-import {Card} from '../../components';
+import {Card} from '../components';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   sGymLoading,
   sGymLoadedGyms,
   sFavoriteGyms, sAppLogged, sFavoriteLoading,
-} from '../../reducers/selectors';
-import {favoriteGymFetch, gymFetch} from '../../actions';
+} from '../reducers/selectors';
+import {favoriteGymFetch, gymFetch} from '../actions';
 
 export default function({ navigation }) {
   const logged = useSelector(sAppLogged);

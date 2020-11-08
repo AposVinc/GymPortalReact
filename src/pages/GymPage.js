@@ -11,15 +11,15 @@ import {
   CardItem,
   ListButton,
   PageTitle,
-} from '../../components';
+} from '../components';
 import FAB from 'react-native-fab'
 import FeedbackItem from './partial/FeedbackItem';
-import {sGymLoadedGyms} from '../../reducers/GymReducer';
-import {sFeedbackList, sFeedbackLoading} from '../../reducers/FeedbackReducer';
-import {feedbacksGymFetch} from '../../actions';
+import {sGymLoadedGyms} from '../reducers/GymReducer';
+import {sFeedbackList, sFeedbackLoading} from '../reducers/FeedbackReducer';
+import {feedbacksGymFetch} from '../actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {Icon} from 'react-native-elements';
-import {sUserProps} from '../../reducers/UserReducer';
+import {sUserProps} from '../reducers/UserReducer';
 
 
 function GymPage({ route, navigation }) {
@@ -129,7 +129,7 @@ const styles = {
     paddingRight: 40
   },
   feedbacksTitle: {
-    fontSize: 16,
+    fontSize: 18,
     textTransform:'capitalize'
   }
 };
