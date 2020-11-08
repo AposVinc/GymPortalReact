@@ -8,25 +8,13 @@ import {
 } from 'react-native';
 import {
   Card,
-  CardItem,
-  Input,
-  InputLabel,
-  ListButton,
-  PageTitle,
 } from '../components';
-import {sUserLoading, sUserProps} from '../reducers/UserReducer';
 import {
-  courseFetch,
   favoriteCourseFetch,
-  userFormChangeEmail, userFormChangeLastname,
-  userFormChangeName, userFormChangePassword,
-  userFormChangeUsername, userRefresh, userUpdate,
 } from '../actions';
 import {sAppLogged} from '../reducers/AppReducer';
-import {sGymLoadedCourses, sGymLoading} from '../reducers/GymReducer';
 import {sFavoriteCourses, sFavoriteLoading} from '../reducers/FavoriteReducer';
 import CourseItem from './partial/CourseItem';
-import GymItem from './partial/GymItem';
 
 
 export default function({ navigation }) {
