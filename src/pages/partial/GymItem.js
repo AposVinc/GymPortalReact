@@ -12,7 +12,7 @@ export default function({gym, isFavorite, navigation}) {
   }
 
   return (
-      <TouchableOpacity onPress={() => { navigation.navigate('Gym', {itemId: gym.id})}}>
+      <TouchableOpacity onPress={() => { navigation.navigate('Gym', {idGym: gym.id})}}>
         <CardItem>
           <View style={styles.container}>
             <View style={styles.containerText}>

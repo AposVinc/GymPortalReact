@@ -14,8 +14,8 @@ import {
 } from '../components';
 import FAB from 'react-native-fab'
 import FeedbackItem from './partial/FeedbackItem';
-import {sGymLoadedGyms} from '../reducers/GymReducer';
-import {sFeedbackList, sFeedbackLoading} from '../reducers/FeedbackReducer';
+import {sGymLoadedGymById} from '../reducers/GymReducer';
+import {sFeedbacksGym, sFeedbackLoading} from '../reducers/FeedbackReducer';
 import {feedbacksGymFetch} from '../actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {Icon} from 'react-native-elements';
@@ -23,21 +23,21 @@ import {sUserProps} from '../reducers/UserReducer';
 
 
 function GymPage({ route, navigation }) {
-  const { itemId } = route.params;
+  const { idGym } = route.params;
   const user = useSelector(sUserProps);
-  const gym = useSelector(sGymLoadedGyms).find( (el) => el.id === itemId);
-  const feedbacks = useSelector(sFeedbackList);
+  const gym = useSelector(sGymLoadedGymById(idGym));
+  const feedbacks = useSelector(sFeedbacksGym);
   const feedbacksLoading = useSelector(sFeedbackLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(feedbacksGymFetch(itemId));
+    dispatch(feedbacksGymFetch(idGym));
   }, []);
 
   return (
       <View style={styles.container}>
         <ScrollView
-            refreshControl={ <RefreshControl refreshing={feedbacksLoading} onRefresh={ () => {dispatch(feedbacksGymFetch(itemId));} } /> }
+            refreshControl={ <RefreshControl refreshing={feedbacksLoading} onRefresh={ () => {dispatch(feedbacksGymFetch(idGym));} } /> }
         >
           <Card>
 
@@ -67,7 +67,7 @@ function GymPage({ route, navigation }) {
 
           <ListButton
               onPress={ () => {
-                navigation.navigate('Courses List', {itemId}); }
+                navigation.navigate('Courses List', {idGym}); }
               }
               text={'Open Courses List'}
               style={ styles.button }
@@ -75,7 +75,7 @@ function GymPage({ route, navigation }) {
 
           <Card>
             <CardItem>
-              <PageTitle style={ styles.feedbacksTitle }>Recensioni</PageTitle>
+              <PageTitle style={ styles.feedbacksTitle }>Feedbacks</PageTitle>
             </CardItem>
 
             {feedbacksLoading

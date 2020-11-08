@@ -7,7 +7,9 @@ const INITIAL_STATE = {
 
 const sGym = (state) => state.gym;
 export const sGymLoadedGyms = state => sGym(state).gyms;
-export const sGymLoadedCourses = id => state => sGym(state).gyms.find( el => el.id === id).courses
+export const sGymLoadedGymById = id => state => sGym(state).gyms.find( el => el.id === id)
+export const sGymLoadedCoursesByGymId = id => state => sGym(state).gyms.find(el => el.id === id).courses
+export const sGymLoadedCoursesByGymIdAndCourseId = (idGym, idCourse) => state => sGym(state).gyms.find(el => el.id === idGym).courses.find(e => e.id === idCourse)
 export const sGymLoading = state => sGym(state).loading;
 
 export default function(state = INITIAL_STATE, action) {

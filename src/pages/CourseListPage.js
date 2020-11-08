@@ -10,8 +10,7 @@ import CourseItem from './partial/CourseItem';
 import {Card} from '../components';
 import {useDispatch, useSelector} from 'react-redux';
 import {
-  sAppLogged, sFavoriteCourses, sFavoriteLoading,
-  sGymLoadedCourses,
+  sAppLogged, sFavoriteCourses, sFavoriteLoading, sGymLoadedCoursesByGymId,
   sGymLoading,
 } from '../reducers/selectors';
 import {
@@ -20,9 +19,9 @@ import {
 } from '../actions';
 
 export default function({ route, navigation }) {
-  const { itemId } = route.params;
+  const { idGym } = route.params;
   const logged = useSelector(sAppLogged);
-  const courses = useSelector(sGymLoadedCourses(itemId));
+  const courses = useSelector(sGymLoadedCoursesByGymId(idGym));
   const courseLoading = useSelector(sGymLoading);
   const favoriteCourses = useSelector(sFavoriteCourses);
   const favoritesLoading = useSelector(sFavoriteLoading);
@@ -35,7 +34,7 @@ export default function({ route, navigation }) {
   }
 
   useEffect(() => {
-    dispatch(courseFetch(itemId));
+    dispatch(courseFetch(idGym));
   }, []);
 
   if (courseLoading || favoritesLoading || courses === undefined) {
@@ -53,12 +52,13 @@ export default function({ route, navigation }) {
   return (
       <View style={styles.container}>
         <ScrollView
-            refreshControl={ <RefreshControl refreshing={courseLoading && favoritesLoading} onRefresh={ () => {dispatch(courseFetch(itemId)); dispatch(favoriteCourseFetch());} } /> }
+            refreshControl={ <RefreshControl refreshing={courseLoading && favoritesLoading} onRefresh={ () => {dispatch(courseFetch(idGym)); dispatch(favoriteCourseFetch());} } /> }
         >
           <Card>
             {courses.map((course, key) => (
                 <CourseItem
                     key={`course-item-${course.id}`}
+                    idGym={idGym}
                     course={course}
                     isFavorite={ favoriteCourses.some(fc => fc.id === course.id) }
                     navigation={navigation}

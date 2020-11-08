@@ -4,7 +4,7 @@ import {CardItem, FavoriteButton} from '../../components';
 import {useDispatch} from 'react-redux';
 import {handleFavoriteCourse} from '../../actions';
 
-export default function({course, isFavorite, navigation}) {
+export default function({idGym, course, isFavorite, navigation}) {
   const dispatch = useDispatch();
 
   const handleFavoriteButtonPress = function() {
@@ -12,7 +12,7 @@ export default function({course, isFavorite, navigation}) {
   }
 
   return(
-      <TouchableOpacity onPress={() => navigation.navigate('Course', { itemId: course.id})}>
+      <TouchableOpacity onPress={() => navigation.navigate('Course', { idGym, idCourse: course.id})}>
         <CardItem>
           <View style={styles.container}>
             <View style={styles.containerText}>
