@@ -28,7 +28,7 @@ export default function(state = INITIAL_STATE, action) {
     case `${FEEDBACKS_GYM_FETCH}_FULFILLED`:
       return {
         ...state,
-        feedbacksGyms: action.payload.feedbacks,
+        feedbacksGym: action.payload.feedbacks,
         loading: false,
       };
 
