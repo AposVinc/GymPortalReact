@@ -5,7 +5,7 @@ import CourseListPage from '../../pages/CourseListPage';
 import CoursePage from '../../pages/CoursePage';
 import React from 'react';
 import {MenuButtom} from '../../components';
-import FeedbackPage from '../../pages/FeedbackPage';
+import AddFeedbackPage from '../../pages/AddFeedbackPage';
 
 const GymStack = createStackNavigator();
 export default function GymNavigator({navigation}) {
@@ -21,7 +21,7 @@ export default function GymNavigator({navigation}) {
           ),
         }} />
         <GymStack.Screen name={'Gym'} component={GymPage}/>
-        <GymStack.Screen name={'Feedback'} component={FeedbackPage}/>
+        <GymStack.Screen name={'Add Feedback'} component={AddFeedbackPage}/>
         <GymStack.Screen name={'Courses List'} component={CourseListPage}/>
         <GymStack.Screen name={'Course'} component={CoursePage}/>
       </GymStack.Navigator>

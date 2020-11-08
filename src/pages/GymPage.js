@@ -100,7 +100,7 @@ function GymPage({ route, navigation }) {
         <FAB
             buttonColor='rgb(254, 178, 7)'
             iconTextColor="#fff"
-            onClickAction={() => navigation.navigate('Feedback')}
+            onClickAction={() => navigation.navigate('Add Feedback')}
             iconTextComponent={
               feedbacks.some(f => f.user === user.id)
                   ? <Icon name='pencil-outline' type='ionicon' />

@@ -2,7 +2,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {MenuButtom} from '../../components';
 import GymPage from '../../pages/GymPage';
-import FeedbackPage from '../../pages/FeedbackPage';
+import AddFeedbackPage from '../../pages/AddFeedbackPage';
 import CourseListPage from '../../pages/CourseListPage';
 import CoursePage from '../../pages/CoursePage';
 import FavoriteGymsPage from '../../pages/FavoriteGymsPage';
@@ -21,7 +21,7 @@ export default function FavoriteGymsNavigator({navigation}) {
           ),
         }}/>
         <StackNavigator.Screen name={'Gym'} component={GymPage}/>
-        <StackNavigator.Screen name={'Feedback'} component={FeedbackPage}/>
+        <StackNavigator.Screen name={'Add Feedback'} component={AddFeedbackPage}/>
         <StackNavigator.Screen name={'Courses List'} component={CourseListPage}/>
         <StackNavigator.Screen name={'Course'} component={CoursePage}/>
       </StackNavigator.Navigator>
