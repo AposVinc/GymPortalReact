@@ -1,12 +1,18 @@
 import {
   FAVORITE_COURSE_FETCH,
-  FEEDBACK_ADD,
-  FEEDBACK_CHANGE_FEED, FEEDBACK_CHANGE_RATING, FEEDBACK_RESET, FEEDBACK_UPDATE,
+  FEEDBACK_GYM_ADD,
+  FEEDBACK_CHANGE_FEED,
+  FEEDBACK_CHANGE_RATING,
+  FEEDBACK_RESET,
+  FEEDBACK_GYM_UPDATE,
   FEEDBACKS_COURSE_FETCH,
-  FEEDBACKS_GYM_FETCH, USER_FORM_CHANGE_VALUE,
+  FEEDBACKS_GYM_FETCH,
+  USER_FORM_CHANGE_VALUE,
+  FEEDBACK_CHANGE_VALUE,
 } from '../stores/ActionType';
 import * as API from '../api';
 import {sUserProps, sUserToken} from '../reducers/UserReducer';
+import {sFeedbacksCurrentFeedback} from '../reducers/FeedbackReducer';
 
 
 export function feedbacksGymFetch(idGym){
@@ -28,18 +34,62 @@ export function feedbacksCourseFetch(idGym, idCourse){
 }
 
 
+export const feedbackGymAdd = function(idGym) {
+  return (dispatch, getState) => {
+    const storeState = getState();
+    const user = sUserProps(storeState)
+    const token = sUserToken(storeState);
+    const feedback = sFeedbacksCurrentFeedback(storeState);
+    feedback.user = user.id;
+    feedback.gym = idGym;
 
+    dispatch({
+      type: FEEDBACK_GYM_ADD,
+      payload: API.addFeedbackGym(feedback, token).then( () => ({feedback}))
+    });
+  };
+};
+export const feedbackGymUpdate = function(idGym) {
+  return (dispatch, getState) => {
+    const storeState = getState();
+    const user = sUserProps(storeState)
+    const token = sUserToken(storeState);
+    const feedback = sFeedbacksCurrentFeedback(storeState);
+    feedback.user = user.id;
+    feedback.gym = idGym;
 
+    dispatch({
+      type: FEEDBACK_GYM_UPDATE,
+      payload: API.updateFeedbackGym(feedback, token).then( () => ({feedback}))
+    });
+  };
+};
+
+export const feedbackChangeId = function(value) {
+  return {
+    type: FEEDBACK_CHANGE_VALUE,
+    payload: {
+      field: 'id',
+      value,
+    },
+  };
+};
 export const feedbackChangeFeed = function(value) {
   return {
-    type: FEEDBACK_CHANGE_FEED,
-    payload: {value}
+    type: FEEDBACK_CHANGE_VALUE,
+    payload: {
+      field: 'feed',
+      value,
+    },
   };
 };
 export const feedbackChangeRating = function(value) {
   return {
-    type: FEEDBACK_CHANGE_RATING,
-    payload: {value}
+    type: FEEDBACK_CHANGE_VALUE,
+    payload: {
+      field: 'rating',
+      value,
+    },
   };
 };
 export const feedbackReset = function() {
