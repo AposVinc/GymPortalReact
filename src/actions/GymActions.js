@@ -1,4 +1,4 @@
-import {GYMS_FETCH} from '../stores/ActionType';
+import {GYM_FETCH, GYMS_FETCH} from '../stores/ActionType';
 import * as API from '../api';
 
 export function gymsFetch(){
@@ -10,7 +10,7 @@ export function gymsFetch(){
 
 export function gymFetch(idGym){
   return {
-    type: GYMS_FETCH,
+    type: GYM_FETCH,
     payload: API.getGym(idGym).then(r => ({gym: r}))
   };
 }
