@@ -30,23 +30,17 @@ export default class Input extends Component {
   };
 
   render() {
-    const {placeholder, propStyle, ...rest} = this.props;
+    const {placeholder, style, textarea = false, ...rest} = this.props;
 
     return (
         <TextInput
+            {...(textarea ? {multiline:true, numberOfLines:6, textAlignVertical:"top"}: {})}
             {...rest}
-            style={[styles.input, propStyle]}
+            style={[styles.input.default,(textarea ? styles.input.textarea: styles.input.row), style]}
             placeholder={placeholder}
             placeholderTextColor={styles.placeholderColor}
             value={this.props.value ? this.props.value : this.state.text}
-            // onChangeText={(text) => {
-            //   console.log('change');
-            //   this.setState({
-            //     text,
-            //   })
-            // }}
             onChangeText={this.handleChangeText}
-            // onChangeText={this.handleChange}
             autoCapitalize={'none'}
         />
     );
@@ -55,14 +49,21 @@ export default class Input extends Component {
 
 const styles = {
   input: {
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: 'transparent',
-    borderBottomColor: '#000000',
-    fontSize: 14,
-    height: 35,
-    paddingHorizontal: 5,
-    color: 'black',
+    default:{
+      borderWidth: 1,
+      borderStyle: 'solid',
+      borderColor: 'transparent',
+      fontSize: 14,
+      paddingHorizontal: 5,
+      color: 'black',
+    },
+    row:{
+      height: 35,
+      borderBottomColor: '#000000',
+    },
+    textarea:{
+      width:250
+    },
   },
   placeholderColor: 'rgb(201,201,201)',
 };
