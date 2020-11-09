@@ -1,10 +1,9 @@
 import axios from './axiosConfig';
 
-const URL_GET_ALL_GYMS = 'gyms/';
-const URL_FEEDBACKS = '/feedbacks';
+const URL_GYMS = 'gyms/';
 
 export const getAllGyms = function () {
-  return axios.get(URL_GET_ALL_GYMS).
+  return axios.get(URL_GYMS).
       then(response => response.data).
       catch(error => {
         throw error;
@@ -12,17 +11,10 @@ export const getAllGyms = function () {
 };
 
 export const getGym = function (idGym) {
-  return axios.get(URL_GET_ALL_GYMS + idGym).
+  return axios.get(URL_GYMS + idGym).
       then(response => response.data).
       catch(error => {
         throw error;
       });
 };
 
-export const getFeedbacksByGym = function (idGym) {
-  return axios.get(URL_GET_ALL_GYMS + idGym + URL_FEEDBACKS).
-      then(response => response.data).
-      catch(error => {
-        throw error;
-      });
-};
