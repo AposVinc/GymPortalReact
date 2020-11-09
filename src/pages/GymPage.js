@@ -16,7 +16,11 @@ import FAB from 'react-native-fab'
 import FeedbackItem from './partial/FeedbackItem';
 import {sGymLoadedGymById} from '../reducers/GymReducer';
 import {sFeedbacksGym, sFeedbackLoading} from '../reducers/FeedbackReducer';
-import {feedbacksGymFetch} from '../actions';
+import {
+  feedbackChangeFeed,
+  feedbackChangeRating,
+  feedbacksGymFetch,
+} from '../actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {Icon} from 'react-native-elements';
 import {sUserProps} from '../reducers/UserReducer';
@@ -33,6 +37,17 @@ function GymPage({ route, navigation }) {
   useEffect(() => {
     dispatch(feedbacksGymFetch(idGym));
   }, []);
+
+  const openAddFeedback = function(){
+    let feedback = feedbacks.find(f => f.user === user.id)
+    if (feedback) {
+      dispatch(feedbackChangeRating(feedback.rating));
+      dispatch(feedbackChangeFeed(feedback.feed));
+      navigation.navigate('Add Feedback', {idGym: gym.id, editableFeedback: true});
+    } else {
+      navigation.navigate('Add Feedback', {editableFeedback: false});
+    }
+  }
 
   return (
       <View style={styles.container}>
@@ -100,7 +115,7 @@ function GymPage({ route, navigation }) {
         <FAB
             buttonColor='rgb(254, 178, 7)'
             iconTextColor="#fff"
-            onClickAction={() => navigation.navigate('Add Feedback')}
+            onClickAction={() => openAddFeedback()}
             iconTextComponent={
               feedbacks.some(f => f.user === user.id)
                   ? <Icon name='pencil-outline' type='ionicon' />

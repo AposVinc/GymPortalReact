@@ -1,21 +1,60 @@
-import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
-import {Card, CardItem, ListButton, PageTitle} from '../components';
+import React, {useEffect} from 'react';
+import {View} from 'react-native';
+import {Rating} from 'react-native-elements';
+import {Card, CardItem, Input, ListButton} from '../components';
+import {useDispatch, useSelector} from 'react-redux';
+import {sFeedbacksCurrentFeedback} from '../reducers/FeedbackReducer';
+import {
+  feedbackChangeFeed,
+  feedbackChangeRating,
+  feedbackReset,
+} from '../actions';
 
-function AddFeedbackPage() {
+function AddFeedbackPage({ route, navigation }) {
+  const { idGym, editableFeedback } = route.param;
+  const feedback = useSelector(sFeedbacksCurrentFeedback);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return navigation.addListener('beforeRemove', () => {
+      dispatch(feedbackReset());
+    });
+  }, [navigation]);
+
+  const AddFeedback = function() {
+    if( editableFeedback ){
+
+    } else {
+
+    }
+    navigation.goBack();
+  }
 
   return (
       <View style={styles.container}>
 
         <Card>
-          <CardItem>
 
+          <CardItem>
+            <Rating
+                ratingCount={5}
+                startingValue={feedback.rating}
+                onFinishRating={(value)=>{dispatch(feedbackChangeRating(value))}}
+            />
+          </CardItem>
+          <CardItem>
+            <Input
+                textarea
+                placeholder={'name'}
+                handleChangeText={(value) => {dispatch(feedbackChangeFeed(value))}}
+                value={feedback.feed}
+            />
           </CardItem>
 
         </Card>
 
         <ListButton
-            onPress={ () => {}}
+            onPress={ () => AddFeedback()}
             text={'Add Feedback'}
             style={ styles.button }
         />
