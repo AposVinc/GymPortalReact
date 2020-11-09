@@ -36,7 +36,7 @@ class LoginPage extends React.Component {
   render() {
     return (
         <View style={styles.pageContainer}>
-          <Card>
+          <Card style = {styles.cardLogin}>
             <CardItem>
               <PageTitle>Login</PageTitle>
             </CardItem>
@@ -70,7 +70,7 @@ class LoginPage extends React.Component {
               />
             </CardItem>
             <CardItem>
-              <LinkButton text={'GO TO SignUpPage'} onPress={this.goToSignUp} />
+              <LinkButton text={'Sign Up'} onPress={this.goToSignUp} />
             </CardItem>
           </Card>
         </View>
@@ -82,7 +82,13 @@ const styles = {
   pageContainer: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: '#FFFFFF',
   },
+  cardLogin:{
+    backgroundColor: '#e1f5fe',
+    borderRadius: 40,
+  },
+
 };
 
 function mapStateToProps(state) {

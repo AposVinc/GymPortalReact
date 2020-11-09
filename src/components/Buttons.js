@@ -23,6 +23,7 @@ export const LinkButton = function({onPress, text}) {
       <TouchableOpacity
           style={[
             styles.link.container,
+
           ]}
           onPress={onPress}
       >
@@ -75,12 +76,17 @@ const styles = {
     container: {
       height: 20,
       justifyContent: 'flex-start',
-      alignItems: 'flex-end',
+      alignItems: 'center',
+      marginLeft: '80%',
+      borderRadius: 20,
+      backgroundColor: '#42a5f5',
+      margin: 10,
+
     },
     text: {
       fontSize: 14,
       fontWeight: '900',
-      color: 'black',
+      color: 'white',
     },
   },
   button: {
@@ -88,6 +94,7 @@ const styles = {
       height: 50,
       justifyContent: 'center',
       alignItems: 'center',
+      borderRadius: 20,
     },
     text: {
       fontSize: 14,
@@ -98,7 +105,7 @@ const styles = {
   },
   loginButton: {
     container: {
-      backgroundColor: 'rgb(40,90,150)',
+      backgroundColor: '#1e88e5',
     },
   },
   listButton: {

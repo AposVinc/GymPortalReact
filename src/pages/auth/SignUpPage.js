@@ -41,7 +41,7 @@ class SignUpPage extends React.Component {
   render() {
     return (
         <View style={styles.pageContainer}>
-          <Card>
+          <Card style={styles.cardSignUp}>
             <CardItem>
               <PageTitle>SignUp</PageTitle>
             </CardItem>
@@ -118,7 +118,7 @@ class SignUpPage extends React.Component {
               />
             </CardItem>
             <CardItem>
-              <LinkButton text={'GO TO SignIn'} onPress={this.goToSignIn}/>
+              <LinkButton text={'Sign In'} onPress={this.goToSignIn}/>
             </CardItem>
           </Card>
         </View>
@@ -129,7 +129,13 @@ class SignUpPage extends React.Component {
 const styles = {
   pageContainer: {
     flex: 1,
+    backgroundColor: '#FFFFFF',
+
     justifyContent: 'center',
+  },
+  cardSignUp:{
+    backgroundColor: '#e1f5fe',
+    borderRadius: 40,
   },
 };
 

@@ -16,7 +16,7 @@ const styles = {
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    textTransform: 'uppercase',
+    color: '#555555',
   }
 };
 
