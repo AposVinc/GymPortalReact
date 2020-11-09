@@ -3,11 +3,11 @@ import Profile from '../../pages/ProfilePage';
 import React from 'react';
 import {MenuButtom} from '../../components';
 
-const ProfileStack = createStackNavigator();
+const StackNavigator = createStackNavigator();
 export default function ProfileNavigator({navigation}) {
   return (
-      <ProfileStack.Navigator>
-        <ProfileStack.Screen name={'Profile'} component={Profile} options={{
+      <StackNavigator.Navigator>
+        <StackNavigator.Screen name={'Profile'} component={Profile} options={{
           headerLeft: () => (
               <MenuButtom
                   onPress={ () => { navigation.openDrawer(); } }
@@ -16,6 +16,6 @@ export default function ProfileNavigator({navigation}) {
                   }}/>
           ),
         }}/>
-      </ProfileStack.Navigator>
+      </StackNavigator.Navigator>
   )
 }

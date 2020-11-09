@@ -7,11 +7,11 @@ import React from 'react';
 import {MenuButtom} from '../../components';
 import AddFeedbackGymPage from '../../pages/AddFeedbackGymPage';
 
-const GymStack = createStackNavigator();
+const StackNavigator = createStackNavigator();
 export default function GymNavigator({navigation}) {
   return (
-      <GymStack.Navigator>
-        <GymStack.Screen name={'Gym List'} component={GymListPage} options={{
+      <StackNavigator.Navigator>
+        <StackNavigator.Screen name={'Gym List'} component={GymListPage} options={{
           headerLeft: () => (
               <MenuButtom
                   onPress={ () => { navigation.openDrawer(); } }
@@ -20,11 +20,11 @@ export default function GymNavigator({navigation}) {
                   }}/>
           ),
         }} />
-        <GymStack.Screen name={'Gym'} component={GymPage}/>
-        <GymStack.Screen name={'Add Feedback Gym'} component={AddFeedbackGymPage}/>
-        <GymStack.Screen name={'Courses List'} component={CourseListPage}/>
-        <GymStack.Screen name={'Course'} component={CoursePage}/>
-        <GymStack.Screen name={'Add Feedback Course'} component={AddFeedbackGymPage}/>
-      </GymStack.Navigator>
+        <StackNavigator.Screen name={'Gym'} component={GymPage}/>
+        <StackNavigator.Screen name={'Add Feedback Gym'} component={AddFeedbackGymPage}/>
+        <StackNavigator.Screen name={'Courses List'} component={CourseListPage}/>
+        <StackNavigator.Screen name={'Course'} component={CoursePage}/>
+        <StackNavigator.Screen name={'Add Feedback Course'} component={AddFeedbackGymPage}/>
+      </StackNavigator.Navigator>
   )
 }
