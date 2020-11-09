@@ -14,13 +14,9 @@ import {
 } from '../components';
 import FAB from 'react-native-fab'
 import FeedbackItem from './partial/FeedbackItem';
-import {sGymLoadedGymById} from '../reducers/GymReducer';
+import {sGymLoadedGymById, sGymLoading} from '../reducers/GymReducer';
 import {sFeedbacksGym, sFeedbackLoading} from '../reducers/FeedbackReducer';
-import {
-  feedbackChangeFeed,
-  feedbackChangeRating,
-  feedbacksGymFetch,
-} from '../actions';
+import {feedbacksGymFetch, gymFetch} from '../actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {Icon} from 'react-native-elements';
 import {sUserProps} from '../reducers/UserReducer';
@@ -30,29 +26,34 @@ function GymPage({ route, navigation }) {
   const { idGym } = route.params;
   const user = useSelector(sUserProps);
   const gym = useSelector(sGymLoadedGymById(idGym));
+  const loading = useSelector(sGymLoading);
   const feedbacks = useSelector(sFeedbacksGym);
   const feedbacksLoading = useSelector(sFeedbackLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(gymFetch(idGym));
+  }, []);
+
+  useEffect(() => {
     dispatch(feedbacksGymFetch(idGym));
   }, []);
 
-  const openAddFeedback = function(){
-    let feedback = feedbacks.find(f => f.user === user.id)
-    if (feedback) {
-      dispatch(feedbackChangeRating(feedback.rating));
-      dispatch(feedbackChangeFeed(feedback.feed));
-      navigation.navigate('Add Feedback', {idGym: gym.id, editableFeedback: true});
-    } else {
-      navigation.navigate('Add Feedback', {editableFeedback: false});
-    }
+  if (loading || feedbacksLoading) {
+    return (
+        <View
+            style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <ActivityIndicator size={'large'} color={'green'} />
+        </View>
+    );
   }
 
   return (
       <View style={styles.container}>
         <ScrollView
-            refreshControl={ <RefreshControl refreshing={feedbacksLoading} onRefresh={ () => {dispatch(feedbacksGymFetch(idGym));} } /> }
+            refreshControl={ <RefreshControl refreshing={loading && feedbacksLoading} onRefresh={ () => {
+              dispatch(gymFetch(idGym));
+              dispatch(feedbacksGymFetch(idGym));} } /> }
         >
           <Card>
 
@@ -81,9 +82,7 @@ function GymPage({ route, navigation }) {
           </Card>
 
           <ListButton
-              onPress={ () => {
-                navigation.navigate('Courses List', {idGym}); }
-              }
+              onPress={ () => { navigation.navigate('Courses List', {idGym}); } }
               text={'Open Courses List'}
               style={ styles.button }
           />
@@ -115,7 +114,7 @@ function GymPage({ route, navigation }) {
         <FAB
             buttonColor='rgb(254, 178, 7)'
             iconTextColor="#fff"
-            onClickAction={() => openAddFeedback()}
+            onClickAction={() => navigation.navigate('Add Feedback Gym', {idGym})}
             iconTextComponent={
               feedbacks.some(f => f.user === user.id)
                   ? <Icon name='pencil-outline' type='ionicon' />

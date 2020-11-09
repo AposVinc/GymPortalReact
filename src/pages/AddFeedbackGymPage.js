@@ -3,15 +3,20 @@ import {View} from 'react-native';
 import {Rating} from 'react-native-elements';
 import {Card, CardItem, Input, ListButton} from '../components';
 import {useDispatch, useSelector} from 'react-redux';
-import {sFeedbacksCurrentFeedback} from '../reducers/FeedbackReducer';
 import {
-  feedbackChangeFeed,
-  feedbackChangeRating,
+  sFeedbacksCurrentFeedback, sFeedbacksExistingFeedbackByUserIdAndGymId,
+} from '../reducers/FeedbackReducer';
+import {
+  feedbackChangeFeed, feedbackChangeId,
+  feedbackChangeRating, feedbackGymAdd, feedbackGymUpdate,
   feedbackReset,
 } from '../actions';
+import {sUserProps} from '../reducers/UserReducer';
 
-function AddFeedbackPage({ route, navigation }) {
-  const { idGym, editableFeedback } = route.param;
+function AddFeedbackGymPage({ route, navigation }) {
+  const { idGym } = route.params;
+  const user = useSelector(sUserProps);
+  const existingFeedback = useSelector(sFeedbacksExistingFeedbackByUserIdAndGymId(user.id, idGym));
   const feedback = useSelector(sFeedbacksCurrentFeedback);
   const dispatch = useDispatch();
 
@@ -21,11 +26,19 @@ function AddFeedbackPage({ route, navigation }) {
     });
   }, [navigation]);
 
+  if (existingFeedback){
+    useEffect( () => {
+      dispatch(feedbackChangeId(existingFeedback.id))
+      dispatch(feedbackChangeRating(existingFeedback.rating));
+      dispatch(feedbackChangeFeed(existingFeedback.feed));
+    }, []);
+  }
+
   const AddFeedback = function() {
-    if( editableFeedback ){
-
+    if( existingFeedback ){
+      dispatch(feedbackGymUpdate(idGym));
     } else {
-
+      dispatch(feedbackGymAdd(idGym))
     }
     navigation.goBack();
   }
@@ -64,7 +77,7 @@ function AddFeedbackPage({ route, navigation }) {
 
 }
 
-export default AddFeedbackPage;
+export default AddFeedbackGymPage;
 
 const styles = {
   container: {
