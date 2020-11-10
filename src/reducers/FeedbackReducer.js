@@ -1,7 +1,10 @@
 import {
   FEEDBACK_CHANGE_FEED,
   FEEDBACK_CHANGE_RATING,
-  FEEDBACK_CHANGE_VALUE, FEEDBACK_GYM_ADD, FEEDBACK_GYM_UPDATE,
+  FEEDBACK_CHANGE_VALUE,
+  FEEDBACK_COURSE_ADD, FEEDBACK_COURSE_UPDATE,
+  FEEDBACK_GYM_ADD,
+  FEEDBACK_GYM_UPDATE,
   FEEDBACK_RESET,
   FEEDBACKS_COURSE_FETCH,
   FEEDBACKS_GYM_FETCH,
@@ -101,6 +104,45 @@ export default function(state = INITIAL_STATE, action) {
         feedbacksCourse: action.payload.feedbacks,
         loading: false,
       };
+
+    case `${FEEDBACK_COURSE_ADD}_PENDING`:
+      return {
+        ...state,
+        loading: true,
+      };
+    case `${FEEDBACK_COURSE_ADD}_REJECTED`:
+      return {
+        ...state,
+        loading: false,
+      };
+    case `${FEEDBACK_COURSE_ADD}_FULFILLED`:
+      return {
+        ...state,
+        feedbacksCourse: [...state.feedbacksCourse, action.payload.feedback],
+        loading: false,
+      };
+
+    case `${FEEDBACK_COURSE_UPDATE}_PENDING`:
+      return {
+        ...state,
+        loading: true,
+      };
+    case `${FEEDBACK_COURSE_UPDATE}_REJECTED`:
+      return {
+        ...state,
+        loading: false,
+      };
+    case `${FEEDBACK_COURSE_UPDATE}_FULFILLED`:
+      array = [...state.feedbacksCourse];
+      index = array.findIndex( el => el.id === action.payload.feedback.id);
+      array[index] = action.payload.feedback
+      return {
+        ...state,
+        feedbacksCourse: array,
+        loading: false,
+      };
+
+
 
     case FEEDBACK_CHANGE_VALUE:
       return {
