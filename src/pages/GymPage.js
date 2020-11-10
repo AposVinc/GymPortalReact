@@ -39,7 +39,7 @@ function GymPage({ route, navigation }) {
     dispatch(feedbacksGymFetch(idGym));
   }, []);
 
-  if (loading || feedbacksLoading) {
+  if (loading) {
     return (
         <View
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -51,9 +51,10 @@ function GymPage({ route, navigation }) {
   return (
       <View style={styles.container}>
         <ScrollView
-            refreshControl={ <RefreshControl refreshing={loading && feedbacksLoading} onRefresh={ () => {
-              dispatch(gymFetch(idGym));
-              dispatch(feedbacksGymFetch(idGym));} } /> }
+            refreshControl={ <RefreshControl refreshing={loading && feedbacksLoading}
+                                             onRefresh={ () => {
+                                               dispatch(gymFetch(idGym));
+                                               dispatch(feedbacksGymFetch(idGym));} } /> }
         >
           <Card>
 
@@ -87,9 +88,9 @@ function GymPage({ route, navigation }) {
               style={ styles.button }
           />
 
-          <Card>
+          <Card style={ styles.feedbacks.container} >
             <CardItem>
-              <PageTitle style={ styles.feedbacksTitle }>Feedbacks</PageTitle>
+              <PageTitle style={ styles.feedbacks.title }>Feedbacks</PageTitle>
             </CardItem>
 
             {feedbacksLoading
@@ -142,8 +143,13 @@ const styles = {
     paddingLeft: 40,
     paddingRight: 40
   },
-  feedbacksTitle: {
-    fontSize: 18,
-    textTransform:'capitalize'
+  feedbacks:{
+    container: {
+      width: 250
+    },
+    title:{
+      fontSize: 18,
+      textTransform:'capitalize'
+    }
   }
 };
