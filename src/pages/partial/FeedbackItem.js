@@ -7,10 +7,10 @@ import {getUser} from '../../api';
 export default function({feedback}) {
   const [user, setUser] = useState({user: null});
 
-  useEffect( () => {
+  useEffect(() => {
     getUser(feedback.user).
-        then( data => {
-          data.lastname = data.lastname.substr(0,1);
+        then(data => {
+          data.lastname = data.lastname.substr(0, 1);
           setUser(data);
         });
   }, []);
@@ -19,26 +19,27 @@ export default function({feedback}) {
     return (
         <View
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <ActivityIndicator size={'large'} color={'green'} />
+          <ActivityIndicator size={'large'} color={'green'}/>
         </View>
     );
   }
 
   return (
       <CardItem style={styles.container}>
-        <CardItem style={styles.row.container}>
+        <CardItem>
 
-          <Text style={[styles.row.column, {fontWeight: 'bold'}]}>
-            {user.name} {user.lastname}.
+          <Text>
+            {user.name} {user.lastname}
           </Text>
-          {/*style={[styles.row.column, {flexDirection: "column"}]}*/}
-          <Rating imageSize={20}
+          <Rating type='custom'
+                  imageSize={30}
                   readonly
-                  startingValue={feedback.rating} />
+                  startingValue={feedback.rating}
+          />
 
         </CardItem>
 
-        <Text>{feedback.feed}</Text>
+        <Text style={styles.textFeed}>{feedback.feed}</Text>
 
       </CardItem>
   );
@@ -48,13 +49,20 @@ export default function({feedback}) {
 const styles = {
   container: {
     marginBottom: 24,
+    borderRadius: 20,
+    backgroundColor: '#e1f5fe',
+
   },
-  row:{
-    container:{
-      flexDirection: "row", marginBottom: 10
+  row: {
+    container: {
+      flexDirection: 'row', marginBottom: 10,
     },
-    column:{
-      flex: 1, paddingHorizontal: 0
-    }
-  }
+    column: {
+      flex: 1, paddingHorizontal: 0,
+    },
+  },
+  textFeed: {
+    textAlign: 'center',
+    marginBottom: 20,
+  },
 };

@@ -19,6 +19,6 @@ const styles = {
     marginBottom: 15,
     backgroundColor: '#ffffff',
     borderRadius: 12,
-    minHeight: 50
+    minHeight: 50,
   }
 };

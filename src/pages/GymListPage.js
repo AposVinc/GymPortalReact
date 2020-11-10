@@ -72,5 +72,6 @@ const styles = {
   container: {
     flex: 1,
     paddingVertical: 15,
+    backgroundColor:'#FFFFFF',
   },
 };

@@ -111,13 +111,10 @@ const styles = {
   listButton: {
     container: {
       height: 45,
-      backgroundColor: 'rgb(254, 178, 7)',
-      borderColor: 'black',
-      borderWidth: 1,
-      borderStyle: 'solid',
+      backgroundColor: '#1e88e5',
     },
     text: {
-      color: 'black',
+      color: 'white',
     },
   },
 };

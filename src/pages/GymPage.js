@@ -55,27 +55,14 @@ function GymPage({ route, navigation }) {
               dispatch(gymFetch(idGym));
               dispatch(feedbacksGymFetch(idGym));} } /> }
         >
-          <Card>
+          <Card  style={styles.containerCard}>
 
             <CardItem>
-              <PageTitle>{gym.name}</PageTitle>
+              <PageTitle style={ styles.textName }>{gym.name}</PageTitle>
             </CardItem>
-
             <CardItem >
-              <Text>
-                Region: {gym.region}
-              </Text>
-            </CardItem>
-
-            <CardItem >
-              <Text>
-                Province: {gym.province}
-              </Text>
-            </CardItem>
-
-            <CardItem >
-              <Text>
-                Address: {gym.address}
+              <Text style={ styles.textRegion }>
+                {gym.address},  {gym.province},  {gym.region}
               </Text>
             </CardItem>
 
@@ -87,7 +74,7 @@ function GymPage({ route, navigation }) {
               style={ styles.button }
           />
 
-          <Card>
+          <Card style={styles.containerCardFeed}>
             <CardItem>
               <PageTitle style={ styles.feedbacksTitle }>Feedbacks</PageTitle>
             </CardItem>
@@ -134,7 +121,18 @@ const styles = {
     flex: 1,
     paddingVertical: 15,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor:'#FFFFFF',
+
+  },
+  containerCard:{
+    backgroundColor: '#e1f5fe',
+    width:300,
+    marginTop:20,
+  },
+  containerCardFeed:{
+    width:300,
+    marginTop:20,
   },
   button: {
     paddingTop: 20,
@@ -144,6 +142,18 @@ const styles = {
   },
   feedbacksTitle: {
     fontSize: 18,
-    textTransform:'capitalize'
-  }
+    textTransform:'capitalize',
+    textAlign: 'center'
+  },
+  textName: {
+    fontWeight: 'bold',
+    fontSize: 30,
+    textAlign: 'center',
+  },
+  textRegion: {
+    textAlign: 'center',
+    paddingTop: 20,
+
+
+  },
 };
