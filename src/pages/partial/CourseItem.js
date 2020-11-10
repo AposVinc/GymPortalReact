@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity, Image} from 'react-native';
 import {CardItem, FavoriteButton} from '../../components';
 import {useDispatch} from 'react-redux';
 import {handleFavoriteCourse} from '../../actions';
@@ -15,12 +15,14 @@ export default function({course, isFavorite, navigation}) {
       <TouchableOpacity onPress={() => {
         navigation.navigate('Course', {idGym: course.gym, idCourse: course.id});
       }}>
-        <CardItem>
+        <CardItem style={styles.containerCard}>
+          <Image source={{uri: 'https://image.shutterstock.com/image-photo/image-250nw-721723381.jpg'}}
+                 style={{width: '100%', height: 167,     borderRadius: 20,
+                 }} />
           <View style={styles.container}>
             <View style={styles.containerText}>
-              <Text>Name: {course.name}</Text>
-              <Text>Code: {course.code}</Text>
-              <Text>Description: {course.description}</Text>
+              <Text style={styles.textName}>{course.name}</Text>
+              <Text style={styles.textRegion}>{course.description}</Text>
             </View>
             { isFavorite !== undefined && ( //controllo per la pagina favoritegyms se si vuole togliere il isFavorite e percio il cuore
                 <View style={{justifyContent: 'center'}}>
@@ -39,11 +41,30 @@ export default function({course, isFavorite, navigation}) {
 
 const styles = {
   container: {
-    width:'100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    padding: 20,
+
   },
   containerText: {
     justifyContent: 'space-around',
   },
+  textName: {
+    fontWeight: 'bold',
+    fontSize: 30,
+    textAlign: 'center',
+  },
+  textRegion: {
+    textAlign: 'center',
+    paddingTop: 20,
+
+
+  },
+  containerCard:{
+    backgroundColor: '#e1f5fe',
+    borderRadius: 20,
+    padding: 10,
+
+
+  }
 };

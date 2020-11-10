@@ -50,7 +50,7 @@ function AddFeedbackCoursePage({ route, navigation }) {
   return (
       <View style={styles.container}>
 
-        <Card>
+        <Card style={styles.containerCard}>
 
           <CardItem>
             <Rating
@@ -87,7 +87,9 @@ const styles = {
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: '#FFFFFF'
+
   },
   button: {
     paddingTop: 20,
@@ -95,4 +97,11 @@ const styles = {
     paddingLeft: 40,
     paddingRight: 40
   },
+  containerCard:{
+    backgroundColor: '#e1f5fe',
+    borderRadius: 20,
+    padding: 10,
+
+
+  }
 };

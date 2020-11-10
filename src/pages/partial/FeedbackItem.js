@@ -29,7 +29,7 @@ export default function({feedback}) {
         <CardItem>
 
           <Text>
-            {user.name} {user.lastname}
+            {user.name} {user.lastname} ciao
           </Text>
           <Rating type='custom'
                   imageSize={30}
