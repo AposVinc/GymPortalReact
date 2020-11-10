@@ -39,7 +39,7 @@ function GymPage({ route, navigation }) {
     dispatch(feedbacksGymFetch(idGym));
   }, []);
 
-  if (loading || feedbacksLoading) {
+  if (loading) {
     return (
         <View
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -51,9 +51,10 @@ function GymPage({ route, navigation }) {
   return (
       <View style={styles.container}>
         <ScrollView
-            refreshControl={ <RefreshControl refreshing={loading && feedbacksLoading} onRefresh={ () => {
-              dispatch(gymFetch(idGym));
-              dispatch(feedbacksGymFetch(idGym));} } /> }
+            refreshControl={ <RefreshControl refreshing={loading && feedbacksLoading}
+                                             onRefresh={ () => {
+                                               dispatch(gymFetch(idGym));
+                                               dispatch(feedbacksGymFetch(idGym));} } /> }
         >
           <Card  style={styles.containerCard}>
 
@@ -74,9 +75,9 @@ function GymPage({ route, navigation }) {
               style={ styles.button }
           />
 
-          <Card style={styles.containerCardFeed}>
+          <Card style={ styles.feedbacks.container} >
             <CardItem>
-              <PageTitle style={ styles.feedbacksTitle }>Feedbacks</PageTitle>
+              <PageTitle style={ styles.feedbacks.title }>Feedbacks</PageTitle>
             </CardItem>
 
             {feedbacksLoading
@@ -130,21 +131,13 @@ const styles = {
     width:300,
     marginTop:20,
   },
-  containerCardFeed:{
-    width:300,
-    marginTop:20,
-  },
   button: {
     paddingTop: 20,
     paddingBottom: 20,
     paddingLeft: 40,
     paddingRight: 40
   },
-  feedbacksTitle: {
-    fontSize: 18,
-    textTransform:'capitalize',
-    textAlign: 'center'
-  },
+
   textName: {
     fontWeight: 'bold',
     fontSize: 30,
@@ -156,4 +149,15 @@ const styles = {
 
 
   },
+  feedbacks:{
+    container: {
+		width:300,
+		marginTop:20,
+    },
+    title:{
+      fontSize: 18,
+      textTransform:'capitalize',
+	  textAlign: 'center'
+    }
+  }
 };

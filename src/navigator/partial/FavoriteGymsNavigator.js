@@ -3,6 +3,7 @@ import React from 'react';
 import {MenuButtom} from '../../components';
 import GymPage from '../../pages/GymPage';
 import AddFeedbackGymPage from '../../pages/AddFeedbackGymPage';
+import AddFeedbackCoursePage from '../../pages/AddFeedbackCoursePage';
 import CourseListPage from '../../pages/CourseListPage';
 import CoursePage from '../../pages/CoursePage';
 import FavoriteGymsPage from '../../pages/FavoriteGymsPage';
@@ -24,7 +25,7 @@ export default function FavoriteGymsNavigator({navigation}) {
         <StackNavigator.Screen name={'Add Feedback Gym'} component={AddFeedbackGymPage}/>
         <StackNavigator.Screen name={'Courses List'} component={CourseListPage}/>
         <StackNavigator.Screen name={'Course'} component={CoursePage}/>
-        <StackNavigator.Screen name={'Add Feedback Course'} component={AddFeedbackGymPage}/>
+        <StackNavigator.Screen name={'Add Feedback Course'} component={AddFeedbackCoursePage}/>
       </StackNavigator.Navigator>
   )
 }

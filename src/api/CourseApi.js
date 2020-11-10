@@ -19,11 +19,3 @@ export const getCourse = function (idGym, idCourse) {
         throw error;
       });
 };
-
-export const getFeedbacksByCourse = function (idGym, idCourse) {
-  return axios.get(URL_GYMS + idGym + URL_COURSES + idCourse + URL_FEEDBACKS).
-      then(response => response.data).
-      catch(error => {
-        throw error;
-      });
-};

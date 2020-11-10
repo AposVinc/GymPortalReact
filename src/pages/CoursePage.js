@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {courseFetch, feedbacksCourseFetch, feedbacksGymFetch} from '../actions';
+import {courseFetch, feedbacksCourseFetch} from '../actions';
 import {Card, CardItem, PageTitle} from '../components';
 import FeedbackItem from './partial/FeedbackItem';
 import FAB from 'react-native-fab';
@@ -32,11 +32,17 @@ function CoursePage({ route, navigation }) {
   const feedbacksLoading = useSelector(sFeedbackLoading);
   const dispatch = useDispatch();
 
-  if (loading ||course === null){
+  if (course === null){
     useEffect(() => {
       dispatch(courseFetch(idGym, idCourse));
     }, []);
+  }
 
+  useEffect(() => {
+    dispatch(feedbacksCourseFetch(idGym, idCourse));
+  }, []);
+
+  if (loading){
     return (
         <View
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -45,14 +51,13 @@ function CoursePage({ route, navigation }) {
     );
   }
 
-  useEffect(() => {
-    dispatch(feedbacksCourseFetch(idGym, idCourse));
-  }, []);
-
   return (
       <View style={styles.container}>
         <ScrollView
-            refreshControl={ <RefreshControl refreshing={feedbacksLoading} onRefresh={ () => {dispatch(feedbacksGymFetch(idCourse));} } /> }
+            refreshControl={ <RefreshControl refreshing={loading && feedbacksLoading}
+                                             onRefresh={ () => {
+                                               dispatch(courseFetch(idGym, idCourse));
+                                               dispatch(feedbacksCourseFetch(idGym, idCourse));} } /> }
         >
           <Card>
 
@@ -62,11 +67,23 @@ function CoursePage({ route, navigation }) {
               </Text>
             </CardItem>
 
+            <CardItem>
+              <Text>
+                code: {course.code}
+              </Text>
+            </CardItem>
+
+            <CardItem>
+              <Text>
+                name: {course.name}
+              </Text>
+            </CardItem>
+
           </Card>
 
-          <Card>
+          <Card style={ styles.feedbacks.container} >
             <CardItem>
-              <PageTitle style={ styles.feedbacksTitle }>Feedbacks</PageTitle>
+              <PageTitle style={ styles.feedbacks.title }>Feedbacks</PageTitle>
             </CardItem>
 
             {feedbacksLoading
@@ -91,7 +108,7 @@ function CoursePage({ route, navigation }) {
         <FAB
             buttonColor='rgb(254, 178, 7)'
             iconTextColor="#fff"
-            onClickAction={() => navigation.navigate('Add Feedback')}
+            onClickAction={() => navigation.navigate('Add Feedback Course', {idGym, idCourse})}
             iconTextComponent={
               feedbacks.some(f => f.user === user.id)
                   ? <Icon name='pencil-outline' type='ionicon' />
@@ -114,14 +131,13 @@ const styles = {
     justifyContent: "center",
     alignItems: "center"
   },
-  button: {
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 40,
-    paddingRight: 40
-  },
-  feedbacksTitle: {
-    fontSize: 16,
-    textTransform:'capitalize'
+  feedbacks:{
+    container: {
+      width: 250
+    },
+    title:{
+      fontSize: 18,
+      textTransform:'capitalize'
+    }
   }
 };

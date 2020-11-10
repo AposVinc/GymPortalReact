@@ -8,7 +8,7 @@ import {
   FEEDBACKS_COURSE_FETCH,
   FEEDBACKS_GYM_FETCH,
   USER_FORM_CHANGE_VALUE,
-  FEEDBACK_CHANGE_VALUE,
+  FEEDBACK_CHANGE_VALUE, FEEDBACK_COURSE_ADD, FEEDBACK_COURSE_UPDATE,
 } from '../stores/ActionType';
 import * as API from '../api';
 import {sUserProps, sUserToken} from '../reducers/UserReducer';
@@ -23,16 +23,6 @@ export function feedbacksGymFetch(idGym){
     });
   };
 }
-
-export function feedbacksCourseFetch(idGym, idCourse){
-  return (dispatch) => {
-    dispatch({
-      type: FEEDBACKS_COURSE_FETCH,
-      payload: API.getFeedbacksByCourse(idGym, idCourse).then(r => ({feedbacks: r}))
-    });
-  };
-}
-
 
 export const feedbackGymAdd = function(idGym) {
   return (dispatch, getState) => {
@@ -64,6 +54,50 @@ export const feedbackGymUpdate = function(idGym) {
     });
   };
 };
+
+
+
+export function feedbacksCourseFetch(idGym, idCourse){
+  return (dispatch) => {
+    dispatch({
+      type: FEEDBACKS_COURSE_FETCH,
+      payload: API.getFeedbacksByCourse(idGym, idCourse).then(r => ({feedbacks: r}))
+    });
+  };
+}
+
+export const feedbackCourseAdd = function(idGym, idCourse) {
+  return (dispatch, getState) => {
+    const storeState = getState();
+    const user = sUserProps(storeState)
+    const token = sUserToken(storeState);
+    const feedback = sFeedbacksCurrentFeedback(storeState);
+    feedback.user = user.id;
+    feedback.course = idCourse;
+
+    dispatch({
+      type: FEEDBACK_COURSE_ADD,
+      payload: API.addFeedbackCourse(idGym, feedback, token).then( () => ({feedback}))
+    });
+  };
+};
+export const feedbackCourseUpdate = function(idGym, idCourse) {
+  return (dispatch, getState) => {
+    const storeState = getState();
+    const user = sUserProps(storeState)
+    const token = sUserToken(storeState);
+    const feedback = sFeedbacksCurrentFeedback(storeState);
+    feedback.user = user.id;
+    feedback.course = idCourse;
+
+    dispatch({
+      type: FEEDBACK_COURSE_UPDATE,
+      payload: API.updateFeedbackCourse(idGym, feedback, token).then( () => ({feedback}))
+    });
+  };
+};
+
+
 
 export const feedbackChangeId = function(value) {
   return {
