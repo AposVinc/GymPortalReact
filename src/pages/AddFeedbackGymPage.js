@@ -71,6 +71,11 @@ function AddFeedbackGymPage({ route, navigation }) {
             text={'Add Feedback'}
             style={ styles.button }
         />
+        <ListButton
+            onPress={ () => console.log('vai con la logica Vinc')}
+            text={'Delete Feedback'}
+            style={ styles.button }
+        />
 
       </View>
   );
@@ -90,7 +95,8 @@ const styles = {
     paddingTop: 20,
     paddingBottom: 20,
     paddingLeft: 40,
-    paddingRight: 40
+    paddingRight: 40,
+    margin: 10,
   },
   containerCard:{
     backgroundColor: '#e1f5fe',

@@ -28,8 +28,8 @@ export default function({feedback}) {
       <CardItem style={styles.container}>
         <CardItem>
 
-          <Text>
-            {user.name} {user.lastname} ciao
+          <Text style={styles.textUser}>
+            {user.name} {user.lastname}
           </Text>
           <Rating type='custom'
                   imageSize={30}
@@ -64,5 +64,10 @@ const styles = {
   textFeed: {
     textAlign: 'center',
     marginBottom: 20,
+  },
+  textUser: {
+    textAlign: 'center',
+    margin: 20,
+    fontWeight: 'bold'
   },
 };
