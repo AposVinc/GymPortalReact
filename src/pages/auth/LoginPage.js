@@ -38,7 +38,7 @@ class LoginPage extends React.Component {
         <View style={styles.pageContainer}>
           <Card style = {styles.cardLogin}>
             <CardItem>
-              <PageTitle style = {styles.title}>Login!</PageTitle>
+              <PageTitle style = {styles.title}>Accedi!</PageTitle>
             </CardItem>
             <CardItem propStyle={{marginBottom: 0}}>
               <InputLabel text={'Username'} />
@@ -70,7 +70,7 @@ class LoginPage extends React.Component {
               />
             </CardItem>
             <CardItem>
-              <LinkButton text={'Sign Up'} onPress={this.goToSignUp} />
+              <LinkButton style = {styles.registration} text={'Registrazione!'} onPress={this.goToSignUp} />
             </CardItem>
           </Card>
         </View>
@@ -90,6 +90,9 @@ const styles = {
   },
   title:{
     textAlign: 'center'
+  },
+  registration: {
+    width: 300
   }
 
 };

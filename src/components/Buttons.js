@@ -74,12 +74,13 @@ export const MenuButtom = function({onPress, style}) {
 const styles = {
   link: {
     container: {
-      height: 20,
+      height: 30,
       justifyContent: 'flex-start',
       alignItems: 'center',
-      marginLeft: '80%',
+      marginLeft: '60%',
       borderRadius: 20,
       backgroundColor: '#42a5f5',
+      paddingTop:5,
       margin: 10,
 
     },

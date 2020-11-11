@@ -50,11 +50,11 @@ class SignUpPage extends React.Component {
 
               <CardItem noMarginButton style={{flex: 1, flexDirection: "column", paddingHorizontal: 0}}>
                 <CardItem noMarginButton>
-                  <InputLabel text={'Name'} />
+                  <InputLabel text={'Nome'} />
                 </CardItem>
                 <CardItem >
                   <Input
-                      placeholder={'name'}
+                      placeholder={'nome'}
                       handleChangeText={this.props.handleChangeName}
                       value={this.props.name}
                   />
@@ -63,11 +63,11 @@ class SignUpPage extends React.Component {
 
               <CardItem noMarginButton style={{flex: 1, flexDirection: "column", paddingHorizontal: 0}}>
                 <CardItem noMarginButton>
-                  <InputLabel text={'Lastname'} />
+                  <InputLabel text={'Cognome'} />
                 </CardItem>
                 <CardItem >
                   <Input
-                      placeholder={'lastname'}
+                      placeholder={'cognome'}
                       handleChangeText={this.props.handleChangeLastname}
                       value={this.props.lastname}
                   />
@@ -114,11 +114,11 @@ class SignUpPage extends React.Component {
               <LoginButton
                   onPress={this.props.signUp}
                   inLoading={this.props.loading}
-                  text={'Sign Up'}
+                  text={'Registrati'}
               />
             </CardItem>
             <CardItem>
-              <LinkButton text={'Sign In'} onPress={this.goToSignIn}/>
+              <LinkButton text={'Accedi!'} onPress={this.goToSignIn}/>
             </CardItem>
           </Card>
         </View>
