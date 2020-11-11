@@ -24,7 +24,7 @@ function CustomDrawerContent(props) {
 const Drawer = createDrawerNavigator();
 export default function DrawerNavigator() {
   return (
-      <Drawer.Navigator initialRouteName={'Gym List'} drawerContent={props => <CustomDrawerContent {...props}/>} >
+      <Drawer.Navigator initialRouteName={'Esplora palestre'} drawerContent={props => <CustomDrawerContent {...props}/>} >
 
         <Drawer.Screen name={'Profilo'} component={ProfileNavigator} />
         <Drawer.Screen name={'Esplora palestre'} component={GymNavigator} />
