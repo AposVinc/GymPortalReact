@@ -24,17 +24,15 @@ function AddFeedbackCoursePage({ route, navigation }) {
   const feedback = useSelector(sFeedbacksCurrentFeedback);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    return navigation.addListener('beforeRemove', () => {
-      dispatch(feedbackReset());
-    });
-  }, [navigation]);
-
   if (existingFeedback){
     useEffect( () => {
       dispatch(feedbackChangeId(existingFeedback.id))
       dispatch(feedbackChangeRating(existingFeedback.rating));
       dispatch(feedbackChangeFeed(existingFeedback.feed));
+    }, []);
+  } else {
+    useEffect( () => {
+      dispatch(feedbackReset());
     }, []);
   }
 
