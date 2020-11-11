@@ -102,7 +102,7 @@ export default function() {
               <ListButton
                   onPress={ () => dispatch(userUpdate()) }
                   inLoading={ loading }
-                  text={'Edit'}
+                  text={'Modifica'}
               />
             </CardItem>
           </Card>
