@@ -6,22 +6,29 @@ import {
   ScrollView,
   RefreshControl,
 } from 'react-native';
-
 import GymItem from './partial/GymItem';
-import {Card} from '../components';
+import {Card, CardItem, ListButton} from '../components';
+import {regions} from '../constants'
 import {useDispatch, useSelector} from 'react-redux';
 import {
   sGymLoading,
   sGymLoadedGyms,
-  sFavoriteGyms, sAppLogged, sFavoriteLoading, sAppFilterSearchGym,
+  sFavoriteGyms,
+  sAppLogged,
+  sFavoriteLoading,
+  sAppFilterSearchGym,
+  sAppFilterSelectRegion,
 } from '../reducers/selectors';
 import {
   appFilterChangeSearchGym,
+  appFilterChangeSelectRegion,
+  appFilterSelectRegionReset,
   favoriteGymFetch,
   gymsFetch,
 } from '../actions';
 import {SearchBar} from 'react-native-elements';
-import CardItem from '../components/CardItem';
+import {Picker} from '@react-native-picker/picker';
+
 
 export default function({ navigation }) {
   const logged = useSelector(sAppLogged);
@@ -30,6 +37,7 @@ export default function({ navigation }) {
   const favoriteGyms = useSelector(sFavoriteGyms);
   const favoritesLoading = useSelector(sFavoriteLoading);
   const search = useSelector(sAppFilterSearchGym);
+  const region = useSelector(sAppFilterSelectRegion);
   const dispatch = useDispatch();
 
   if (logged){
@@ -61,6 +69,21 @@ export default function({ navigation }) {
               onChangeText={ (value) => dispatch(appFilterChangeSearchGym(value))}
               value={search}
           />
+
+
+          {/*alternativa https://github.com/n4kz/react-native-material-dropdown*/}
+          <Picker
+              style={{height: 50, width: 200}}
+              mode={'dropdown'}
+              selectedValue={region}
+              onValueChange={(value) => dispatch(appFilterChangeSelectRegion(value))}>
+            <Picker.Item label="Cerca per regione" value="" />
+            {
+              regions.map((region) => (
+                  <Picker.Item label={region} value={region} />
+              ))
+            }
+          </Picker>
 
           <Card>
             {gymLoading
