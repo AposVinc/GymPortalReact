@@ -43,7 +43,7 @@ class SignUpPage extends React.Component {
         <View style={styles.pageContainer}>
           <Card style={styles.cardSignUp}>
             <CardItem>
-              <PageTitle>SignUp</PageTitle>
+              <PageTitle style={styles.title}>Registrazione!</PageTitle>
             </CardItem>
 
             <CardItem noMarginButton style={{flexDirection: "row", paddingHorizontal: 0}}>
@@ -137,6 +137,9 @@ const styles = {
     backgroundColor: '#e1f5fe',
     borderRadius: 20,
   },
+  title:{
+    textAlign: 'center'
+  }
 };
 
 

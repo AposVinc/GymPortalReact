@@ -38,7 +38,7 @@ class LoginPage extends React.Component {
         <View style={styles.pageContainer}>
           <Card style = {styles.cardLogin}>
             <CardItem>
-              <PageTitle>Login</PageTitle>
+              <PageTitle style = {styles.title}>Login!</PageTitle>
             </CardItem>
             <CardItem propStyle={{marginBottom: 0}}>
               <InputLabel text={'Username'} />
@@ -88,6 +88,9 @@ const styles = {
     backgroundColor: '#e1f5fe',
     borderRadius: 40,
   },
+  title:{
+    textAlign: 'center'
+  }
 
 };
 
