@@ -29,9 +29,9 @@ export default function() {
             refreshControl={ <RefreshControl refreshing={loading} onRefresh={ () => {dispatch(userRefresh());} } /> }
         >
 
-          <Card>
+          <Card  style={styles.containerCard}>
             <CardItem>
-              <PageTitle>SignUp</PageTitle>
+              <PageTitle>Modifica Profilo</PageTitle>
             </CardItem>
 
             <CardItem noMarginButton style={{flexDirection: "row", paddingHorizontal: 0}}>
@@ -117,5 +117,12 @@ const styles = {
   container: {
     flex: 1,
     paddingVertical: 15,
+    backgroundColor: '#FFFFFF'
   },
+  containerCard:{
+    backgroundColor: '#e1f5fe',
+    marginTop:20,
+  },
+
+
 };

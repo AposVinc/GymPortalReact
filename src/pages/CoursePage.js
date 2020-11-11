@@ -59,23 +59,18 @@ function CoursePage({ route, navigation }) {
                                                dispatch(courseFetch(idGym, idCourse));
                                                dispatch(feedbacksCourseFetch(idGym, idCourse));} } /> }
         >
-          <Card>
-
+          <Card  style={styles.containerCard}>
             <CardItem>
-              <Text>
-                id: {course.id}
+              <PageTitle style={ styles.textName }>{course.name}</PageTitle>
+            </CardItem>
+            <CardItem>
+              <Text style={ styles.textRegion }>
+                Codice Corso: {course.code}
               </Text>
             </CardItem>
-
             <CardItem>
-              <Text>
-                code: {course.code}
-              </Text>
-            </CardItem>
-
-            <CardItem>
-              <Text>
-                name: {course.name}
+              <Text style={ styles.textRegion }>
+                 {course.description}
               </Text>
             </CardItem>
 
@@ -130,14 +125,35 @@ const styles = {
     paddingVertical: 15,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor:'#FFFFFF',
+
+  },
+  textName: {
+    fontWeight: 'bold',
+    fontSize: 30,
+    textAlign: 'center',
+  },
+  textRegion: {
+    textAlign: 'center',
+    paddingTop: 20,
+
+
+  },
+  containerCard:{
+    backgroundColor: '#e1f5fe',
+    width:300,
+    marginTop:20,
   },
   feedbacks:{
     container: {
-      width: 250
+      width: 300,
+      marginTop: 20,
     },
     title:{
       fontSize: 18,
-      textTransform:'capitalize'
+      textTransform:'capitalize',
+      textAlign: 'center'
+
     }
   }
 };

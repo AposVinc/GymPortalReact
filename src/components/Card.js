@@ -18,7 +18,7 @@ const styles = {
     paddingVertical: 15,
     marginBottom: 15,
     backgroundColor: '#ffffff',
-    borderRadius: 12,
+    borderRadius: 20,
     minHeight: 50,
   }
 };

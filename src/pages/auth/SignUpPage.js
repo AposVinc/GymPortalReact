@@ -135,7 +135,7 @@ const styles = {
   },
   cardSignUp:{
     backgroundColor: '#e1f5fe',
-    borderRadius: 40,
+    borderRadius: 20,
   },
 };
 
