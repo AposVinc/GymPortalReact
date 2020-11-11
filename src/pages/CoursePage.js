@@ -88,7 +88,7 @@ function CoursePage({ route, navigation }) {
 
           <Card style={ styles.feedbacks.container} >
             <CardItem>
-              <PageTitle style={ styles.feedbacks.title }>Feedbacks</PageTitle>
+              <PageTitle style={ styles.feedbacks.title }>Recensioni del Corso</PageTitle>
             </CardItem>
 
             {feedbacksLoading

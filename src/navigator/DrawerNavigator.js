@@ -26,10 +26,10 @@ export default function DrawerNavigator() {
   return (
       <Drawer.Navigator initialRouteName={'Gym List'} drawerContent={props => <CustomDrawerContent {...props}/>} >
 
-        <Drawer.Screen name={'Profile'} component={ProfileNavigator} />
-        <Drawer.Screen name={'Gym List'} component={GymNavigator} />
-        <Drawer.Screen name={'Favorite Gyms'} component={FavoriteGymsNavigator} />
-        <Drawer.Screen name={'Favorite Courses'} component={FavoriteCoursesNavigator} />
+        <Drawer.Screen name={'Profilo'} component={ProfileNavigator} />
+        <Drawer.Screen name={'Esplora palestre'} component={GymNavigator} />
+        <Drawer.Screen name={'Palestre Preferite'} component={FavoriteGymsNavigator} />
+        <Drawer.Screen name={'Corsi Preferiti'} component={FavoriteCoursesNavigator} />
 
       </Drawer.Navigator>
   )

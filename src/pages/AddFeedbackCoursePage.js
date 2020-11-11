@@ -70,12 +70,12 @@ function AddFeedbackCoursePage({ route, navigation }) {
 
         <ListButton
             onPress={ () => AddFeedback()}
-            text={'Add Feedback'}
+            text={'Aggiungi Recensione'}
             style={ styles.button }
         />
         <ListButton
             onPress={ () => console.log('vai con la logica Vinc')}
-            text={'Delete Feedback'}
+            text={'Elimina Recensione'}
             style={ styles.buttonDelete }
         />
 

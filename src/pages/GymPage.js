@@ -77,13 +77,13 @@ function GymPage({ route, navigation }) {
 
           <ListButton
               onPress={ () => { navigation.navigate('Courses List', {idGym}); } }
-              text={'Open Courses List'}
+              text={'Mostra i corsi della palestra!'}
               style={ styles.button }
           />
 
           <Card style={ styles.feedbacks.container} >
             <CardItem>
-              <PageTitle style={ styles.feedbacks.title }>Feedbacks</PageTitle>
+              <PageTitle style={ styles.feedbacks.title }>Recensioni della Palestra</PageTitle>
             </CardItem>
 
             {feedbacksLoading
