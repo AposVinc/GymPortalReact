@@ -100,8 +100,8 @@ function GymPage({ route, navigation }) {
         </ScrollView>
 
         <FAB
-            buttonColor='#1e88e5'
-            iconTextColor="#FFFFFF"
+            buttonColor='rgb(254, 178, 7)'
+            iconTextColor="#fff"
             onClickAction={() => navigation.navigate('Add Feedback Gym', {idGym})}
             iconTextComponent={
               feedbacks.some(f => f.user === user.id)

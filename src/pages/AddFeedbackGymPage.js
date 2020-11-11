@@ -72,7 +72,7 @@ function AddFeedbackGymPage({ route, navigation }) {
         <ListButton
             onPress={ () => console.log('vai con la logica Vinc')}
             text={'Delete Feedback'}
-            style={ styles.button }
+            style={ styles.buttonDelete }
         />
 
       </View>
@@ -95,6 +95,14 @@ const styles = {
     paddingLeft: 40,
     paddingRight: 40,
     margin: 10,
+  },
+  buttonDelete: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft: 40,
+    paddingRight: 40,
+    margin: 10,
+    backgroundColor: 'red'
   },
   containerCard:{
     backgroundColor: '#e1f5fe',
