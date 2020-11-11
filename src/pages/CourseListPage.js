@@ -11,17 +11,14 @@ import {Card} from '../components';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   sAppFilterSearchCourse,
-  sAppFilterSearchGym,
   sAppLogged, sFavoriteCourses, sFavoriteLoading, sGymLoadedCoursesByGymId,
   sGymLoading,
 } from '../reducers/selectors';
 import {
   appFilterChangeSearchCourse,
-  appFilterChangeSearchGym,
   coursesFetch,
   favoriteCourseFetch,
 } from '../actions';
-import GymItem from './partial/GymItem';
 import CardItem from '../components/CardItem';
 import {SearchBar} from 'react-native-elements';
 
