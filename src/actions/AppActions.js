@@ -1,4 +1,5 @@
 import {
+  FILTER_CHANGE_VALUE, FILTER_RESET,
   GUEST_FORM_CHANGE_VALUE,
   GUEST_FORM_RESET,
   GUEST_SIGN_UP,
@@ -13,6 +14,8 @@ import {
   sAppGuestFormEmail, sAppGuestFormLastname, sAppGuestFormName,
 } from '../reducers/selectors';
 import axios from 'axios';
+import {gymsFetch} from './GymActions';
+import {coursesFetch} from './CourseAction';
 
 
 export const appLoading = function() {
@@ -80,6 +83,77 @@ export const appGuestFormChangePassword = function(value) {
 export const appGuestFormReset = function() {
   return {
     type: GUEST_FORM_RESET,
+  };
+};
+
+export const appFilterChangeSearchGym = function(value) {
+  return (dispatch) => {
+    dispatch({
+      type: FILTER_CHANGE_VALUE,
+      payload: {
+        field: 'searchGym',
+        value,
+      },
+    });
+    dispatch(appFilterSelectRegionReset());
+    dispatch(gymsFetch());
+
+  };
+
+};
+
+export const appFilterSearchGymReset = function() {
+  return {
+    type: FILTER_RESET,
+    payload: {
+      field: 'searchGym',
+    },
+  };
+};
+
+export const appFilterChangeSelectRegion = function(value) {
+  return (dispatch) => {
+    dispatch({
+      type: FILTER_CHANGE_VALUE,
+      payload: {
+        field: 'selectRegion',
+        value,
+      },
+    });
+    dispatch(appFilterSearchGymReset());
+    dispatch(gymsFetch());
+
+  };
+};
+
+export const appFilterSelectRegionReset = function() {
+  return {
+    type: FILTER_RESET,
+    payload: {
+      field: 'selectRegion',
+    },
+  };
+};
+
+export const appFilterChangeSearchCourse = function(value,idGym) {
+  return (dispatch) => {
+    dispatch({
+      type: FILTER_CHANGE_VALUE,
+      payload: {
+        field: 'searchCourse',
+        value,
+      },
+    });
+    dispatch(coursesFetch(idGym));
+  };
+};
+
+export const appFilterSearchCourseReset = function() {
+  return {
+    type: FILTER_RESET,
+    payload: {
+      field: 'searchCourse',
+    },
   };
 };
 

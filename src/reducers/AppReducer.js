@@ -1,10 +1,17 @@
 import {
-  LOADING, LOADING_END,
-  USER_LOGGED_IN, USER_LOGGED_IN_FAIL, USER_LOGGED_IN_SUCCESS,
+  LOADING,
+  LOADING_END,
+  USER_LOGGED_IN,
+  USER_LOGGED_IN_FAIL,
+  USER_LOGGED_IN_SUCCESS,
   USER_LOGGED_OUT,
   GUEST_FORM_CHANGE_VALUE,
   GUEST_FORM_RESET,
-  GUEST_SIGN_UP, GUEST_SIGN_UP_FAIL, GUEST_SIGN_UP_SUCCESS,
+  GUEST_SIGN_UP,
+  GUEST_SIGN_UP_FAIL,
+  GUEST_SIGN_UP_SUCCESS,
+  FILTER_CHANGE_VALUE,
+  FILTER_FORM_RESET, FILTER_RESET,
 } from '../stores/ActionType';
 
 const INITIAL_STATE = {
@@ -19,6 +26,12 @@ const INITIAL_STATE = {
     email: '',
     username: '',
     password: ''
+  },
+
+  filter:{
+    searchGym:'',
+    selectRegion:'',
+    searchCourse:'',
   }
 };
 
@@ -32,6 +45,11 @@ export const sAppGuestFormLastname = (state) => sAppGuestForm(state).lastname;
 export const sAppGuestFormEmail = (state) => sAppGuestForm(state).email;
 export const sAppGuestFormUsername = (state) => sAppGuestForm(state).username;
 export const sAppGuestFormPassword = (state) => sAppGuestForm(state).password;
+
+const sAppFilter = (state) => sApp(state).filter;
+export const sAppFilterSearchGym = (state) => sAppFilter(state).searchGym;
+export const sAppFilterSelectRegion = (state) => sAppFilter(state).selectRegion;
+export const sAppFilterSearchCourse = (state) => sAppFilter(state).searchCourse;
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
@@ -104,6 +122,23 @@ export default function(state = INITIAL_STATE, action) {
         loading: false,
         guestForm: {
           ...state.guestForm,
+        }
+      };
+
+    case FILTER_CHANGE_VALUE:
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          [action.payload.field]: action.payload.value
+        }
+      };
+    case FILTER_RESET:
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          [action.payload.field]: ''
         }
       };
 

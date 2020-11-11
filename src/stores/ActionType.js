@@ -7,6 +7,9 @@ export const GUEST_FORM_RESET = 'GUEST_FORM_RESET';
 export const GUEST_SIGN_UP = 'GUEST_SIGN_UP';
 export const GUEST_SIGN_UP_FAIL = 'GUEST_SIGN_UP_FAIL';
 export const GUEST_SIGN_UP_SUCCESS = 'GUEST_SIGN_UP_SUCCESS';
+//app - filter
+export const FILTER_CHANGE_VALUE = 'FILTER_CHANGE_VALUE';
+export const FILTER_RESET = 'FILTER_RESET';
 
 //user
 export const USER_LOGGED_IN = 'USER_LOGGED_IN';
