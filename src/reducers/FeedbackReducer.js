@@ -1,13 +1,14 @@
 import {
-  FEEDBACK_CHANGE_FEED,
-  FEEDBACK_CHANGE_RATING,
   FEEDBACK_CHANGE_VALUE,
-  FEEDBACK_COURSE_ADD, FEEDBACK_COURSE_UPDATE,
+  FEEDBACK_COURSE_ADD,
+  FEEDBACK_COURSE_UPDATE,
   FEEDBACK_GYM_ADD,
   FEEDBACK_GYM_UPDATE,
   FEEDBACK_RESET,
   FEEDBACKS_COURSE_FETCH,
+FEEDBACKS_COURSE_RESET,
   FEEDBACKS_GYM_FETCH,
+ FEEDBACKS_GYM_RESET,
   USER_LOGGED_OUT,
 } from '../stores/ActionType';
 
@@ -87,6 +88,12 @@ export default function(state = INITIAL_STATE, action) {
         loading: false,
       };
 
+    case FEEDBACKS_GYM_RESET:
+      return {
+        ...state,
+        feedbacksGym: []
+      };
+
 
     case `${FEEDBACKS_COURSE_FETCH}_PENDING`:
       return {
@@ -140,6 +147,12 @@ export default function(state = INITIAL_STATE, action) {
         ...state,
         feedbacksCourse: array,
         loading: false,
+      };
+
+    case FEEDBACKS_COURSE_RESET:
+      return {
+        ...state,
+        feedbacksCourse: []
       };
 
 

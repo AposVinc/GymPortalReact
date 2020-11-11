@@ -6,7 +6,11 @@ import {
   Text,
   View,
 } from 'react-native';
-import {courseFetch, feedbacksCourseFetch} from '../actions';
+import {
+  courseFetch,
+  feedbacksCourseFetch,
+  feedbacksCourseReset,
+} from '../actions';
 import {Card, CardItem, PageTitle} from '../components';
 import FeedbackItem from './partial/FeedbackItem';
 import FAB from 'react-native-fab';
@@ -31,6 +35,12 @@ function CoursePage({ route, navigation }) {
   const feedbacks = useSelector(sFeedbacksCourse);
   const feedbacksLoading = useSelector(sFeedbackLoading);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    return navigation.addListener('beforeRemove', () => {
+      dispatch(feedbacksCourseReset());
+    });
+  }, [navigation]);
 
   if (course === null){
     useEffect(() => {

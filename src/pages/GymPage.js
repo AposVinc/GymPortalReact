@@ -16,7 +16,7 @@ import FAB from 'react-native-fab'
 import FeedbackItem from './partial/FeedbackItem';
 import {sGymLoadedGymById, sGymLoading} from '../reducers/GymReducer';
 import {sFeedbacksGym, sFeedbackLoading} from '../reducers/FeedbackReducer';
-import {feedbacksGymFetch, gymFetch} from '../actions';
+import {feedbacksGymFetch, feedbacksGymReset, gymFetch} from '../actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {Icon} from 'react-native-elements';
 import {sUserProps} from '../reducers/UserReducer';
@@ -30,6 +30,12 @@ function GymPage({ route, navigation }) {
   const feedbacks = useSelector(sFeedbacksGym);
   const feedbacksLoading = useSelector(sFeedbackLoading);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    return navigation.addListener('beforeRemove', () => {
+      dispatch(feedbacksGymReset());
+    });
+  }, [navigation]);
 
   useEffect(() => {
     dispatch(gymFetch(idGym));

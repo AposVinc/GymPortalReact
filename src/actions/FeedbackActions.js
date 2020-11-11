@@ -1,27 +1,26 @@
 import {
-  FAVORITE_COURSE_FETCH,
   FEEDBACK_GYM_ADD,
-  FEEDBACK_CHANGE_FEED,
-  FEEDBACK_CHANGE_RATING,
   FEEDBACK_RESET,
   FEEDBACK_GYM_UPDATE,
   FEEDBACKS_COURSE_FETCH,
   FEEDBACKS_GYM_FETCH,
-  USER_FORM_CHANGE_VALUE,
-  FEEDBACK_CHANGE_VALUE, FEEDBACK_COURSE_ADD, FEEDBACK_COURSE_UPDATE,
+  FEEDBACK_CHANGE_VALUE,
+  FEEDBACK_COURSE_ADD,
+  FEEDBACK_COURSE_UPDATE,
+  FEEDBACKS_GYM_RESET, FEEDBACKS_COURSE_RESET,
 } from '../stores/ActionType';
 import * as API from '../api';
 import {sUserProps, sUserToken} from '../reducers/UserReducer';
-import {sFeedbacksCurrentFeedback} from '../reducers/FeedbackReducer';
+import {
+  sFeedbacksCurrentFeedback,
+} from '../reducers/FeedbackReducer';
 
 
 export function feedbacksGymFetch(idGym){
-  return (dispatch) => {
-    dispatch({
-      type: FEEDBACKS_GYM_FETCH,
-      payload: API.getFeedbacksByGym(idGym).then(r => ({feedbacks: r}))
-    });
-  };
+  return {
+    type: FEEDBACKS_GYM_FETCH,
+    payload: API.getFeedbacksByGym(idGym).then(r => ({feedbacks: r}))
+  }
 }
 
 export const feedbackGymAdd = function(idGym) {
@@ -55,15 +54,19 @@ export const feedbackGymUpdate = function(idGym) {
   };
 };
 
+export const feedbacksGymReset = function() {
+  return {
+    type: FEEDBACKS_GYM_RESET,
+  };
+};
+
 
 
 export function feedbacksCourseFetch(idGym, idCourse){
-  return (dispatch) => {
-    dispatch({
-      type: FEEDBACKS_COURSE_FETCH,
-      payload: API.getFeedbacksByCourse(idGym, idCourse).then(r => ({feedbacks: r}))
-    });
-  };
+  return {
+    type: FEEDBACKS_COURSE_FETCH,
+    payload: API.getFeedbacksByCourse(idGym, idCourse).then(r => ({feedbacks: r}))
+  }
 }
 
 export const feedbackCourseAdd = function(idGym, idCourse) {
@@ -94,6 +97,12 @@ export const feedbackCourseUpdate = function(idGym, idCourse) {
       type: FEEDBACK_COURSE_UPDATE,
       payload: API.updateFeedbackCourse(idGym, feedback, token).then( () => ({feedback}))
     });
+  };
+};
+
+export const feedbacksCourseReset = function() {
+  return {
+    type: FEEDBACKS_COURSE_RESET,
   };
 };
 
