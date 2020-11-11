@@ -10,13 +10,20 @@ import CourseItem from './partial/CourseItem';
 import {Card} from '../components';
 import {useDispatch, useSelector} from 'react-redux';
 import {
+  sAppFilterSearchCourse,
+  sAppFilterSearchGym,
   sAppLogged, sFavoriteCourses, sFavoriteLoading, sGymLoadedCoursesByGymId,
   sGymLoading,
 } from '../reducers/selectors';
 import {
+  appFilterChangeSearchCourse,
+  appFilterChangeSearchGym,
   coursesFetch,
   favoriteCourseFetch,
 } from '../actions';
+import GymItem from './partial/GymItem';
+import CardItem from '../components/CardItem';
+import {SearchBar} from 'react-native-elements';
 
 export default function({ route, navigation }) {
   const { idGym } = route.params;
@@ -25,6 +32,7 @@ export default function({ route, navigation }) {
   const courseLoading = useSelector(sGymLoading);
   const favoriteCourses = useSelector(sFavoriteCourses);
   const favoritesLoading = useSelector(sFavoriteLoading);
+  const search = useSelector(sAppFilterSearchCourse);
   const dispatch = useDispatch();
 
   if (logged){
@@ -37,7 +45,7 @@ export default function({ route, navigation }) {
     dispatch(coursesFetch(idGym));
   }, []);
 
-  if (courseLoading || favoritesLoading || courses === undefined) {
+  if (favoritesLoading || courses === undefined) {
     return (
         <View
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -45,24 +53,34 @@ export default function({ route, navigation }) {
         </View>
     );
   }
-  if(courses.length === 0) {
-    return <Text>Empty Courses List</Text>;
-  }
 
   return (
       <View style={styles.container}>
         <ScrollView
             refreshControl={ <RefreshControl refreshing={courseLoading && favoritesLoading} onRefresh={ () => {dispatch(coursesFetch(idGym)); dispatch(favoriteCourseFetch());} } /> }
         >
+          <SearchBar
+              placeholder="Type Here..."
+              onChangeText={ (value) => dispatch(appFilterChangeSearchCourse(value,idGym))}
+              value={search}
+          />
           <Card>
-            {courses.map((course, key) => (
-                <CourseItem
-                    key={`course-item-${course.id}`}
-                    course={course}
-                    isFavorite={ favoriteCourses.some(fc => fc.id === course.id) }
-                    navigation={navigation}
-                />
-            ))}
+            {courseLoading
+                ? <ActivityIndicator size={'large'} color={'green'} />
+                : ( courses.length
+                        ? courses.map((course, key) => (
+                            <CourseItem
+                                key={`course-item-${course.id}`}
+                                course={course}
+                                isFavorite={ favoriteCourses.some(fc => fc.id === course.id) }
+                                navigation={navigation}
+                            />
+                        ))
+                        : <CardItem>
+                            <Text>Non ci sono Corsi!</Text>
+                          </CardItem>
+                )
+            }
           </Card>
         </ScrollView>
       </View>
