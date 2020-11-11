@@ -1,14 +1,14 @@
 import {
   FEEDBACK_CHANGE_VALUE,
-  FEEDBACK_COURSE_ADD,
+  FEEDBACK_COURSE_ADD, FEEDBACK_COURSE_DELETE,
   FEEDBACK_COURSE_UPDATE,
-  FEEDBACK_GYM_ADD,
+  FEEDBACK_GYM_ADD, FEEDBACK_GYM_DELETE,
   FEEDBACK_GYM_UPDATE,
   FEEDBACK_RESET,
   FEEDBACKS_COURSE_FETCH,
-FEEDBACKS_COURSE_RESET,
+  FEEDBACKS_COURSE_RESET,
   FEEDBACKS_GYM_FETCH,
- FEEDBACKS_GYM_RESET,
+  FEEDBACKS_GYM_RESET,
   USER_LOGGED_OUT,
 } from '../stores/ActionType';
 
@@ -51,41 +51,23 @@ export default function(state = INITIAL_STATE, action) {
         loading: false,
       };
 
-    case `${FEEDBACK_GYM_ADD}_PENDING`:
-      return {
-        ...state,
-        loading: true,
-      };
-    case `${FEEDBACK_GYM_ADD}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-      };
-    case `${FEEDBACK_GYM_ADD}_FULFILLED`:
+    case FEEDBACK_GYM_ADD:
       return {
         ...state,
         feedbacksGym: [...state.feedbacksGym, action.payload.feedback],
-        loading: false,
       };
-
-    case `${FEEDBACK_GYM_UPDATE}_PENDING`:
-      return {
-        ...state,
-        loading: true,
-      };
-    case `${FEEDBACK_GYM_UPDATE}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-      };
-    case `${FEEDBACK_GYM_UPDATE}_FULFILLED`:
+    case FEEDBACK_GYM_UPDATE:
       array = [...state.feedbacksGym];
       index = array.findIndex( el => el.id === action.payload.feedback.id);
       array[index] = action.payload.feedback
       return {
         ...state,
         feedbacksGym: array,
-        loading: false,
+      };
+    case FEEDBACK_GYM_DELETE:
+      return {
+        ...state,
+        feedbacksGym: [...state.feedbacksGym.filter( el => el.user !== action.payload.feedback.user )]
       };
 
     case FEEDBACKS_GYM_RESET:
@@ -112,41 +94,23 @@ export default function(state = INITIAL_STATE, action) {
         loading: false,
       };
 
-    case `${FEEDBACK_COURSE_ADD}_PENDING`:
-      return {
-        ...state,
-        loading: true,
-      };
-    case `${FEEDBACK_COURSE_ADD}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-      };
-    case `${FEEDBACK_COURSE_ADD}_FULFILLED`:
+    case FEEDBACK_COURSE_ADD:
       return {
         ...state,
         feedbacksCourse: [...state.feedbacksCourse, action.payload.feedback],
-        loading: false,
       };
-
-    case `${FEEDBACK_COURSE_UPDATE}_PENDING`:
-      return {
-        ...state,
-        loading: true,
-      };
-    case `${FEEDBACK_COURSE_UPDATE}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-      };
-    case `${FEEDBACK_COURSE_UPDATE}_FULFILLED`:
+    case FEEDBACK_COURSE_UPDATE:
       array = [...state.feedbacksCourse];
       index = array.findIndex( el => el.id === action.payload.feedback.id);
       array[index] = action.payload.feedback
       return {
         ...state,
         feedbacksCourse: array,
-        loading: false,
+      };
+    case FEEDBACK_COURSE_DELETE:
+      return {
+        ...state,
+        feedbacksCourse: [...state.feedbacksCourse.filter( el => el.user !== action.payload.feedback.user )]
       };
 
     case FEEDBACKS_COURSE_RESET:

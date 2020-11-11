@@ -7,7 +7,10 @@ import {
   FEEDBACK_CHANGE_VALUE,
   FEEDBACK_COURSE_ADD,
   FEEDBACK_COURSE_UPDATE,
-  FEEDBACKS_GYM_RESET, FEEDBACKS_COURSE_RESET,
+  FEEDBACKS_GYM_RESET,
+  FEEDBACKS_COURSE_RESET,
+  FEEDBACK_GYM_DELETE,
+  FEEDBACK_COURSE_DELETE,
 } from '../stores/ActionType';
 import * as API from '../api';
 import {sUserProps, sUserToken} from '../reducers/UserReducer';
@@ -31,11 +34,14 @@ export const feedbackGymAdd = function(idGym) {
     const feedback = sFeedbacksCurrentFeedback(storeState);
     feedback.user = user.id;
     feedback.gym = idGym;
-
-    dispatch({
-      type: FEEDBACK_GYM_ADD,
-      payload: API.addFeedbackGym(feedback, token).then( () => ({feedback}))
-    });
+    API.addFeedbackGym(feedback, token).
+        then( (r) => {
+          feedback.id = r
+          dispatch({
+            type: FEEDBACK_GYM_ADD,
+            payload: {feedback}
+          });
+        })
   };
 };
 export const feedbackGymUpdate = function(idGym) {
@@ -46,11 +52,31 @@ export const feedbackGymUpdate = function(idGym) {
     const feedback = sFeedbacksCurrentFeedback(storeState);
     feedback.user = user.id;
     feedback.gym = idGym;
-
-    dispatch({
-      type: FEEDBACK_GYM_UPDATE,
-      payload: API.updateFeedbackGym(feedback, token).then( () => ({feedback}))
-    });
+    API.updateFeedbackGym(feedback, token).
+        then( () => {
+          dispatch({
+            type: FEEDBACK_GYM_UPDATE,
+            payload: {feedback}
+          });
+        })
+  };
+};
+export const feedbackGymDelete = function(idGym) {
+  return (dispatch, getState) => {
+    const storeState = getState();
+    const user = sUserProps(storeState)
+    const token = sUserToken(storeState);
+    const feedback = sFeedbacksCurrentFeedback(storeState);
+    feedback.user = user.id;
+    feedback.gym = idGym;
+    let deletedFeedback = feedback;
+    API.deleteFeedbackGym(feedback, token).
+        then( () => {
+          dispatch({
+            type: FEEDBACK_GYM_DELETE,
+            payload: {feedback: deletedFeedback}
+          });
+        })
   };
 };
 
@@ -77,11 +103,13 @@ export const feedbackCourseAdd = function(idGym, idCourse) {
     const feedback = sFeedbacksCurrentFeedback(storeState);
     feedback.user = user.id;
     feedback.course = idCourse;
-
-    dispatch({
-      type: FEEDBACK_COURSE_ADD,
-      payload: API.addFeedbackCourse(idGym, feedback, token).then( () => ({feedback}))
-    });
+    API.addFeedbackCourse(idGym, feedback, token).then( (r) => {
+      feedback.id = r;
+      dispatch({
+        type: FEEDBACK_COURSE_ADD,
+        payload: {feedback}
+      });
+    })
   };
 };
 export const feedbackCourseUpdate = function(idGym, idCourse) {
@@ -92,11 +120,31 @@ export const feedbackCourseUpdate = function(idGym, idCourse) {
     const feedback = sFeedbacksCurrentFeedback(storeState);
     feedback.user = user.id;
     feedback.course = idCourse;
-
-    dispatch({
-      type: FEEDBACK_COURSE_UPDATE,
-      payload: API.updateFeedbackCourse(idGym, feedback, token).then( () => ({feedback}))
-    });
+    API.updateFeedbackCourse(idGym, feedback, token).
+        then( () => {
+          dispatch({
+            type: FEEDBACK_COURSE_UPDATE,
+            payload: {feedback}
+          });
+        })
+  };
+};
+export const feedbackCourseDelete = function(idGym, idCourse) {
+  return (dispatch, getState) => {
+    const storeState = getState();
+    const user = sUserProps(storeState)
+    const token = sUserToken(storeState);
+    const feedback = sFeedbacksCurrentFeedback(storeState);
+    feedback.user = user.id;
+    feedback.course = idCourse;
+    let deletedFeedback = feedback;
+    API.deleteFeedbackCourse(idGym, feedback, token).
+        then( () => {
+          dispatch({
+            type: FEEDBACK_COURSE_DELETE,
+            payload: {feedback: deletedFeedback}
+          });
+        })
   };
 };
 
@@ -105,8 +153,6 @@ export const feedbacksCourseReset = function() {
     type: FEEDBACKS_COURSE_RESET,
   };
 };
-
-
 
 export const feedbackChangeId = function(value) {
   return {
@@ -135,6 +181,7 @@ export const feedbackChangeRating = function(value) {
     },
   };
 };
+
 export const feedbackReset = function() {
   return {
     type: FEEDBACK_RESET,

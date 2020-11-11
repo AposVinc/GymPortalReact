@@ -11,7 +11,7 @@ import {
   feedbackChangeFeed,
   feedbackChangeId,
   feedbackChangeRating,
-  feedbackCourseAdd,
+  feedbackCourseAdd, feedbackCourseDelete,
   feedbackCourseUpdate,
   feedbackReset,
 } from '../actions';
@@ -74,7 +74,10 @@ function AddFeedbackCoursePage({ route, navigation }) {
             style={ styles.button }
         />
         <ListButton
-            onPress={ () => console.log('vai con la logica Vinc')}
+            onPress={ () => {
+              dispatch(feedbackCourseDelete(idGym, idCourse));
+              navigation.goBack();
+            }}
             text={'Elimina Recensione'}
             style={ styles.buttonDelete }
         />

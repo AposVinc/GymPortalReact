@@ -15,7 +15,7 @@ export const getFeedbacksByGym = function (idGym) {
 
 export const addFeedbackGym = function (feedback, token) {
   return axios.post(URL_GYMS + feedback.gym + URL_FEEDBACKS, feedback, {headers: {'Authorization': token, 'Content-Type': 'application/json'}}).
-      then().
+      then(response => response.headers.location.substring(r.lastIndexOf('/') + 1)).
       catch(error => {
         throw error;
       });
@@ -23,6 +23,14 @@ export const addFeedbackGym = function (feedback, token) {
 
 export const updateFeedbackGym = function (feedback, token) {
   return axios.put(URL_GYMS + feedback.gym + URL_FEEDBACKS + feedback.id, feedback, {headers: {'Authorization': token, 'Content-Type': 'application/json'}}).
+      then().
+      catch(error => {
+        throw error;
+      });
+};
+
+export const deleteFeedbackGym = function (feedback, token) {
+  return axios.delete(URL_GYMS + feedback.gym + URL_FEEDBACKS + feedback.id, {headers: {'Authorization': token}}).
       then().
       catch(error => {
         throw error;
@@ -41,7 +49,7 @@ export const getFeedbacksByCourse = function (idGym, idCourse) {
 
 export const addFeedbackCourse = function (idGym, feedback, token) {
   return axios.post(URL_GYMS + idGym + URL_COURSES + feedback.course + URL_FEEDBACKS, feedback, {headers: {'Authorization': token, 'Content-Type': 'application/json'}}).
-      then().
+      then(response => response.headers.location.substring(r.lastIndexOf('/') + 1)).
       catch(error => {
         throw error;
       });
@@ -49,6 +57,14 @@ export const addFeedbackCourse = function (idGym, feedback, token) {
 
 export const updateFeedbackCourse = function (idGym, feedback, token) {
   return axios.put(URL_GYMS + idGym + URL_COURSES + feedback.course + URL_FEEDBACKS + feedback.id, feedback, {headers: {'Authorization': token, 'Content-Type': 'application/json'}}).
+      then().
+      catch(error => {
+        throw error;
+      });
+};
+
+export const deleteFeedbackCourse = function (idGym, feedback, token) {
+  return axios.delete(URL_GYMS + idGym + URL_COURSES + feedback.course + URL_FEEDBACKS + feedback.id, {headers: {'Authorization': token}}).
       then().
       catch(error => {
         throw error;

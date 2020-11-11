@@ -96,7 +96,7 @@ function GymPage({ route, navigation }) {
                             />
                         ))
                         : <CardItem>
-                          <Text> There Isn't Feedbacks</Text>
+                          <Text>Non ci sono recensioni!</Text>
                         </CardItem>
                 )
             }

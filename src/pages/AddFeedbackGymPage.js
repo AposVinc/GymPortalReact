@@ -7,8 +7,12 @@ import {
   sFeedbacksCurrentFeedback, sFeedbacksExistingFeedbackByUserIdAndGymId,
 } from '../reducers/FeedbackReducer';
 import {
-  feedbackChangeFeed, feedbackChangeId,
-  feedbackChangeRating, feedbackGymAdd, feedbackGymUpdate,
+  feedbackChangeFeed,
+  feedbackChangeId,
+  feedbackChangeRating,
+  feedbackGymAdd,
+  feedbackGymDelete,
+  feedbackGymUpdate,
   feedbackReset,
 } from '../actions';
 import {sUserProps} from '../reducers/UserReducer';
@@ -70,7 +74,10 @@ function AddFeedbackGymPage({ route, navigation }) {
             style={ styles.button }
         />
         <ListButton
-            onPress={ () => console.log('vai con la logica Vinc')}
+            onPress={ () => {
+              dispatch(feedbackGymDelete(idGym));
+              navigation.goBack();
+            }}
             text={'Elimina Recensione'}
             style={ styles.buttonDelete }
         />
