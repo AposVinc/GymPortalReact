@@ -77,7 +77,7 @@ const styles = {
       height: 30,
       justifyContent: 'flex-start',
       alignItems: 'center',
-      marginLeft: '60%',
+      marginLeft: '50%',
       borderRadius: 20,
       backgroundColor: '#42a5f5',
       paddingTop:5,

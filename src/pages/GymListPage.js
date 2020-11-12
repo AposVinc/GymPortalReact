@@ -65,7 +65,7 @@ export default function({ navigation }) {
             refreshControl={ <RefreshControl refreshing={gymLoading && favoritesLoading} onRefresh={ () => {dispatch(gymsFetch()); dispatch(favoriteGymFetch());} } /> }
         >
           <SearchBar
-              placeholder="Type Here..."
+              placeholder="Nome Palestra..."
               onChangeText={ (value) => dispatch(appFilterChangeSearchGym(value))}
               value={search}
           />
