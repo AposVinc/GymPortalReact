@@ -15,7 +15,7 @@ export const getFeedbacksByGym = function (idGym) {
 
 export const addFeedbackGym = function (feedback, token) {
   return axios.post(URL_GYMS + feedback.gym + URL_FEEDBACKS, feedback, {headers: {'Authorization': token, 'Content-Type': 'application/json'}}).
-      then(response => response.headers.location.substring(r.lastIndexOf('/') + 1)).
+      then(response => response.headers.location.substring(response.headers.location.lastIndexOf('/') + 1)).
       catch(error => {
         throw error;
       });
@@ -49,7 +49,7 @@ export const getFeedbacksByCourse = function (idGym, idCourse) {
 
 export const addFeedbackCourse = function (idGym, feedback, token) {
   return axios.post(URL_GYMS + idGym + URL_COURSES + feedback.course + URL_FEEDBACKS, feedback, {headers: {'Authorization': token, 'Content-Type': 'application/json'}}).
-      then(response => response.headers.location.substring(r.lastIndexOf('/') + 1)).
+      then(response => response.headers.location.substring(response.headers.location.lastIndexOf('/') + 1)).
       catch(error => {
         throw error;
       });
