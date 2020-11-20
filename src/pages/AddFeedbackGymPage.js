@@ -102,6 +102,8 @@ const styles = {
     paddingLeft: 40,
     paddingRight: 40,
     margin: 10,
+    height:60
+
   },
   buttonDelete: {
     paddingTop: 20,
@@ -109,7 +111,9 @@ const styles = {
     paddingLeft: 40,
     paddingRight: 40,
     margin: 10,
-    backgroundColor: 'red'
+    backgroundColor: 'red',
+    height:60
+
   },
   containerCard:{
     backgroundColor: '#e1f5fe',

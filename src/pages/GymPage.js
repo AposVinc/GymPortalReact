@@ -76,7 +76,7 @@ function GymPage({ route, navigation }) {
           </Card>
 
           <ListButton
-              onPress={ () => { navigation.navigate('Courses List', {idGym}); } }
+              onPress={ () => { navigation.navigate('Esplora Corsi', {idGym}); } }
               text={'Mostra i corsi della palestra!'}
               style={ styles.button }
           />
@@ -108,7 +108,7 @@ function GymPage({ route, navigation }) {
         <FAB
             buttonColor='rgb(254, 178, 7)'
             iconTextColor="#fff"
-            onClickAction={() => navigation.navigate('Add Feedback Gym', {idGym})}
+            onClickAction={() => navigation.navigate('Aggiungi Recensione Palestra', {idGym})}
             iconTextComponent={
               feedbacks.some(f => f.user === user.id)
                   ? <Icon name='pencil-outline' type='ionicon' />
@@ -140,8 +140,9 @@ const styles = {
   button: {
     paddingTop: 20,
     paddingBottom: 20,
-    paddingLeft: 40,
-    paddingRight: 40
+    paddingLeft: 20,
+    paddingRight: 20,
+    height:60
   },
 
   textName: {

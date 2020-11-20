@@ -48,11 +48,7 @@ function CoursePage({ route, navigation }) {
     }, []);
   }
 
-  useEffect(() => {
-    dispatch(feedbacksCourseFetch(idGym, idCourse));
-  }, []);
-
-  if (loading){
+  if (loading || course === null){
     return (
         <View
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -60,6 +56,11 @@ function CoursePage({ route, navigation }) {
         </View>
     );
   }
+
+  useEffect(() => {
+    dispatch(feedbacksCourseFetch(idGym, idCourse));
+  }, []);
+
 
   return (
       <View style={styles.container}>
@@ -113,7 +114,7 @@ function CoursePage({ route, navigation }) {
         <FAB
             buttonColor='rgb(254, 178, 7)'
             iconTextColor="#fff"
-            onClickAction={() => navigation.navigate('Add Feedback Course', {idGym, idCourse})}
+            onClickAction={() => navigation.navigate('Aggiungi Recensione Corso', {idGym, idCourse})}
             iconTextComponent={
               feedbacks.some(f => f.user === user.id)
                   ? <Icon name='pencil-outline' type='ionicon' />
